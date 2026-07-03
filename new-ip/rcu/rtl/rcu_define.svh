@@ -53,7 +53,7 @@
 `define TCLK_CDIV_16DIV 2'b10
 `define TCLK_CDIV_32DIV 2'b11
 
-`define RCU_CLK_CFG_WIDTH  3
+`define RCU_CLK_CFG_WIDTH  2
 `define RCU_CORE_SEL_WIDTH 5
 `define RCU_CLK_MODE_WIDTH 7
 // clk_o and rst_o

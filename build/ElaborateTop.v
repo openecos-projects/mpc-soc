@@ -122,56 +122,6 @@ module APBFanout(
   output        auto_anon_in_pready,
                 auto_anon_in_pslverr,
   output [31:0] auto_anon_in_prdata,
-  output        auto_anon_out_24_psel,
-                auto_anon_out_24_penable,
-                auto_anon_out_24_pwrite,
-  output [28:0] auto_anon_out_24_paddr,
-  output [2:0]  auto_anon_out_24_pprot,
-  output [31:0] auto_anon_out_24_pwdata,
-  output [3:0]  auto_anon_out_24_pstrb,
-  input         auto_anon_out_24_pready,
-                auto_anon_out_24_pslverr,
-  input  [31:0] auto_anon_out_24_prdata,
-  output        auto_anon_out_23_psel,
-                auto_anon_out_23_penable,
-                auto_anon_out_23_pwrite,
-  output [28:0] auto_anon_out_23_paddr,
-  output [2:0]  auto_anon_out_23_pprot,
-  output [31:0] auto_anon_out_23_pwdata,
-  output [3:0]  auto_anon_out_23_pstrb,
-  input         auto_anon_out_23_pready,
-                auto_anon_out_23_pslverr,
-  input  [31:0] auto_anon_out_23_prdata,
-  output        auto_anon_out_22_psel,
-                auto_anon_out_22_penable,
-                auto_anon_out_22_pwrite,
-  output [28:0] auto_anon_out_22_paddr,
-  output [2:0]  auto_anon_out_22_pprot,
-  output [31:0] auto_anon_out_22_pwdata,
-  output [3:0]  auto_anon_out_22_pstrb,
-  input         auto_anon_out_22_pready,
-                auto_anon_out_22_pslverr,
-  input  [31:0] auto_anon_out_22_prdata,
-  output        auto_anon_out_21_psel,
-                auto_anon_out_21_penable,
-                auto_anon_out_21_pwrite,
-  output [28:0] auto_anon_out_21_paddr,
-  output [2:0]  auto_anon_out_21_pprot,
-  output [31:0] auto_anon_out_21_pwdata,
-  output [3:0]  auto_anon_out_21_pstrb,
-  input         auto_anon_out_21_pready,
-                auto_anon_out_21_pslverr,
-  input  [31:0] auto_anon_out_21_prdata,
-  output        auto_anon_out_20_psel,
-                auto_anon_out_20_penable,
-                auto_anon_out_20_pwrite,
-  output [28:0] auto_anon_out_20_paddr,
-  output [2:0]  auto_anon_out_20_pprot,
-  output [31:0] auto_anon_out_20_pwdata,
-  output [3:0]  auto_anon_out_20_pstrb,
-  input         auto_anon_out_20_pready,
-                auto_anon_out_20_pslverr,
-  input  [31:0] auto_anon_out_20_prdata,
   output        auto_anon_out_19_psel,
                 auto_anon_out_19_penable,
                 auto_anon_out_19_pwrite,
@@ -431,111 +381,76 @@ module APBFanout(
      _GEN_4[8:7],
      _GEN_4[1:0],
      auto_anon_in_paddr[15:12]} == 10'h0;
-  wire [16:0] _GEN_5 = auto_anon_in_paddr[28:12] ^ 17'h10101;
+  wire [16:0] _GEN_5 = auto_anon_in_paddr[28:12] ^ 17'h10103;
   wire        sel_10 =
     {auto_anon_in_paddr[31],
      auto_anon_in_paddr[29],
      _GEN_5[16:15],
      _GEN_5[9:8],
      _GEN_5[3:0]} == 10'h0;
-  wire [16:0] _GEN_6 = auto_anon_in_paddr[28:12] ^ 17'h10102;
+  wire [16:0] _GEN_6 = auto_anon_in_paddr[28:12] ^ 17'h10104;
   wire        sel_11 =
     {auto_anon_in_paddr[31],
      auto_anon_in_paddr[29],
      _GEN_6[16:15],
      _GEN_6[9:8],
      _GEN_6[3:0]} == 10'h0;
-  wire [16:0] _GEN_7 = auto_anon_in_paddr[28:12] ^ 17'h10103;
+  wire [16:0] _GEN_7 = auto_anon_in_paddr[28:12] ^ 17'h10106;
   wire        sel_12 =
     {auto_anon_in_paddr[31],
      auto_anon_in_paddr[29],
      _GEN_7[16:15],
      _GEN_7[9:8],
      _GEN_7[3:0]} == 10'h0;
-  wire [16:0] _GEN_8 = auto_anon_in_paddr[28:12] ^ 17'h10104;
+  wire [16:0] _GEN_8 = auto_anon_in_paddr[28:12] ^ 17'h10108;
   wire        sel_13 =
     {auto_anon_in_paddr[31],
      auto_anon_in_paddr[29],
      _GEN_8[16:15],
      _GEN_8[9:8],
      _GEN_8[3:0]} == 10'h0;
-  wire [16:0] _GEN_9 = auto_anon_in_paddr[28:12] ^ 17'h10105;
+  wire [16:0] _GEN_9 = auto_anon_in_paddr[28:12] ^ 17'h10109;
   wire        sel_14 =
     {auto_anon_in_paddr[31],
      auto_anon_in_paddr[29],
      _GEN_9[16:15],
      _GEN_9[9:8],
      _GEN_9[3:0]} == 10'h0;
-  wire [16:0] _GEN_10 = auto_anon_in_paddr[28:12] ^ 17'h10106;
+  wire [16:0] _GEN_10 = auto_anon_in_paddr[28:12] ^ 17'h1010A;
   wire        sel_15 =
     {auto_anon_in_paddr[31],
      auto_anon_in_paddr[29],
      _GEN_10[16:15],
      _GEN_10[9:8],
      _GEN_10[3:0]} == 10'h0;
-  wire [16:0] _GEN_11 = auto_anon_in_paddr[28:12] ^ 17'h10107;
+  wire [16:0] _GEN_11 = auto_anon_in_paddr[28:12] ^ 17'h1010B;
   wire        sel_16 =
     {auto_anon_in_paddr[31],
      auto_anon_in_paddr[29],
      _GEN_11[16:15],
      _GEN_11[9:8],
      _GEN_11[3:0]} == 10'h0;
-  wire [16:0] _GEN_12 = auto_anon_in_paddr[28:12] ^ 17'h10108;
+  wire [8:0]  _GEN_12 = auto_anon_in_paddr[28:20] ^ 9'h102;
   wire        sel_17 =
     {auto_anon_in_paddr[31],
      auto_anon_in_paddr[29],
-     _GEN_12[16:15],
-     _GEN_12[9:8],
-     _GEN_12[3:0]} == 10'h0;
-  wire [16:0] _GEN_13 = auto_anon_in_paddr[28:12] ^ 17'h10109;
+     _GEN_12[8:7],
+     _GEN_12[1:0],
+     auto_anon_in_paddr[15:12]} == 10'h0;
+  wire [8:0]  _GEN_13 = auto_anon_in_paddr[28:20] ^ 9'h103;
   wire        sel_18 =
     {auto_anon_in_paddr[31],
      auto_anon_in_paddr[29],
-     _GEN_13[16:15],
-     _GEN_13[9:8],
-     _GEN_13[3:0]} == 10'h0;
-  wire [16:0] _GEN_14 = auto_anon_in_paddr[28:12] ^ 17'h1010A;
+     _GEN_13[8:7],
+     _GEN_13[1:0],
+     auto_anon_in_paddr[15:12]} == 10'h0;
+  wire [16:0] _GEN_14 = auto_anon_in_paddr[28:12] ^ 17'h10301;
   wire        sel_19 =
     {auto_anon_in_paddr[31],
      auto_anon_in_paddr[29],
      _GEN_14[16:15],
      _GEN_14[9:8],
      _GEN_14[3:0]} == 10'h0;
-  wire [16:0] _GEN_15 = auto_anon_in_paddr[28:12] ^ 17'h1010B;
-  wire        sel_20 =
-    {auto_anon_in_paddr[31],
-     auto_anon_in_paddr[29],
-     _GEN_15[16:15],
-     _GEN_15[9:8],
-     _GEN_15[3:0]} == 10'h0;
-  wire [8:0]  _GEN_16 = auto_anon_in_paddr[28:20] ^ 9'h102;
-  wire        sel_21 =
-    {auto_anon_in_paddr[31],
-     auto_anon_in_paddr[29],
-     _GEN_16[8:7],
-     _GEN_16[1:0],
-     auto_anon_in_paddr[15:12]} == 10'h0;
-  wire [16:0] _GEN_17 = auto_anon_in_paddr[28:12] ^ 17'h10201;
-  wire        sel_22 =
-    {auto_anon_in_paddr[31],
-     auto_anon_in_paddr[29],
-     _GEN_17[16:15],
-     _GEN_17[9:8],
-     _GEN_17[3:0]} == 10'h0;
-  wire [8:0]  _GEN_18 = auto_anon_in_paddr[28:20] ^ 9'h103;
-  wire        sel_23 =
-    {auto_anon_in_paddr[31],
-     auto_anon_in_paddr[29],
-     _GEN_18[8:7],
-     _GEN_18[1:0],
-     auto_anon_in_paddr[15:12]} == 10'h0;
-  wire [16:0] _GEN_19 = auto_anon_in_paddr[28:12] ^ 17'h10301;
-  wire        sel_24 =
-    {auto_anon_in_paddr[31],
-     auto_anon_in_paddr[29],
-     _GEN_19[16:15],
-     _GEN_19[9:8],
-     _GEN_19[3:0]} == 10'h0;
   assign auto_anon_in_pready =
     ~(sel_0 & ~auto_anon_out_0_pready | sel_1 & ~auto_anon_out_1_pready | sel_2
       & ~auto_anon_out_2_pready | sel_3 & ~auto_anon_out_3_pready | sel_4
@@ -546,10 +461,7 @@ module APBFanout(
       & ~auto_anon_out_12_pready | sel_13 & ~auto_anon_out_13_pready | sel_14
       & ~auto_anon_out_14_pready | sel_15 & ~auto_anon_out_15_pready | sel_16
       & ~auto_anon_out_16_pready | sel_17 & ~auto_anon_out_17_pready | sel_18
-      & ~auto_anon_out_18_pready | sel_19 & ~auto_anon_out_19_pready | sel_20
-      & ~auto_anon_out_20_pready | sel_21 & ~auto_anon_out_21_pready | sel_22
-      & ~auto_anon_out_22_pready | sel_23 & ~auto_anon_out_23_pready | sel_24
-      & ~auto_anon_out_24_pready);
+      & ~auto_anon_out_18_pready | sel_19 & ~auto_anon_out_19_pready);
   assign auto_anon_in_pslverr =
     sel_0 & auto_anon_out_0_pslverr | sel_1 & auto_anon_out_1_pslverr | sel_3
     & auto_anon_out_3_pslverr | sel_4 & auto_anon_out_4_pslverr | sel_5
@@ -560,9 +472,7 @@ module APBFanout(
     & auto_anon_out_13_pslverr | sel_14 & auto_anon_out_14_pslverr | sel_15
     & auto_anon_out_15_pslverr | sel_16 & auto_anon_out_16_pslverr | sel_17
     & auto_anon_out_17_pslverr | sel_18 & auto_anon_out_18_pslverr | sel_19
-    & auto_anon_out_19_pslverr | sel_20 & auto_anon_out_20_pslverr | sel_21
-    & auto_anon_out_21_pslverr | sel_22 & auto_anon_out_22_pslverr | sel_23
-    & auto_anon_out_23_pslverr | sel_24 & auto_anon_out_24_pslverr;
+    & auto_anon_out_19_pslverr;
   assign auto_anon_in_prdata =
     (sel_0 ? auto_anon_out_0_prdata : 32'h0) | (sel_1 ? auto_anon_out_1_prdata : 32'h0)
     | (sel_2 ? auto_anon_out_2_prdata : 32'h0) | (sel_3 ? auto_anon_out_3_prdata : 32'h0)
@@ -578,47 +488,7 @@ module APBFanout(
     | (sel_16 ? auto_anon_out_16_prdata : 32'h0)
     | (sel_17 ? auto_anon_out_17_prdata : 32'h0)
     | (sel_18 ? auto_anon_out_18_prdata : 32'h0)
-    | (sel_19 ? auto_anon_out_19_prdata : 32'h0)
-    | (sel_20 ? auto_anon_out_20_prdata : 32'h0)
-    | (sel_21 ? auto_anon_out_21_prdata : 32'h0)
-    | (sel_22 ? auto_anon_out_22_prdata : 32'h0)
-    | (sel_23 ? auto_anon_out_23_prdata : 32'h0)
-    | (sel_24 ? auto_anon_out_24_prdata : 32'h0);
-  assign auto_anon_out_24_psel = sel_24 & auto_anon_in_psel;
-  assign auto_anon_out_24_penable = sel_24 & auto_anon_in_penable;
-  assign auto_anon_out_24_pwrite = auto_anon_in_pwrite;
-  assign auto_anon_out_24_paddr = auto_anon_in_paddr[28:0];
-  assign auto_anon_out_24_pprot = auto_anon_in_pprot;
-  assign auto_anon_out_24_pwdata = auto_anon_in_pwdata;
-  assign auto_anon_out_24_pstrb = auto_anon_in_pstrb;
-  assign auto_anon_out_23_psel = sel_23 & auto_anon_in_psel;
-  assign auto_anon_out_23_penable = sel_23 & auto_anon_in_penable;
-  assign auto_anon_out_23_pwrite = auto_anon_in_pwrite;
-  assign auto_anon_out_23_paddr = auto_anon_in_paddr[28:0];
-  assign auto_anon_out_23_pprot = auto_anon_in_pprot;
-  assign auto_anon_out_23_pwdata = auto_anon_in_pwdata;
-  assign auto_anon_out_23_pstrb = auto_anon_in_pstrb;
-  assign auto_anon_out_22_psel = sel_22 & auto_anon_in_psel;
-  assign auto_anon_out_22_penable = sel_22 & auto_anon_in_penable;
-  assign auto_anon_out_22_pwrite = auto_anon_in_pwrite;
-  assign auto_anon_out_22_paddr = auto_anon_in_paddr[28:0];
-  assign auto_anon_out_22_pprot = auto_anon_in_pprot;
-  assign auto_anon_out_22_pwdata = auto_anon_in_pwdata;
-  assign auto_anon_out_22_pstrb = auto_anon_in_pstrb;
-  assign auto_anon_out_21_psel = sel_21 & auto_anon_in_psel;
-  assign auto_anon_out_21_penable = sel_21 & auto_anon_in_penable;
-  assign auto_anon_out_21_pwrite = auto_anon_in_pwrite;
-  assign auto_anon_out_21_paddr = auto_anon_in_paddr[28:0];
-  assign auto_anon_out_21_pprot = auto_anon_in_pprot;
-  assign auto_anon_out_21_pwdata = auto_anon_in_pwdata;
-  assign auto_anon_out_21_pstrb = auto_anon_in_pstrb;
-  assign auto_anon_out_20_psel = sel_20 & auto_anon_in_psel;
-  assign auto_anon_out_20_penable = sel_20 & auto_anon_in_penable;
-  assign auto_anon_out_20_pwrite = auto_anon_in_pwrite;
-  assign auto_anon_out_20_paddr = auto_anon_in_paddr[28:0];
-  assign auto_anon_out_20_pprot = auto_anon_in_pprot;
-  assign auto_anon_out_20_pwdata = auto_anon_in_pwdata;
-  assign auto_anon_out_20_pstrb = auto_anon_in_pstrb;
+    | (sel_19 ? auto_anon_out_19_prdata : 32'h0);
   assign auto_anon_out_19_psel = sel_19 & auto_anon_in_psel;
   assign auto_anon_out_19_penable = sel_19 & auto_anon_in_penable;
   assign auto_anon_out_19_pwrite = auto_anon_in_pwrite;
@@ -3181,7 +3051,7 @@ module CPU(
     .io_interrupt_out_14    (_cmp_io_interrupt_out_14),
     .io_interrupt_out_15    (_cmp_io_interrupt_out_15)
   );
-  ysyx_00000000 core0 (
+  NPC core0 (
     .clock                   (clock),
     .reset                   (reset),
     .io_interrupt            (_cmp_io_interrupt_out_0),
@@ -3244,7 +3114,7 @@ module CPU(
     .io_slave_rresp    (/* unused */),
     .io_slave_rlast    (/* unused */)
   );
-  ysyx_00000000 core1 (
+  NPC core1 (
     .clock                   (clock),
     .reset                   (reset),
     .io_interrupt            (_cmp_io_interrupt_out_1),
@@ -3307,7 +3177,7 @@ module CPU(
     .io_slave_rresp    (/* unused */),
     .io_slave_rlast    (/* unused */)
   );
-  ysyx_00000000 core2 (
+  NPC core2 (
     .clock                   (clock),
     .reset                   (reset),
     .io_interrupt            (_cmp_io_interrupt_out_2),
@@ -3370,7 +3240,7 @@ module CPU(
     .io_slave_rresp    (/* unused */),
     .io_slave_rlast    (/* unused */)
   );
-  ysyx_00000000 core3 (
+  NPC core3 (
     .clock                   (clock),
     .reset                   (reset),
     .io_interrupt            (_cmp_io_interrupt_out_3),
@@ -3433,7 +3303,7 @@ module CPU(
     .io_slave_rresp    (/* unused */),
     .io_slave_rlast    (/* unused */)
   );
-  ysyx_00000000 core4 (
+  NPC core4 (
     .clock                   (clock),
     .reset                   (reset),
     .io_interrupt            (_cmp_io_interrupt_out_4),
@@ -3496,7 +3366,7 @@ module CPU(
     .io_slave_rresp    (/* unused */),
     .io_slave_rlast    (/* unused */)
   );
-  ysyx_00000000 core5 (
+  NPC core5 (
     .clock                   (clock),
     .reset                   (reset),
     .io_interrupt            (_cmp_io_interrupt_out_5),
@@ -3559,7 +3429,7 @@ module CPU(
     .io_slave_rresp    (/* unused */),
     .io_slave_rlast    (/* unused */)
   );
-  ysyx_00000000 core6 (
+  NPC core6 (
     .clock                   (clock),
     .reset                   (reset),
     .io_interrupt            (_cmp_io_interrupt_out_6),
@@ -3622,7 +3492,7 @@ module CPU(
     .io_slave_rresp    (/* unused */),
     .io_slave_rlast    (/* unused */)
   );
-  ysyx_00000000 core7 (
+  NPC core7 (
     .clock                   (clock),
     .reset                   (reset),
     .io_interrupt            (_cmp_io_interrupt_out_7),
@@ -3685,7 +3555,7 @@ module CPU(
     .io_slave_rresp    (/* unused */),
     .io_slave_rlast    (/* unused */)
   );
-  ysyx_00000000 core8 (
+  NPC core8 (
     .clock                   (clock),
     .reset                   (reset),
     .io_interrupt            (_cmp_io_interrupt_out_8),
@@ -3748,7 +3618,7 @@ module CPU(
     .io_slave_rresp    (/* unused */),
     .io_slave_rlast    (/* unused */)
   );
-  ysyx_00000000 core9 (
+  NPC core9 (
     .clock                   (clock),
     .reset                   (reset),
     .io_interrupt            (_cmp_io_interrupt_out_9),
@@ -3811,7 +3681,7 @@ module CPU(
     .io_slave_rresp    (/* unused */),
     .io_slave_rlast    (/* unused */)
   );
-  ysyx_00000000 core10 (
+  NPC core10 (
     .clock                   (clock),
     .reset                   (reset),
     .io_interrupt            (_cmp_io_interrupt_out_10),
@@ -3874,7 +3744,7 @@ module CPU(
     .io_slave_rresp    (/* unused */),
     .io_slave_rlast    (/* unused */)
   );
-  ysyx_00000000 core11 (
+  NPC core11 (
     .clock                   (clock),
     .reset                   (reset),
     .io_interrupt            (_cmp_io_interrupt_out_11),
@@ -3937,7 +3807,7 @@ module CPU(
     .io_slave_rresp    (/* unused */),
     .io_slave_rlast    (/* unused */)
   );
-  ysyx_00000000 core12 (
+  NPC core12 (
     .clock                   (clock),
     .reset                   (reset),
     .io_interrupt            (_cmp_io_interrupt_out_12),
@@ -4000,7 +3870,7 @@ module CPU(
     .io_slave_rresp    (/* unused */),
     .io_slave_rlast    (/* unused */)
   );
-  ysyx_00000000 core13 (
+  NPC core13 (
     .clock                   (clock),
     .reset                   (reset),
     .io_interrupt            (_cmp_io_interrupt_out_13),
@@ -4063,7 +3933,7 @@ module CPU(
     .io_slave_rresp    (/* unused */),
     .io_slave_rlast    (/* unused */)
   );
-  ysyx_00000000 core14 (
+  NPC core14 (
     .clock                   (clock),
     .reset                   (reset),
     .io_interrupt            (_cmp_io_interrupt_out_14),
@@ -4126,7 +3996,7 @@ module CPU(
     .io_slave_rresp    (/* unused */),
     .io_slave_rlast    (/* unused */)
   );
-  ysyx_00000000 core15 (
+  NPC core15 (
     .clock                   (clock),
     .reset                   (reset),
     .io_interrupt            (_cmp_io_interrupt_out_15),
@@ -4294,6 +4164,50 @@ module APBUart16550(
   );
 endmodule
 
+
+// Include register initializers in init blocks unless synthesis is set
+`ifndef RANDOMIZE
+  `ifdef RANDOMIZE_REG_INIT
+    `define RANDOMIZE
+  `endif // RANDOMIZE_REG_INIT
+`endif // not def RANDOMIZE
+`ifndef SYNTHESIS
+  `ifndef ENABLE_INITIAL_REG_
+    `define ENABLE_INITIAL_REG_
+  `endif // not def ENABLE_INITIAL_REG_
+`endif // not def SYNTHESIS
+
+// Standard header to adapt well known macros for register randomization.
+
+// RANDOM may be set to an expression that produces a 32-bit random unsigned value.
+`ifndef RANDOM
+  `define RANDOM $random
+`endif // not def RANDOM
+
+// Users can define INIT_RANDOM as general code that gets injected into the
+// initializer block for modules with registers.
+`ifndef INIT_RANDOM
+  `define INIT_RANDOM
+`endif // not def INIT_RANDOM
+
+// If using random initialization, you can also define RANDOMIZE_DELAY to
+// customize the delay used, otherwise 0.002 is used.
+`ifndef RANDOMIZE_DELAY
+  `define RANDOMIZE_DELAY 0.002
+`endif // not def RANDOMIZE_DELAY
+
+// Define INIT_RANDOM_PROLOG_ for use in our modules below.
+`ifndef INIT_RANDOM_PROLOG_
+  `ifdef RANDOMIZE
+    `ifdef VERILATOR
+      `define INIT_RANDOM_PROLOG_ `INIT_RANDOM
+    `else  // VERILATOR
+      `define INIT_RANDOM_PROLOG_ `INIT_RANDOM #`RANDOMIZE_DELAY begin end
+    `endif // VERILATOR
+  `else  // RANDOMIZE
+    `define INIT_RANDOM_PROLOG_
+  `endif // RANDOMIZE
+`endif // not def INIT_RANDOM_PROLOG_
 module APBSPI(
   input         clock,
                 reset,
@@ -4308,30 +4222,146 @@ module APBSPI(
                 auto_apply_in_pslverr,
   output [31:0] auto_apply_in_prdata,
   output        extra_sck,
-  output [7:0]  extra_ss,
-  output        extra_mosi,
+                extra_ss,
+                extra_mosi,
   input         extra_miso
 );
 
+  wire        _mspi_in_pready;
+  wire [31:0] _mspi_in_prdata;
+  wire [7:0]  _mspi_spi_ss;
+  wire        _mspi_spi_irq_out;
+  reg  [3:0]  cmd_state;
+  reg  [1:0]  spi_state;
+  wire        mspi_in_psel = spi_state == 2'h2;
+  wire        spi_ack = mspi_in_psel & _mspi_in_pready;
+  wire        _mspi_io_in_paddr_T_11 = cmd_state == 4'h8;
+  wire        _mspi_io_in_pstrb_T = cmd_state == 4'h1;
+  wire        _mspi_io_in_pwdata_T_3 = cmd_state == 4'h2;
+  wire        _mspi_io_in_pwdata_T_5 = cmd_state == 4'h3;
+  wire        _mspi_io_in_pwdata_T_7 = cmd_state == 4'h4;
+  wire        _mspi_io_in_pwdata_T_9 = cmd_state == 4'h5;
+  wire        _mspi_io_in_pwdata_T_11 = cmd_state == 4'h6;
+  always @(posedge clock) begin
+    if (reset) begin
+      cmd_state <= 4'h0;
+      spi_state <= 2'h0;
+    end
+    else begin
+      if (cmd_state == 4'h0) begin
+        if (auto_apply_in_psel & auto_apply_in_penable)
+          cmd_state <=
+            auto_apply_in_paddr > 30'h2FFFFFFF & ~auto_apply_in_pwrite ? 4'h2 : 4'h1;
+      end
+      else if (cmd_state == 4'h1) begin
+        if (spi_ack)
+          cmd_state <= 4'h0;
+      end
+      else if (cmd_state == 4'h2) begin
+        if (spi_ack)
+          cmd_state <= 4'h3;
+      end
+      else if (cmd_state == 4'h3) begin
+        if (spi_ack)
+          cmd_state <= 4'h4;
+      end
+      else if (cmd_state == 4'h4) begin
+        if (spi_ack)
+          cmd_state <= 4'h5;
+      end
+      else if (cmd_state == 4'h5) begin
+        if (spi_ack)
+          cmd_state <= 4'h6;
+      end
+      else if (cmd_state == 4'h6) begin
+        if (spi_ack)
+          cmd_state <= 4'h7;
+      end
+      else if (cmd_state == 4'h7) begin
+        if (_mspi_spi_irq_out)
+          cmd_state <= 4'h8;
+      end
+      else if (cmd_state == 4'h8 & spi_ack)
+        cmd_state <= 4'h0;
+      if (spi_state == 2'h0) begin
+        if ((|cmd_state) & cmd_state != 4'h7)
+          spi_state <= 2'h1;
+      end
+      else if (spi_state == 2'h1)
+        spi_state <= 2'h2;
+      else if (mspi_in_psel & _mspi_in_pready)
+        spi_state <= 2'h0;
+    end
+  end // always @(posedge)
+  `ifdef ENABLE_INITIAL_REG_
+    `ifdef FIRRTL_BEFORE_INITIAL
+      `FIRRTL_BEFORE_INITIAL
+    `endif // FIRRTL_BEFORE_INITIAL
+    logic [31:0] _RANDOM[0:0];
+    initial begin
+      `ifdef INIT_RANDOM_PROLOG_
+        `INIT_RANDOM_PROLOG_
+      `endif // INIT_RANDOM_PROLOG_
+      `ifdef RANDOMIZE_REG_INIT
+        _RANDOM[/*Zero width*/ 1'b0] = `RANDOM;
+        cmd_state = _RANDOM[/*Zero width*/ 1'b0][3:0];
+        spi_state = _RANDOM[/*Zero width*/ 1'b0][5:4];
+      `endif // RANDOMIZE_REG_INIT
+    end // initial
+    `ifdef FIRRTL_AFTER_INITIAL
+      `FIRRTL_AFTER_INITIAL
+    `endif // FIRRTL_AFTER_INITIAL
+  `endif // ENABLE_INITIAL_REG_
   spi_top_apb mspi (
     .clock       (clock),
     .reset       (reset),
-    .in_psel     (auto_apply_in_psel),
-    .in_penable  (auto_apply_in_penable),
-    .in_pwrite   (auto_apply_in_pwrite),
-    .in_paddr    ({2'h0, auto_apply_in_paddr}),
+    .in_psel     (mspi_in_psel),
+    .in_penable  (spi_state == 2'h1 | mspi_in_psel),
+    .in_pwrite   (_mspi_io_in_pstrb_T ? auto_apply_in_pwrite : cmd_state != 4'h8),
+    .in_paddr
+      ({27'h0,
+        _mspi_io_in_paddr_T_11
+          ? 3'h0
+          : _mspi_io_in_pwdata_T_11
+              ? 3'h4
+              : _mspi_io_in_pwdata_T_9
+                  ? 3'h6
+                  : _mspi_io_in_pwdata_T_7
+                      ? 3'h5
+                      : _mspi_io_in_pwdata_T_5
+                          ? 3'h1
+                          : _mspi_io_in_pwdata_T_3 ? 3'h0 : auto_apply_in_paddr[4:2],
+        2'h0}),
     .in_pprot    (auto_apply_in_pprot),
-    .in_pwdata   (auto_apply_in_pwdata),
-    .in_pstrb    (auto_apply_in_pstrb),
-    .in_pready   (auto_apply_in_pready),
+    .in_pwdata
+      (_mspi_io_in_pwdata_T_11
+         ? 32'h3540
+         : _mspi_io_in_pwdata_T_9
+             ? 32'h1
+             : _mspi_io_in_pwdata_T_7
+                 ? 32'h0
+                 : _mspi_io_in_pwdata_T_5
+                     ? {8'h3, auto_apply_in_paddr[23:2], 2'h0}
+                     : _mspi_io_in_pwdata_T_3 ? 32'h0 : auto_apply_in_pwdata),
+    .in_pstrb    (_mspi_io_in_pstrb_T ? auto_apply_in_pstrb : 4'hF),
+    .in_pready   (_mspi_in_pready),
     .in_pslverr  (auto_apply_in_pslverr),
-    .in_prdata   (auto_apply_in_prdata),
+    .in_prdata   (_mspi_in_prdata),
     .spi_sck     (extra_sck),
-    .spi_ss      (extra_ss),
+    .spi_ss      (_mspi_spi_ss),
     .spi_mosi    (extra_mosi),
     .spi_miso    (extra_miso),
-    .spi_irq_out (/* unused */)
+    .spi_irq_out (_mspi_spi_irq_out)
   );
+  assign auto_apply_in_pready = (_mspi_io_in_pstrb_T | _mspi_io_in_paddr_T_11) & spi_ack;
+  assign auto_apply_in_prdata =
+    _mspi_io_in_paddr_T_11
+      ? {_mspi_in_prdata[7:0],
+         _mspi_in_prdata[15:8],
+         _mspi_in_prdata[23:16],
+         _mspi_in_prdata[31:24]}
+      : _mspi_in_prdata;
+  assign extra_ss = _mspi_spi_ss[0];
 endmodule
 
 module APB4RCU(
@@ -4346,7 +4376,13 @@ module APB4RCU(
   input  [3:0]  auto_apply_in_pstrb,
   output        auto_apply_in_pready,
                 auto_apply_in_pslverr,
-  output [31:0] auto_apply_in_prdata
+  output [31:0] auto_apply_in_prdata,
+  input         extra_ext_lfosc_clk_i,
+                extra_ext_rst_n_i,
+                extra_wdt_rst_n_i,
+                extra_pll_en_i,
+  input  [1:0]  extra_clk_cfg_i,
+  output [6:0]  extra_clk_o
 );
 
   apb4_rcu m (
@@ -4362,16 +4398,16 @@ module APB4RCU(
     .apb4_pready          (auto_apply_in_pready),
     .apb4_pslverr         (auto_apply_in_pslverr),
     .apb4_prdata          (auto_apply_in_prdata),
-    .rcu_ext_lfosc_clk_i  (1'h0),
+    .rcu_ext_lfosc_clk_i  (extra_ext_lfosc_clk_i),
     .rcu_ext_hfosc_clk_i  (1'h0),
     .rcu_ext_audosc_clk_i (1'h0),
-    .rcu_ext_rst_n_i      (1'h0),
-    .rcu_wdt_rst_n_i      (1'h0),
-    .rcu_pll_en_i         (1'h0),
-    .rcu_clk_cfg_i        (3'h0),
+    .rcu_ext_rst_n_i      (extra_ext_rst_n_i),
+    .rcu_wdt_rst_n_i      (extra_wdt_rst_n_i),
+    .rcu_pll_en_i         (extra_pll_en_i),
+    .rcu_clk_cfg_i        (extra_clk_cfg_i),
     .rcu_core_sel_i       (5'h0),
     .rcu_core_sel_o       (/* unused */),
-    .rcu_clk_o            (/* unused */),
+    .rcu_clk_o            (extra_clk_o),
     .rcu_rst_n_o          (/* unused */)
   );
 endmodule
@@ -4426,7 +4462,8 @@ module APB4WDG(
   output        auto_apply_in_pready,
                 auto_apply_in_pslverr,
   output [31:0] auto_apply_in_prdata,
-  input         extra_rtc_clk_i
+  input         extra_rtc_clk_i,
+  output        extra_rst_o
 );
 
   apb4_wdg m (
@@ -4443,7 +4480,7 @@ module APB4WDG(
     .apb4_pslverr  (auto_apply_in_pslverr),
     .apb4_prdata   (auto_apply_in_prdata),
     .wdg_rtc_clk_i (extra_rtc_clk_i),
-    .wdg_rst_o     (/* unused */)
+    .wdg_rst_o     (extra_rst_o)
   );
 endmodule
 
@@ -4491,9 +4528,14 @@ module APB4GPIO(
   output        auto_apply_in_pready,
                 auto_apply_in_pslverr,
   output [31:0] auto_apply_in_prdata,
+  input  [3:0]  extra_gpio_in_i,
+  output [3:0]  extra_gpio_out_o,
+                extra_gpio_dir_o,
   output        irq_o
 );
 
+  wire [31:0] _m_gpio_gpio_out_o;
+  wire [31:0] _m_gpio_gpio_dir_o;
   apb4_gpio m (
     .apb4_pclk             (clock),
     .apb4_presetn          (~reset),
@@ -4507,9 +4549,9 @@ module APB4GPIO(
     .apb4_pready           (auto_apply_in_pready),
     .apb4_pslverr          (auto_apply_in_pslverr),
     .apb4_prdata           (auto_apply_in_prdata),
-    .gpio_gpio_in_i        (32'h0),
-    .gpio_gpio_out_o       (/* unused */),
-    .gpio_gpio_dir_o       (/* unused */),
+    .gpio_gpio_in_i        ({28'h0, extra_gpio_in_i}),
+    .gpio_gpio_out_o       (_m_gpio_gpio_out_o),
+    .gpio_gpio_dir_o       (_m_gpio_gpio_dir_o),
     .gpio_gpio_alt_in_o    (/* unused */),
     .gpio_gpio_alt_0_out_i (32'h0),
     .gpio_gpio_alt_0_dir_i (32'h0),
@@ -4517,6 +4559,8 @@ module APB4GPIO(
     .gpio_gpio_alt_1_dir_i (32'h0),
     .gpio_irq_o            (irq_o)
   );
+  assign extra_gpio_out_o = _m_gpio_gpio_out_o[3:0];
+  assign extra_gpio_dir_o = _m_gpio_gpio_dir_o[3:0];
 endmodule
 
 module APB4UART(
@@ -4600,43 +4644,6 @@ module APB4I2C(
   );
 endmodule
 
-module APB4PS2(
-  input         clock,
-                reset,
-                auto_apply_in_psel,
-                auto_apply_in_penable,
-                auto_apply_in_pwrite,
-  input  [28:0] auto_apply_in_paddr,
-  input  [2:0]  auto_apply_in_pprot,
-  input  [31:0] auto_apply_in_pwdata,
-  input  [3:0]  auto_apply_in_pstrb,
-  output        auto_apply_in_pready,
-                auto_apply_in_pslverr,
-  output [31:0] auto_apply_in_prdata,
-  input         extra_ps2_clk_i,
-                extra_ps2_dat_i,
-  output        irq_o
-);
-
-  apb4_ps2 m (
-    .apb4_pclk     (clock),
-    .apb4_presetn  (~reset),
-    .apb4_psel     (auto_apply_in_psel),
-    .apb4_penable  (auto_apply_in_penable),
-    .apb4_pwrite   (auto_apply_in_pwrite),
-    .apb4_paddr    ({3'h0, auto_apply_in_paddr}),
-    .apb4_pprot    (auto_apply_in_pprot),
-    .apb4_pwdata   (auto_apply_in_pwdata),
-    .apb4_pstrb    (auto_apply_in_pstrb),
-    .apb4_pready   (auto_apply_in_pready),
-    .apb4_pslverr  (auto_apply_in_pslverr),
-    .apb4_prdata   (auto_apply_in_prdata),
-    .ps2_ps2_clk_i (extra_ps2_clk_i),
-    .ps2_ps2_dat_i (extra_ps2_dat_i),
-    .ps2_irq_o     (irq_o)
-  );
-endmodule
-
 module APB4PWM(
   input         clock,
                 reset,
@@ -4686,7 +4693,6 @@ module APB4Timer(
                 auto_apply_in_pslverr,
   output [31:0] auto_apply_in_prdata,
   input         extra_exclk_i,
-                extra_capch_i,
   output        irq_o
 );
 
@@ -4704,7 +4710,7 @@ module APB4Timer(
     .apb4_pslverr (auto_apply_in_pslverr),
     .apb4_prdata  (auto_apply_in_prdata),
     .tmr_exclk_i  (extra_exclk_i),
-    .tmr_capch_i  (extra_capch_i),
+    .tmr_capch_i  (1'h0),
     .tmr_irq_o    (irq_o)
   );
 endmodule
@@ -4723,13 +4729,14 @@ module APB4QSPI(
                 auto_apply_in_pslverr,
   output [31:0] auto_apply_in_prdata,
   output        extra_spi_sck_o,
-  output [3:0]  extra_spi_nss_o,
-                extra_spi_io_en_o,
+  output [1:0]  extra_spi_nss_o,
+  output [3:0]  extra_spi_io_en_o,
   input  [3:0]  extra_spi_io_in_i,
   output [3:0]  extra_spi_io_out_o,
   output        irq_o
 );
 
+  wire [3:0] _m_qspi_spi_nss_o;
   apb4_spi m (
     .apb4_pclk         (clock),
     .apb4_presetn      (~reset),
@@ -4744,61 +4751,13 @@ module APB4QSPI(
     .apb4_pslverr      (auto_apply_in_pslverr),
     .apb4_prdata       (auto_apply_in_prdata),
     .qspi_spi_sck_o    (extra_spi_sck_o),
-    .qspi_spi_nss_o    (extra_spi_nss_o),
+    .qspi_spi_nss_o    (_m_qspi_spi_nss_o),
     .qspi_spi_io_en_o  (extra_spi_io_en_o),
     .qspi_spi_io_in_i  (extra_spi_io_in_i),
     .qspi_spi_io_out_o (extra_spi_io_out_o),
     .qspi_irq_o        (irq_o)
   );
-endmodule
-
-module APB4I2S(
-  input         clock,
-                reset,
-                auto_apply_in_psel,
-                auto_apply_in_penable,
-                auto_apply_in_pwrite,
-  input  [28:0] auto_apply_in_paddr,
-  input  [2:0]  auto_apply_in_pprot,
-  input  [31:0] auto_apply_in_pwdata,
-  input  [3:0]  auto_apply_in_pstrb,
-  output        auto_apply_in_pready,
-                auto_apply_in_pslverr,
-  output [31:0] auto_apply_in_prdata,
-  output        extra_sck_o,
-  input         extra_sck_i,
-  output        extra_sck_en_o,
-                extra_ws_o,
-  input         extra_ws_i,
-  output        extra_ws_en_o,
-  input         extra_sd_i,
-  output        irq_o
-);
-
-  apb4_i2s m (
-    .apb4_pclk    (clock),
-    .apb4_presetn (~reset),
-    .apb4_psel    (auto_apply_in_psel),
-    .apb4_penable (auto_apply_in_penable),
-    .apb4_pwrite  (auto_apply_in_pwrite),
-    .apb4_paddr   ({3'h0, auto_apply_in_paddr}),
-    .apb4_pprot   (auto_apply_in_pprot),
-    .apb4_pwdata  (auto_apply_in_pwdata),
-    .apb4_pstrb   (auto_apply_in_pstrb),
-    .apb4_pready  (auto_apply_in_pready),
-    .apb4_pslverr (auto_apply_in_pslverr),
-    .apb4_prdata  (auto_apply_in_prdata),
-    .i2s_mclk_o   (/* unused */),
-    .i2s_sck_o    (extra_sck_o),
-    .i2s_sck_i    (extra_sck_i),
-    .i2s_sck_en_o (extra_sck_en_o),
-    .i2s_ws_o     (extra_ws_o),
-    .i2s_ws_i     (extra_ws_i),
-    .i2s_ws_en_o  (extra_ws_en_o),
-    .i2s_sd_o     (/* unused */),
-    .i2s_sd_i     (extra_sd_i),
-    .i2s_irq_o    (irq_o)
-  );
+  assign extra_spi_nss_o = _m_qspi_spi_nss_o[1:0];
 endmodule
 
 module APB4RNG(
@@ -4863,50 +4822,6 @@ module APB4CRC(
   );
 endmodule
 
-
-// Include register initializers in init blocks unless synthesis is set
-`ifndef RANDOMIZE
-  `ifdef RANDOMIZE_REG_INIT
-    `define RANDOMIZE
-  `endif // RANDOMIZE_REG_INIT
-`endif // not def RANDOMIZE
-`ifndef SYNTHESIS
-  `ifndef ENABLE_INITIAL_REG_
-    `define ENABLE_INITIAL_REG_
-  `endif // not def ENABLE_INITIAL_REG_
-`endif // not def SYNTHESIS
-
-// Standard header to adapt well known macros for register randomization.
-
-// RANDOM may be set to an expression that produces a 32-bit random unsigned value.
-`ifndef RANDOM
-  `define RANDOM $random
-`endif // not def RANDOM
-
-// Users can define INIT_RANDOM as general code that gets injected into the
-// initializer block for modules with registers.
-`ifndef INIT_RANDOM
-  `define INIT_RANDOM
-`endif // not def INIT_RANDOM
-
-// If using random initialization, you can also define RANDOMIZE_DELAY to
-// customize the delay used, otherwise 0.002 is used.
-`ifndef RANDOMIZE_DELAY
-  `define RANDOMIZE_DELAY 0.002
-`endif // not def RANDOMIZE_DELAY
-
-// Define INIT_RANDOM_PROLOG_ for use in our modules below.
-`ifndef INIT_RANDOM_PROLOG_
-  `ifdef RANDOMIZE
-    `ifdef VERILATOR
-      `define INIT_RANDOM_PROLOG_ `INIT_RANDOM
-    `else  // VERILATOR
-      `define INIT_RANDOM_PROLOG_ `INIT_RANDOM #`RANDOMIZE_DELAY begin end
-    `endif // VERILATOR
-  `else  // RANDOMIZE
-    `define INIT_RANDOM_PROLOG_
-  `endif // RANDOMIZE
-`endif // not def INIT_RANDOM_PROLOG_
 module PSRAMWrapper(
   input         clock,
                 reset,
@@ -4919,8 +4834,8 @@ module PSRAMWrapper(
   output        io_in_pready,
   output [31:0] io_in_prdata,
   output        io_qspi_sck_o,
-  output [3:0]  io_qspi_nss_o,
-                io_qspi_io_oe_o,
+  output [2:0]  io_qspi_nss_o,
+  output [3:0]  io_qspi_io_oe_o,
   input  [3:0]  io_qspi_io_di_i,
   output [3:0]  io_qspi_io_do_o
 );
@@ -4967,7 +4882,9 @@ module PSRAMWrapper(
       `FIRRTL_AFTER_INITIAL
     `endif // FIRRTL_AFTER_INITIAL
   `endif // ENABLE_INITIAL_REG_
-  nmi_psram npsram (
+  nmi_psram #(
+    .nss(3)
+  ) npsram (
     .clk_i         (clock),
     .rst_n_i       (~reset),
     .nmi_valid     (active),
@@ -4998,8 +4915,8 @@ module APBPSRAM(
   output        auto_apply_in_pready,
   output [31:0] auto_apply_in_prdata,
   output        extra_sck_o,
-  output [3:0]  extra_nss_o,
-                extra_io_oe_o,
+  output [2:0]  extra_nss_o,
+  output [3:0]  extra_io_oe_o,
   input  [3:0]  extra_io_di_i,
   output [3:0]  extra_io_do_o
 );
@@ -5021,176 +4938,6 @@ module APBPSRAM(
     .io_qspi_io_di_i (extra_io_di_i),
     .io_qspi_io_do_o (extra_io_do_o)
   );
-endmodule
-
-module AXI4ToAPB(
-  input         clock,
-                reset,
-  output        auto_in_awready,
-  input         auto_in_awvalid,
-  input  [3:0]  auto_in_awid,
-  input  [31:0] auto_in_awaddr,
-  input  [2:0]  auto_in_awsize,
-  output        auto_in_wready,
-  input         auto_in_wvalid,
-  input  [31:0] auto_in_wdata,
-  input  [3:0]  auto_in_wstrb,
-  input         auto_in_bready,
-  output        auto_in_bvalid,
-  output [3:0]  auto_in_bid,
-  output [1:0]  auto_in_bresp,
-  output        auto_in_arready,
-  input         auto_in_arvalid,
-  input  [3:0]  auto_in_arid,
-  input  [31:0] auto_in_araddr,
-  input  [2:0]  auto_in_arsize,
-  input         auto_in_rready,
-  output        auto_in_rvalid,
-  output [3:0]  auto_in_rid,
-  output [31:0] auto_in_rdata,
-  output [1:0]  auto_in_rresp,
-  output        auto_out_psel,
-                auto_out_penable,
-                auto_out_pwrite,
-  output [31:0] auto_out_paddr,
-                auto_out_pwdata,
-  output [3:0]  auto_out_pstrb,
-  input         auto_out_pready,
-                auto_out_pslverr,
-  input  [31:0] auto_out_prdata
-);
-
-  wire        nodeIn_bvalid;
-  wire        nodeIn_rvalid;
-  wire        nodeOut_penable;
-  reg  [1:0]  state;
-  wire        _is_write_T = state == 2'h0;
-  wire        accept_read = _is_write_T & auto_in_arvalid;
-  wire        accept_write =
-    ~accept_read & _is_write_T & auto_in_awvalid & auto_in_wvalid;
-  reg         is_write_r;
-  wire        is_write = _is_write_T ? accept_write : is_write_r;
-  reg  [1:0]  casez_tmp;
-  always_comb begin
-    casez (state)
-      2'b00:
-        casez_tmp = {1'h0, auto_in_arvalid | auto_in_awvalid & auto_in_wvalid};
-      2'b01:
-        casez_tmp =
-          auto_out_pready
-            ? {~(auto_in_rready & nodeIn_rvalid | auto_in_bready & nodeIn_bvalid),
-               1'h0}
-            : 2'h1;
-      2'b10:
-        casez_tmp =
-          {~(auto_in_rready & nodeIn_rvalid | auto_in_bready & nodeIn_bvalid), 1'h0};
-      default:
-        casez_tmp = state;
-    endcase
-  end // always_comb
-  `ifndef SYNTHESIS
-    always @(posedge clock) begin
-      if (~reset & auto_in_arvalid & auto_in_arsize > 3'h2) begin
-        if (`ASSERT_VERBOSE_COND_)
-          $error("Assertion failed at AXI4ToAPB.scala:64\n");
-        if (`STOP_COND_)
-          $fatal;
-      end
-      if (~reset & auto_in_awvalid & auto_in_awsize > 3'h2) begin
-        if (`ASSERT_VERBOSE_COND_)
-          $error("Assertion failed at AXI4ToAPB.scala:65\n");
-        if (`STOP_COND_)
-          $fatal;
-      end
-    end // always @(posedge)
-  `endif // not def SYNTHESIS
-  reg  [3:0]  rid_reg;
-  reg  [3:0]  bid_reg;
-  reg  [31:0] araddr_reg_r;
-  reg  [31:0] awaddr_reg_r;
-  reg  [31:0] wdata_reg_r;
-  reg  [3:0]  wstrb_reg_r;
-  assign nodeOut_penable = state == 2'h1;
-  wire [1:0]  resp = {auto_out_pslverr, 1'h0};
-  reg  [1:0]  resp_hold_r;
-  wire [1:0]  resp_hold = nodeOut_penable ? resp : resp_hold_r;
-  wire        _nodeIn_bvalid_T_2 = state == 2'h2;
-  assign nodeIn_rvalid =
-    ~is_write & (nodeOut_penable & auto_out_pready | _nodeIn_bvalid_T_2);
-  reg  [31:0] nodeIn_rdata_r;
-  assign nodeIn_bvalid =
-    is_write & (nodeOut_penable & auto_out_pready | _nodeIn_bvalid_T_2);
-  always @(posedge clock) begin
-    if (reset)
-      state <= 2'h0;
-    else
-      state <= casez_tmp;
-    if (_is_write_T)
-      is_write_r <= accept_write;
-    if (accept_read) begin
-      rid_reg <= auto_in_arid;
-      araddr_reg_r <= auto_in_araddr;
-    end
-    if (accept_write) begin
-      bid_reg <= auto_in_awid;
-      awaddr_reg_r <= auto_in_awaddr;
-      wdata_reg_r <= auto_in_wdata;
-      wstrb_reg_r <= auto_in_wstrb;
-    end
-    if (nodeOut_penable) begin
-      resp_hold_r <= resp;
-      nodeIn_rdata_r <= auto_out_prdata;
-    end
-  end // always @(posedge)
-  `ifdef ENABLE_INITIAL_REG_
-    `ifdef FIRRTL_BEFORE_INITIAL
-      `FIRRTL_BEFORE_INITIAL
-    `endif // FIRRTL_BEFORE_INITIAL
-    logic [31:0] _RANDOM[0:4];
-    initial begin
-      `ifdef INIT_RANDOM_PROLOG_
-        `INIT_RANDOM_PROLOG_
-      `endif // INIT_RANDOM_PROLOG_
-      `ifdef RANDOMIZE_REG_INIT
-        for (logic [2:0] i = 3'h0; i < 3'h5; i += 3'h1) begin
-          _RANDOM[i] = `RANDOM;
-        end
-        state = _RANDOM[3'h0][1:0];
-        is_write_r = _RANDOM[3'h0][2];
-        rid_reg = _RANDOM[3'h0][6:3];
-        bid_reg = _RANDOM[3'h0][10:7];
-        araddr_reg_r = {_RANDOM[3'h0][31:11], _RANDOM[3'h1][10:0]};
-        awaddr_reg_r = {_RANDOM[3'h1][31:11], _RANDOM[3'h2][10:0]};
-        wdata_reg_r = {_RANDOM[3'h2][31:11], _RANDOM[3'h3][10:0]};
-        wstrb_reg_r = _RANDOM[3'h3][14:11];
-        resp_hold_r = _RANDOM[3'h3][16:15];
-        nodeIn_rdata_r = {_RANDOM[3'h3][31:17], _RANDOM[3'h4][16:0]};
-      `endif // RANDOMIZE_REG_INIT
-    end // initial
-    `ifdef FIRRTL_AFTER_INITIAL
-      `FIRRTL_AFTER_INITIAL
-    `endif // FIRRTL_AFTER_INITIAL
-  `endif // ENABLE_INITIAL_REG_
-  assign auto_in_awready = accept_write;
-  assign auto_in_wready = accept_write;
-  assign auto_in_bvalid = nodeIn_bvalid;
-  assign auto_in_bid = bid_reg;
-  assign auto_in_bresp = resp_hold;
-  assign auto_in_arready = accept_read;
-  assign auto_in_rvalid = nodeIn_rvalid;
-  assign auto_in_rid = rid_reg;
-  assign auto_in_rdata = nodeOut_penable ? auto_out_prdata : nodeIn_rdata_r;
-  assign auto_in_rresp = resp_hold;
-  assign auto_out_psel = accept_read | accept_write | nodeOut_penable;
-  assign auto_out_penable = nodeOut_penable;
-  assign auto_out_pwrite = is_write;
-  assign auto_out_paddr =
-    is_write
-      ? (accept_write ? auto_in_awaddr : awaddr_reg_r)
-      : accept_read ? auto_in_araddr : araddr_reg_r;
-  assign auto_out_pwdata = accept_write ? auto_in_wdata : wdata_reg_r;
-  assign auto_out_pstrb =
-    is_write ? (accept_write ? auto_in_wstrb : wstrb_reg_r) : 4'h0;
 endmodule
 
 module Queue1_BundleMap(
@@ -5247,12 +4994,14 @@ module AXI4UserYanker(
   input  [3:0]  auto_in_awid,
   input  [31:0] auto_in_awaddr,
   input  [2:0]  auto_in_awsize,
+  input  [1:0]  auto_in_awburst,
   input         auto_in_awecho_real_last,
   output        auto_in_wready,
   input         auto_in_wvalid,
   input  [31:0] auto_in_wdata,
   input  [3:0]  auto_in_wstrb,
-  input         auto_in_bready,
+  input         auto_in_wlast,
+                auto_in_bready,
   output        auto_in_bvalid,
   output [3:0]  auto_in_bid,
   output [1:0]  auto_in_bresp,
@@ -5262,6 +5011,7 @@ module AXI4UserYanker(
   input  [3:0]  auto_in_arid,
   input  [31:0] auto_in_araddr,
   input  [2:0]  auto_in_arsize,
+  input  [1:0]  auto_in_arburst,
   input         auto_in_arecho_real_last,
                 auto_in_rready,
   output        auto_in_rvalid,
@@ -5269,16 +5019,19 @@ module AXI4UserYanker(
   output [31:0] auto_in_rdata,
   output [1:0]  auto_in_rresp,
   output        auto_in_recho_real_last,
+                auto_in_rlast,
   input         auto_out_awready,
   output        auto_out_awvalid,
   output [3:0]  auto_out_awid,
   output [31:0] auto_out_awaddr,
   output [2:0]  auto_out_awsize,
+  output [1:0]  auto_out_awburst,
   input         auto_out_wready,
   output        auto_out_wvalid,
   output [31:0] auto_out_wdata,
   output [3:0]  auto_out_wstrb,
-  output        auto_out_bready,
+  output        auto_out_wlast,
+                auto_out_bready,
   input         auto_out_bvalid,
   input  [3:0]  auto_out_bid,
   input  [1:0]  auto_out_bresp,
@@ -5287,11 +5040,13 @@ module AXI4UserYanker(
   output [3:0]  auto_out_arid,
   output [31:0] auto_out_araddr,
   output [2:0]  auto_out_arsize,
+  output [1:0]  auto_out_arburst,
   output        auto_out_rready,
   input         auto_out_rvalid,
   input  [3:0]  auto_out_rid,
   input  [31:0] auto_out_rdata,
-  input  [1:0]  auto_out_rresp
+  input  [1:0]  auto_out_rresp,
+  input         auto_out_rlast
 );
 
   wire        _Queue1_BundleMap_31_io_enq_ready;
@@ -5642,7 +5397,7 @@ module AXI4UserYanker(
     .io_enq_ready          (_Queue1_BundleMap_io_enq_ready),
     .io_enq_valid          (_GEN_0 & _arsel_T_1[0]),
     .io_enq_bits_real_last (auto_in_arecho_real_last),
-    .io_deq_ready          (_GEN & _rsel_T_1[0]),
+    .io_deq_ready          (_GEN & _rsel_T_1[0] & auto_out_rlast),
     .io_deq_valid          (_Queue1_BundleMap_io_deq_valid),
     .io_deq_bits_real_last (_Queue1_BundleMap_io_deq_bits_real_last)
   );
@@ -5652,7 +5407,7 @@ module AXI4UserYanker(
     .io_enq_ready          (_Queue1_BundleMap_1_io_enq_ready),
     .io_enq_valid          (_GEN_0 & _arsel_T_1[1]),
     .io_enq_bits_real_last (auto_in_arecho_real_last),
-    .io_deq_ready          (_GEN & _rsel_T_1[1]),
+    .io_deq_ready          (_GEN & _rsel_T_1[1] & auto_out_rlast),
     .io_deq_valid          (_Queue1_BundleMap_1_io_deq_valid),
     .io_deq_bits_real_last (_Queue1_BundleMap_1_io_deq_bits_real_last)
   );
@@ -5662,7 +5417,7 @@ module AXI4UserYanker(
     .io_enq_ready          (_Queue1_BundleMap_2_io_enq_ready),
     .io_enq_valid          (_GEN_0 & _arsel_T_1[2]),
     .io_enq_bits_real_last (auto_in_arecho_real_last),
-    .io_deq_ready          (_GEN & _rsel_T_1[2]),
+    .io_deq_ready          (_GEN & _rsel_T_1[2] & auto_out_rlast),
     .io_deq_valid          (_Queue1_BundleMap_2_io_deq_valid),
     .io_deq_bits_real_last (_Queue1_BundleMap_2_io_deq_bits_real_last)
   );
@@ -5672,7 +5427,7 @@ module AXI4UserYanker(
     .io_enq_ready          (_Queue1_BundleMap_3_io_enq_ready),
     .io_enq_valid          (_GEN_0 & _arsel_T_1[3]),
     .io_enq_bits_real_last (auto_in_arecho_real_last),
-    .io_deq_ready          (_GEN & _rsel_T_1[3]),
+    .io_deq_ready          (_GEN & _rsel_T_1[3] & auto_out_rlast),
     .io_deq_valid          (_Queue1_BundleMap_3_io_deq_valid),
     .io_deq_bits_real_last (_Queue1_BundleMap_3_io_deq_bits_real_last)
   );
@@ -5682,7 +5437,7 @@ module AXI4UserYanker(
     .io_enq_ready          (_Queue1_BundleMap_4_io_enq_ready),
     .io_enq_valid          (_GEN_0 & _arsel_T_1[4]),
     .io_enq_bits_real_last (auto_in_arecho_real_last),
-    .io_deq_ready          (_GEN & _rsel_T_1[4]),
+    .io_deq_ready          (_GEN & _rsel_T_1[4] & auto_out_rlast),
     .io_deq_valid          (_Queue1_BundleMap_4_io_deq_valid),
     .io_deq_bits_real_last (_Queue1_BundleMap_4_io_deq_bits_real_last)
   );
@@ -5692,7 +5447,7 @@ module AXI4UserYanker(
     .io_enq_ready          (_Queue1_BundleMap_5_io_enq_ready),
     .io_enq_valid          (_GEN_0 & _arsel_T_1[5]),
     .io_enq_bits_real_last (auto_in_arecho_real_last),
-    .io_deq_ready          (_GEN & _rsel_T_1[5]),
+    .io_deq_ready          (_GEN & _rsel_T_1[5] & auto_out_rlast),
     .io_deq_valid          (_Queue1_BundleMap_5_io_deq_valid),
     .io_deq_bits_real_last (_Queue1_BundleMap_5_io_deq_bits_real_last)
   );
@@ -5702,7 +5457,7 @@ module AXI4UserYanker(
     .io_enq_ready          (_Queue1_BundleMap_6_io_enq_ready),
     .io_enq_valid          (_GEN_0 & _arsel_T_1[6]),
     .io_enq_bits_real_last (auto_in_arecho_real_last),
-    .io_deq_ready          (_GEN & _rsel_T_1[6]),
+    .io_deq_ready          (_GEN & _rsel_T_1[6] & auto_out_rlast),
     .io_deq_valid          (_Queue1_BundleMap_6_io_deq_valid),
     .io_deq_bits_real_last (_Queue1_BundleMap_6_io_deq_bits_real_last)
   );
@@ -5712,7 +5467,7 @@ module AXI4UserYanker(
     .io_enq_ready          (_Queue1_BundleMap_7_io_enq_ready),
     .io_enq_valid          (_GEN_0 & _arsel_T_1[7]),
     .io_enq_bits_real_last (auto_in_arecho_real_last),
-    .io_deq_ready          (_GEN & _rsel_T_1[7]),
+    .io_deq_ready          (_GEN & _rsel_T_1[7] & auto_out_rlast),
     .io_deq_valid          (_Queue1_BundleMap_7_io_deq_valid),
     .io_deq_bits_real_last (_Queue1_BundleMap_7_io_deq_bits_real_last)
   );
@@ -5722,7 +5477,7 @@ module AXI4UserYanker(
     .io_enq_ready          (_Queue1_BundleMap_8_io_enq_ready),
     .io_enq_valid          (_GEN_0 & _arsel_T_1[8]),
     .io_enq_bits_real_last (auto_in_arecho_real_last),
-    .io_deq_ready          (_GEN & _rsel_T_1[8]),
+    .io_deq_ready          (_GEN & _rsel_T_1[8] & auto_out_rlast),
     .io_deq_valid          (_Queue1_BundleMap_8_io_deq_valid),
     .io_deq_bits_real_last (_Queue1_BundleMap_8_io_deq_bits_real_last)
   );
@@ -5732,7 +5487,7 @@ module AXI4UserYanker(
     .io_enq_ready          (_Queue1_BundleMap_9_io_enq_ready),
     .io_enq_valid          (_GEN_0 & _arsel_T_1[9]),
     .io_enq_bits_real_last (auto_in_arecho_real_last),
-    .io_deq_ready          (_GEN & _rsel_T_1[9]),
+    .io_deq_ready          (_GEN & _rsel_T_1[9] & auto_out_rlast),
     .io_deq_valid          (_Queue1_BundleMap_9_io_deq_valid),
     .io_deq_bits_real_last (_Queue1_BundleMap_9_io_deq_bits_real_last)
   );
@@ -5742,7 +5497,7 @@ module AXI4UserYanker(
     .io_enq_ready          (_Queue1_BundleMap_10_io_enq_ready),
     .io_enq_valid          (_GEN_0 & _arsel_T_1[10]),
     .io_enq_bits_real_last (auto_in_arecho_real_last),
-    .io_deq_ready          (_GEN & _rsel_T_1[10]),
+    .io_deq_ready          (_GEN & _rsel_T_1[10] & auto_out_rlast),
     .io_deq_valid          (_Queue1_BundleMap_10_io_deq_valid),
     .io_deq_bits_real_last (_Queue1_BundleMap_10_io_deq_bits_real_last)
   );
@@ -5752,7 +5507,7 @@ module AXI4UserYanker(
     .io_enq_ready          (_Queue1_BundleMap_11_io_enq_ready),
     .io_enq_valid          (_GEN_0 & _arsel_T_1[11]),
     .io_enq_bits_real_last (auto_in_arecho_real_last),
-    .io_deq_ready          (_GEN & _rsel_T_1[11]),
+    .io_deq_ready          (_GEN & _rsel_T_1[11] & auto_out_rlast),
     .io_deq_valid          (_Queue1_BundleMap_11_io_deq_valid),
     .io_deq_bits_real_last (_Queue1_BundleMap_11_io_deq_bits_real_last)
   );
@@ -5762,7 +5517,7 @@ module AXI4UserYanker(
     .io_enq_ready          (_Queue1_BundleMap_12_io_enq_ready),
     .io_enq_valid          (_GEN_0 & _arsel_T_1[12]),
     .io_enq_bits_real_last (auto_in_arecho_real_last),
-    .io_deq_ready          (_GEN & _rsel_T_1[12]),
+    .io_deq_ready          (_GEN & _rsel_T_1[12] & auto_out_rlast),
     .io_deq_valid          (_Queue1_BundleMap_12_io_deq_valid),
     .io_deq_bits_real_last (_Queue1_BundleMap_12_io_deq_bits_real_last)
   );
@@ -5772,7 +5527,7 @@ module AXI4UserYanker(
     .io_enq_ready          (_Queue1_BundleMap_13_io_enq_ready),
     .io_enq_valid          (_GEN_0 & _arsel_T_1[13]),
     .io_enq_bits_real_last (auto_in_arecho_real_last),
-    .io_deq_ready          (_GEN & _rsel_T_1[13]),
+    .io_deq_ready          (_GEN & _rsel_T_1[13] & auto_out_rlast),
     .io_deq_valid          (_Queue1_BundleMap_13_io_deq_valid),
     .io_deq_bits_real_last (_Queue1_BundleMap_13_io_deq_bits_real_last)
   );
@@ -5782,7 +5537,7 @@ module AXI4UserYanker(
     .io_enq_ready          (_Queue1_BundleMap_14_io_enq_ready),
     .io_enq_valid          (_GEN_0 & _arsel_T_1[14]),
     .io_enq_bits_real_last (auto_in_arecho_real_last),
-    .io_deq_ready          (_GEN & _rsel_T_1[14]),
+    .io_deq_ready          (_GEN & _rsel_T_1[14] & auto_out_rlast),
     .io_deq_valid          (_Queue1_BundleMap_14_io_deq_valid),
     .io_deq_bits_real_last (_Queue1_BundleMap_14_io_deq_bits_real_last)
   );
@@ -5792,7 +5547,7 @@ module AXI4UserYanker(
     .io_enq_ready          (_Queue1_BundleMap_15_io_enq_ready),
     .io_enq_valid          (_GEN_0 & _arsel_T_1[15]),
     .io_enq_bits_real_last (auto_in_arecho_real_last),
-    .io_deq_ready          (_GEN & _rsel_T_1[15]),
+    .io_deq_ready          (_GEN & _rsel_T_1[15] & auto_out_rlast),
     .io_deq_valid          (_Queue1_BundleMap_15_io_deq_valid),
     .io_deq_bits_real_last (_Queue1_BundleMap_15_io_deq_bits_real_last)
   );
@@ -5968,18 +5723,22 @@ module AXI4UserYanker(
   assign auto_in_rdata = auto_out_rdata;
   assign auto_in_rresp = auto_out_rresp;
   assign auto_in_recho_real_last = casez_tmp_1;
+  assign auto_in_rlast = auto_out_rlast;
   assign auto_out_awvalid = auto_in_awvalid & casez_tmp_2;
   assign auto_out_awid = auto_in_awid;
   assign auto_out_awaddr = auto_in_awaddr;
   assign auto_out_awsize = auto_in_awsize;
+  assign auto_out_awburst = auto_in_awburst;
   assign auto_out_wvalid = auto_in_wvalid;
   assign auto_out_wdata = auto_in_wdata;
   assign auto_out_wstrb = auto_in_wstrb;
+  assign auto_out_wlast = auto_in_wlast;
   assign auto_out_bready = auto_in_bready;
   assign auto_out_arvalid = auto_in_arvalid & casez_tmp;
   assign auto_out_arid = auto_in_arid;
   assign auto_out_araddr = auto_in_araddr;
   assign auto_out_arsize = auto_in_arsize;
+  assign auto_out_arburst = auto_in_arburst;
   assign auto_out_rready = auto_in_rready;
 endmodule
 
@@ -6207,12 +5966,14 @@ module AXI4Fragmenter(
   output [3:0]  auto_out_awid,
   output [31:0] auto_out_awaddr,
   output [2:0]  auto_out_awsize,
+  output [1:0]  auto_out_awburst,
   output        auto_out_awecho_real_last,
   input         auto_out_wready,
   output        auto_out_wvalid,
   output [31:0] auto_out_wdata,
   output [3:0]  auto_out_wstrb,
-  output        auto_out_bready,
+  output        auto_out_wlast,
+                auto_out_bready,
   input         auto_out_bvalid,
   input  [3:0]  auto_out_bid,
   input  [1:0]  auto_out_bresp,
@@ -6222,13 +5983,15 @@ module AXI4Fragmenter(
   output [3:0]  auto_out_arid,
   output [31:0] auto_out_araddr,
   output [2:0]  auto_out_arsize,
+  output [1:0]  auto_out_arburst,
   output        auto_out_arecho_real_last,
                 auto_out_rready,
   input         auto_out_rvalid,
   input  [3:0]  auto_out_rid,
   input  [31:0] auto_out_rdata,
   input  [1:0]  auto_out_rresp,
-  input         auto_out_recho_real_last
+  input         auto_out_recho_real_last,
+                auto_out_rlast
 );
 
   wire        nodeOut_wvalid;
@@ -6268,6 +6031,7 @@ module AXI4Fragmenter(
   reg  [8:0]  w_counter;
   assign w_idle = w_counter == 9'h0;
   wire [8:0]  w_todo = w_idle ? {8'h0, wbeats_valid} : w_counter;
+  wire        w_last = w_todo == 9'h1;
   wire        _wcounter_T = auto_out_wready & nodeOut_wvalid;
   assign nodeOut_wvalid = _in_wdeq_q_io_deq_valid & (~w_idle | wbeats_valid);
   `ifndef SYNTHESIS
@@ -6278,8 +6042,7 @@ module AXI4Fragmenter(
         if (`STOP_COND_)
           $fatal;
       end
-      if (~reset
-          & ~(~nodeOut_wvalid | ~_in_wdeq_q_io_deq_bits_last | w_todo == 9'h1)) begin
+      if (~reset & ~(~nodeOut_wvalid | ~_in_wdeq_q_io_deq_bits_last | w_last)) begin
         if (`ASSERT_VERBOSE_COND_)
           $error("Assertion failed at Fragmenter.scala:190\n");
         if (`STOP_COND_)
@@ -6545,39 +6308,891 @@ module AXI4Fragmenter(
   assign auto_in_rid = auto_out_rid;
   assign auto_in_rdata = auto_out_rdata;
   assign auto_in_rresp = auto_out_rresp;
-  assign auto_in_rlast = auto_out_recho_real_last;
+  assign auto_in_rlast = auto_out_rlast & auto_out_recho_real_last;
   assign auto_out_awvalid = nodeOut_awvalid;
   assign auto_out_awaddr =
     ~{_out_bits_addr_T_6[31:2], _out_bits_addr_T_6[1:0] | ~(_out_bits_addr_T_7[1:0])};
   assign auto_out_awsize = _deq_q_1_io_deq_bits_size;
+  assign auto_out_awburst = _deq_q_1_io_deq_bits_burst;
   assign auto_out_awecho_real_last = ~(|len_1);
   assign auto_out_wvalid = nodeOut_wvalid;
+  assign auto_out_wlast = w_last;
   assign auto_out_bready = nodeOut_bready;
   assign auto_out_arvalid = _deq_q_io_deq_valid;
   assign auto_out_araddr =
     ~{_out_bits_addr_T[31:2], _out_bits_addr_T[1:0] | ~(_out_bits_addr_T_1[1:0])};
   assign auto_out_arsize = _deq_q_io_deq_bits_size;
+  assign auto_out_arburst = _deq_q_io_deq_bits_burst;
   assign auto_out_arecho_real_last = ~(|len);
   assign auto_out_rready = auto_in_rready;
+endmodule
+
+module AXI4ToAPB(
+  input         clock,
+                reset,
+  output        auto_in_awready,
+  input         auto_in_awvalid,
+  input  [3:0]  auto_in_awid,
+  input  [31:0] auto_in_awaddr,
+  input  [7:0]  auto_in_awlen,
+  input  [2:0]  auto_in_awsize,
+  output        auto_in_wready,
+  input         auto_in_wvalid,
+  input  [31:0] auto_in_wdata,
+  input  [3:0]  auto_in_wstrb,
+  input         auto_in_bready,
+  output        auto_in_bvalid,
+  output [3:0]  auto_in_bid,
+  output [1:0]  auto_in_bresp,
+  output        auto_in_arready,
+  input         auto_in_arvalid,
+  input  [3:0]  auto_in_arid,
+  input  [31:0] auto_in_araddr,
+  input  [7:0]  auto_in_arlen,
+  input  [2:0]  auto_in_arsize,
+  input         auto_in_rready,
+  output        auto_in_rvalid,
+  output [3:0]  auto_in_rid,
+  output [31:0] auto_in_rdata,
+  output [1:0]  auto_in_rresp,
+  output        auto_out_psel,
+                auto_out_penable,
+                auto_out_pwrite,
+  output [31:0] auto_out_paddr,
+                auto_out_pwdata,
+  output [3:0]  auto_out_pstrb,
+  input         auto_out_pready,
+                auto_out_pslverr,
+  input  [31:0] auto_out_prdata
+);
+
+  wire        nodeIn_bvalid;
+  wire        nodeIn_rvalid;
+  wire        nodeOut_penable;
+  reg  [1:0]  state;
+  wire        _is_write_T = state == 2'h0;
+  wire        accept_read = _is_write_T & auto_in_arvalid;
+  wire        accept_write =
+    ~accept_read & _is_write_T & auto_in_awvalid & auto_in_wvalid;
+  reg         is_write_r;
+  wire        is_write = _is_write_T ? accept_write : is_write_r;
+  reg  [1:0]  casez_tmp;
+  always_comb begin
+    casez (state)
+      2'b00:
+        casez_tmp = {1'h0, auto_in_arvalid | auto_in_awvalid & auto_in_wvalid};
+      2'b01:
+        casez_tmp =
+          auto_out_pready
+            ? {~(auto_in_rready & nodeIn_rvalid | auto_in_bready & nodeIn_bvalid),
+               1'h0}
+            : 2'h1;
+      2'b10:
+        casez_tmp =
+          {~(auto_in_rready & nodeIn_rvalid | auto_in_bready & nodeIn_bvalid), 1'h0};
+      default:
+        casez_tmp = state;
+    endcase
+  end // always_comb
+  `ifndef SYNTHESIS
+    always @(posedge clock) begin
+      if (~reset & auto_in_arvalid & (|auto_in_arlen)) begin
+        if (`ASSERT_VERBOSE_COND_)
+          $error("Assertion failed at AXI4ToAPB.scala:61\n");
+        if (`STOP_COND_)
+          $fatal;
+      end
+      if (~reset & auto_in_awvalid & (|auto_in_awlen)) begin
+        if (`ASSERT_VERBOSE_COND_)
+          $error("Assertion failed at AXI4ToAPB.scala:62\n");
+        if (`STOP_COND_)
+          $fatal;
+      end
+      if (~reset & auto_in_arvalid & auto_in_arsize > 3'h2) begin
+        if (`ASSERT_VERBOSE_COND_)
+          $error("Assertion failed at AXI4ToAPB.scala:64\n");
+        if (`STOP_COND_)
+          $fatal;
+      end
+      if (~reset & auto_in_awvalid & auto_in_awsize > 3'h2) begin
+        if (`ASSERT_VERBOSE_COND_)
+          $error("Assertion failed at AXI4ToAPB.scala:65\n");
+        if (`STOP_COND_)
+          $fatal;
+      end
+    end // always @(posedge)
+  `endif // not def SYNTHESIS
+  reg  [3:0]  rid_reg;
+  reg  [3:0]  bid_reg;
+  reg  [31:0] araddr_reg_r;
+  reg  [31:0] awaddr_reg_r;
+  reg  [31:0] wdata_reg_r;
+  reg  [3:0]  wstrb_reg_r;
+  assign nodeOut_penable = state == 2'h1;
+  wire [1:0]  resp = {auto_out_pslverr, 1'h0};
+  reg  [1:0]  resp_hold_r;
+  wire [1:0]  resp_hold = nodeOut_penable ? resp : resp_hold_r;
+  wire        _nodeIn_bvalid_T_2 = state == 2'h2;
+  assign nodeIn_rvalid =
+    ~is_write & (nodeOut_penable & auto_out_pready | _nodeIn_bvalid_T_2);
+  reg  [31:0] nodeIn_rdata_r;
+  assign nodeIn_bvalid =
+    is_write & (nodeOut_penable & auto_out_pready | _nodeIn_bvalid_T_2);
+  always @(posedge clock) begin
+    if (reset)
+      state <= 2'h0;
+    else
+      state <= casez_tmp;
+    if (_is_write_T)
+      is_write_r <= accept_write;
+    if (accept_read) begin
+      rid_reg <= auto_in_arid;
+      araddr_reg_r <= auto_in_araddr;
+    end
+    if (accept_write) begin
+      bid_reg <= auto_in_awid;
+      awaddr_reg_r <= auto_in_awaddr;
+      wdata_reg_r <= auto_in_wdata;
+      wstrb_reg_r <= auto_in_wstrb;
+    end
+    if (nodeOut_penable) begin
+      resp_hold_r <= resp;
+      nodeIn_rdata_r <= auto_out_prdata;
+    end
+  end // always @(posedge)
+  `ifdef ENABLE_INITIAL_REG_
+    `ifdef FIRRTL_BEFORE_INITIAL
+      `FIRRTL_BEFORE_INITIAL
+    `endif // FIRRTL_BEFORE_INITIAL
+    logic [31:0] _RANDOM[0:4];
+    initial begin
+      `ifdef INIT_RANDOM_PROLOG_
+        `INIT_RANDOM_PROLOG_
+      `endif // INIT_RANDOM_PROLOG_
+      `ifdef RANDOMIZE_REG_INIT
+        for (logic [2:0] i = 3'h0; i < 3'h5; i += 3'h1) begin
+          _RANDOM[i] = `RANDOM;
+        end
+        state = _RANDOM[3'h0][1:0];
+        is_write_r = _RANDOM[3'h0][2];
+        rid_reg = _RANDOM[3'h0][6:3];
+        bid_reg = _RANDOM[3'h0][10:7];
+        araddr_reg_r = {_RANDOM[3'h0][31:11], _RANDOM[3'h1][10:0]};
+        awaddr_reg_r = {_RANDOM[3'h1][31:11], _RANDOM[3'h2][10:0]};
+        wdata_reg_r = {_RANDOM[3'h2][31:11], _RANDOM[3'h3][10:0]};
+        wstrb_reg_r = _RANDOM[3'h3][14:11];
+        resp_hold_r = _RANDOM[3'h3][16:15];
+        nodeIn_rdata_r = {_RANDOM[3'h3][31:17], _RANDOM[3'h4][16:0]};
+      `endif // RANDOMIZE_REG_INIT
+    end // initial
+    `ifdef FIRRTL_AFTER_INITIAL
+      `FIRRTL_AFTER_INITIAL
+    `endif // FIRRTL_AFTER_INITIAL
+  `endif // ENABLE_INITIAL_REG_
+  assign auto_in_awready = accept_write;
+  assign auto_in_wready = accept_write;
+  assign auto_in_bvalid = nodeIn_bvalid;
+  assign auto_in_bid = bid_reg;
+  assign auto_in_bresp = resp_hold;
+  assign auto_in_arready = accept_read;
+  assign auto_in_rvalid = nodeIn_rvalid;
+  assign auto_in_rid = rid_reg;
+  assign auto_in_rdata = nodeOut_penable ? auto_out_prdata : nodeIn_rdata_r;
+  assign auto_in_rresp = resp_hold;
+  assign auto_out_psel = accept_read | accept_write | nodeOut_penable;
+  assign auto_out_penable = nodeOut_penable;
+  assign auto_out_pwrite = is_write;
+  assign auto_out_paddr =
+    is_write
+      ? (accept_write ? auto_in_awaddr : awaddr_reg_r)
+      : accept_read ? auto_in_araddr : araddr_reg_r;
+  assign auto_out_pwdata = accept_write ? auto_in_wdata : wdata_reg_r;
+  assign auto_out_pstrb =
+    is_write ? (accept_write ? auto_in_wstrb : wstrb_reg_r) : 4'h0;
+endmodule
+
+
+// Include rmemory initializers in init blocks unless synthesis is set
+`ifndef RANDOMIZE
+  `ifdef RANDOMIZE_MEM_INIT
+    `define RANDOMIZE
+  `endif // RANDOMIZE_MEM_INIT
+`endif // not def RANDOMIZE
+`ifndef SYNTHESIS
+  `ifndef ENABLE_INITIAL_MEM_
+    `define ENABLE_INITIAL_MEM_
+  `endif // not def ENABLE_INITIAL_MEM_
+`endif // not def SYNTHESIS
+
+// VCS coverage exclude_file
+module ram_2x47(
+  input         R0_addr,
+                R0_en,
+                R0_clk,
+  output [46:0] R0_data,
+  input         W0_addr,
+                W0_en,
+                W0_clk,
+  input  [46:0] W0_data
+);
+
+  reg [46:0] Memory[0:1];
+  always @(posedge W0_clk) begin
+    if (W0_en & 1'h1)
+      Memory[W0_addr] <= W0_data;
+  end // always @(posedge)
+  `ifdef ENABLE_INITIAL_MEM_
+    reg [63:0] _RANDOM_MEM;
+    initial begin
+      `INIT_RANDOM_PROLOG_
+      `ifdef RANDOMIZE_MEM_INIT
+        for (logic [1:0] i = 2'h0; i < 2'h2; i += 2'h1) begin
+          for (logic [6:0] j = 7'h0; j < 7'h40; j += 7'h20) begin
+            _RANDOM_MEM[j +: 32] = `RANDOM;
+          end
+          Memory[i[0]] = _RANDOM_MEM[46:0];
+        end
+      `endif // RANDOMIZE_MEM_INIT
+    end // initial
+  `endif // ENABLE_INITIAL_MEM_
+  assign R0_data = R0_en ? Memory[R0_addr] : 47'bx;
+endmodule
+
+module Queue2_AXI4BundleAW(
+  input         clock,
+                reset,
+  output        io_enq_ready,
+  input         io_enq_valid,
+  input  [3:0]  io_enq_bits_id,
+  input  [31:0] io_enq_bits_addr,
+  input  [2:0]  io_enq_bits_size,
+  input  [1:0]  io_enq_bits_burst,
+  input         io_deq_ready,
+  output        io_deq_valid,
+  output [3:0]  io_deq_bits_id,
+  output [31:0] io_deq_bits_addr,
+  output [7:0]  io_deq_bits_len,
+  output [2:0]  io_deq_bits_size
+);
+
+  wire [46:0] _ram_ext_R0_data;
+  reg         wrap;
+  reg         wrap_1;
+  reg         maybe_full;
+  wire        ptr_match = wrap == wrap_1;
+  wire        empty = ptr_match & ~maybe_full;
+  wire        full = ptr_match & maybe_full;
+  wire        do_enq = ~full & io_enq_valid;
+  wire        do_deq = io_deq_ready & ~empty;
+  always @(posedge clock) begin
+    if (reset) begin
+      wrap <= 1'h0;
+      wrap_1 <= 1'h0;
+      maybe_full <= 1'h0;
+    end
+    else begin
+      if (do_enq)
+        wrap <= wrap - 1'h1;
+      if (do_deq)
+        wrap_1 <= wrap_1 - 1'h1;
+      if (~(do_enq == do_deq))
+        maybe_full <= do_enq;
+    end
+  end // always @(posedge)
+  `ifdef ENABLE_INITIAL_REG_
+    `ifdef FIRRTL_BEFORE_INITIAL
+      `FIRRTL_BEFORE_INITIAL
+    `endif // FIRRTL_BEFORE_INITIAL
+    logic [31:0] _RANDOM[0:0];
+    initial begin
+      `ifdef INIT_RANDOM_PROLOG_
+        `INIT_RANDOM_PROLOG_
+      `endif // INIT_RANDOM_PROLOG_
+      `ifdef RANDOMIZE_REG_INIT
+        _RANDOM[/*Zero width*/ 1'b0] = `RANDOM;
+        wrap = _RANDOM[/*Zero width*/ 1'b0][0];
+        wrap_1 = _RANDOM[/*Zero width*/ 1'b0][1];
+        maybe_full = _RANDOM[/*Zero width*/ 1'b0][2];
+      `endif // RANDOMIZE_REG_INIT
+    end // initial
+    `ifdef FIRRTL_AFTER_INITIAL
+      `FIRRTL_AFTER_INITIAL
+    `endif // FIRRTL_AFTER_INITIAL
+  `endif // ENABLE_INITIAL_REG_
+  ram_2x47 ram_ext (
+    .R0_addr (wrap_1),
+    .R0_en   (1'h1),
+    .R0_clk  (clock),
+    .R0_data (_ram_ext_R0_data),
+    .W0_addr (wrap),
+    .W0_en   (do_enq),
+    .W0_clk  (clock),
+    .W0_data ({io_enq_bits_id, io_enq_bits_addr, 8'h0, io_enq_bits_size})
+  );
+  assign io_enq_ready = ~full;
+  assign io_deq_valid = ~empty;
+  assign io_deq_bits_id = _ram_ext_R0_data[46:43];
+  assign io_deq_bits_addr = _ram_ext_R0_data[42:11];
+  assign io_deq_bits_len = _ram_ext_R0_data[10:3];
+  assign io_deq_bits_size = _ram_ext_R0_data[2:0];
+endmodule
+
+// VCS coverage exclude_file
+module ram_2x36(
+  input         R0_addr,
+                R0_en,
+                R0_clk,
+  output [35:0] R0_data,
+  input         W0_addr,
+                W0_en,
+                W0_clk,
+  input  [35:0] W0_data
+);
+
+  reg [35:0] Memory[0:1];
+  always @(posedge W0_clk) begin
+    if (W0_en & 1'h1)
+      Memory[W0_addr] <= W0_data;
+  end // always @(posedge)
+  `ifdef ENABLE_INITIAL_MEM_
+    reg [63:0] _RANDOM_MEM;
+    initial begin
+      `INIT_RANDOM_PROLOG_
+      `ifdef RANDOMIZE_MEM_INIT
+        for (logic [1:0] i = 2'h0; i < 2'h2; i += 2'h1) begin
+          for (logic [6:0] j = 7'h0; j < 7'h40; j += 7'h20) begin
+            _RANDOM_MEM[j +: 32] = `RANDOM;
+          end
+          Memory[i[0]] = _RANDOM_MEM[35:0];
+        end
+      `endif // RANDOMIZE_MEM_INIT
+    end // initial
+  `endif // ENABLE_INITIAL_MEM_
+  assign R0_data = R0_en ? Memory[R0_addr] : 36'bx;
+endmodule
+
+module Queue2_AXI4BundleW(
+  input         clock,
+                reset,
+  output        io_enq_ready,
+  input         io_enq_valid,
+  input  [31:0] io_enq_bits_data,
+  input  [3:0]  io_enq_bits_strb,
+  input         io_enq_bits_last,
+                io_deq_ready,
+  output        io_deq_valid,
+  output [31:0] io_deq_bits_data,
+  output [3:0]  io_deq_bits_strb
+);
+
+  wire [35:0] _ram_ext_R0_data;
+  reg         wrap;
+  reg         wrap_1;
+  reg         maybe_full;
+  wire        ptr_match = wrap == wrap_1;
+  wire        empty = ptr_match & ~maybe_full;
+  wire        full = ptr_match & maybe_full;
+  wire        do_enq = ~full & io_enq_valid;
+  wire        do_deq = io_deq_ready & ~empty;
+  always @(posedge clock) begin
+    if (reset) begin
+      wrap <= 1'h0;
+      wrap_1 <= 1'h0;
+      maybe_full <= 1'h0;
+    end
+    else begin
+      if (do_enq)
+        wrap <= wrap - 1'h1;
+      if (do_deq)
+        wrap_1 <= wrap_1 - 1'h1;
+      if (~(do_enq == do_deq))
+        maybe_full <= do_enq;
+    end
+  end // always @(posedge)
+  `ifdef ENABLE_INITIAL_REG_
+    `ifdef FIRRTL_BEFORE_INITIAL
+      `FIRRTL_BEFORE_INITIAL
+    `endif // FIRRTL_BEFORE_INITIAL
+    logic [31:0] _RANDOM[0:0];
+    initial begin
+      `ifdef INIT_RANDOM_PROLOG_
+        `INIT_RANDOM_PROLOG_
+      `endif // INIT_RANDOM_PROLOG_
+      `ifdef RANDOMIZE_REG_INIT
+        _RANDOM[/*Zero width*/ 1'b0] = `RANDOM;
+        wrap = _RANDOM[/*Zero width*/ 1'b0][0];
+        wrap_1 = _RANDOM[/*Zero width*/ 1'b0][1];
+        maybe_full = _RANDOM[/*Zero width*/ 1'b0][2];
+      `endif // RANDOMIZE_REG_INIT
+    end // initial
+    `ifdef FIRRTL_AFTER_INITIAL
+      `FIRRTL_AFTER_INITIAL
+    `endif // FIRRTL_AFTER_INITIAL
+  `endif // ENABLE_INITIAL_REG_
+  ram_2x36 ram_ext (
+    .R0_addr (wrap_1),
+    .R0_en   (1'h1),
+    .R0_clk  (clock),
+    .R0_data (_ram_ext_R0_data),
+    .W0_addr (wrap),
+    .W0_en   (do_enq),
+    .W0_clk  (clock),
+    .W0_data ({io_enq_bits_data, io_enq_bits_strb})
+  );
+  assign io_enq_ready = ~full;
+  assign io_deq_valid = ~empty;
+  assign io_deq_bits_data = _ram_ext_R0_data[35:4];
+  assign io_deq_bits_strb = _ram_ext_R0_data[3:0];
+endmodule
+
+// VCS coverage exclude_file
+module ram_2x6(
+  input        R0_addr,
+               R0_en,
+               R0_clk,
+  output [5:0] R0_data,
+  input        W0_addr,
+               W0_en,
+               W0_clk,
+  input  [5:0] W0_data
+);
+
+  reg [5:0] Memory[0:1];
+  always @(posedge W0_clk) begin
+    if (W0_en & 1'h1)
+      Memory[W0_addr] <= W0_data;
+  end // always @(posedge)
+  `ifdef ENABLE_INITIAL_MEM_
+    reg [31:0] _RANDOM_MEM;
+    initial begin
+      `INIT_RANDOM_PROLOG_
+      `ifdef RANDOMIZE_MEM_INIT
+        for (logic [1:0] i = 2'h0; i < 2'h2; i += 2'h1) begin
+          _RANDOM_MEM = `RANDOM;
+          Memory[i[0]] = _RANDOM_MEM[5:0];
+        end
+      `endif // RANDOMIZE_MEM_INIT
+    end // initial
+  `endif // ENABLE_INITIAL_MEM_
+  assign R0_data = R0_en ? Memory[R0_addr] : 6'bx;
+endmodule
+
+module Queue2_AXI4BundleB(
+  input        clock,
+               reset,
+  output       io_enq_ready,
+  input        io_enq_valid,
+  input  [3:0] io_enq_bits_id,
+  input  [1:0] io_enq_bits_resp,
+  input        io_deq_ready,
+  output       io_deq_valid,
+  output [3:0] io_deq_bits_id,
+  output [1:0] io_deq_bits_resp
+);
+
+  wire [5:0] _ram_ext_R0_data;
+  reg        wrap;
+  reg        wrap_1;
+  reg        maybe_full;
+  wire       ptr_match = wrap == wrap_1;
+  wire       empty = ptr_match & ~maybe_full;
+  wire       full = ptr_match & maybe_full;
+  wire       do_enq = ~full & io_enq_valid;
+  wire       do_deq = io_deq_ready & ~empty;
+  always @(posedge clock) begin
+    if (reset) begin
+      wrap <= 1'h0;
+      wrap_1 <= 1'h0;
+      maybe_full <= 1'h0;
+    end
+    else begin
+      if (do_enq)
+        wrap <= wrap - 1'h1;
+      if (do_deq)
+        wrap_1 <= wrap_1 - 1'h1;
+      if (~(do_enq == do_deq))
+        maybe_full <= do_enq;
+    end
+  end // always @(posedge)
+  `ifdef ENABLE_INITIAL_REG_
+    `ifdef FIRRTL_BEFORE_INITIAL
+      `FIRRTL_BEFORE_INITIAL
+    `endif // FIRRTL_BEFORE_INITIAL
+    logic [31:0] _RANDOM[0:0];
+    initial begin
+      `ifdef INIT_RANDOM_PROLOG_
+        `INIT_RANDOM_PROLOG_
+      `endif // INIT_RANDOM_PROLOG_
+      `ifdef RANDOMIZE_REG_INIT
+        _RANDOM[/*Zero width*/ 1'b0] = `RANDOM;
+        wrap = _RANDOM[/*Zero width*/ 1'b0][0];
+        wrap_1 = _RANDOM[/*Zero width*/ 1'b0][1];
+        maybe_full = _RANDOM[/*Zero width*/ 1'b0][2];
+      `endif // RANDOMIZE_REG_INIT
+    end // initial
+    `ifdef FIRRTL_AFTER_INITIAL
+      `FIRRTL_AFTER_INITIAL
+    `endif // FIRRTL_AFTER_INITIAL
+  `endif // ENABLE_INITIAL_REG_
+  ram_2x6 ram_ext (
+    .R0_addr (wrap_1),
+    .R0_en   (1'h1),
+    .R0_clk  (clock),
+    .R0_data (_ram_ext_R0_data),
+    .W0_addr (wrap),
+    .W0_en   (do_enq),
+    .W0_clk  (clock),
+    .W0_data ({io_enq_bits_id, io_enq_bits_resp})
+  );
+  assign io_enq_ready = ~full;
+  assign io_deq_valid = ~empty;
+  assign io_deq_bits_id = _ram_ext_R0_data[5:2];
+  assign io_deq_bits_resp = _ram_ext_R0_data[1:0];
+endmodule
+
+module Queue2_AXI4BundleAR(
+  input         clock,
+                reset,
+  output        io_enq_ready,
+  input         io_enq_valid,
+  input  [3:0]  io_enq_bits_id,
+  input  [31:0] io_enq_bits_addr,
+  input  [2:0]  io_enq_bits_size,
+  input  [1:0]  io_enq_bits_burst,
+  input         io_deq_ready,
+  output        io_deq_valid,
+  output [3:0]  io_deq_bits_id,
+  output [31:0] io_deq_bits_addr,
+  output [7:0]  io_deq_bits_len,
+  output [2:0]  io_deq_bits_size
+);
+
+  wire [46:0] _ram_ext_R0_data;
+  reg         wrap;
+  reg         wrap_1;
+  reg         maybe_full;
+  wire        ptr_match = wrap == wrap_1;
+  wire        empty = ptr_match & ~maybe_full;
+  wire        full = ptr_match & maybe_full;
+  wire        do_enq = ~full & io_enq_valid;
+  wire        do_deq = io_deq_ready & ~empty;
+  always @(posedge clock) begin
+    if (reset) begin
+      wrap <= 1'h0;
+      wrap_1 <= 1'h0;
+      maybe_full <= 1'h0;
+    end
+    else begin
+      if (do_enq)
+        wrap <= wrap - 1'h1;
+      if (do_deq)
+        wrap_1 <= wrap_1 - 1'h1;
+      if (~(do_enq == do_deq))
+        maybe_full <= do_enq;
+    end
+  end // always @(posedge)
+  `ifdef ENABLE_INITIAL_REG_
+    `ifdef FIRRTL_BEFORE_INITIAL
+      `FIRRTL_BEFORE_INITIAL
+    `endif // FIRRTL_BEFORE_INITIAL
+    logic [31:0] _RANDOM[0:0];
+    initial begin
+      `ifdef INIT_RANDOM_PROLOG_
+        `INIT_RANDOM_PROLOG_
+      `endif // INIT_RANDOM_PROLOG_
+      `ifdef RANDOMIZE_REG_INIT
+        _RANDOM[/*Zero width*/ 1'b0] = `RANDOM;
+        wrap = _RANDOM[/*Zero width*/ 1'b0][0];
+        wrap_1 = _RANDOM[/*Zero width*/ 1'b0][1];
+        maybe_full = _RANDOM[/*Zero width*/ 1'b0][2];
+      `endif // RANDOMIZE_REG_INIT
+    end // initial
+    `ifdef FIRRTL_AFTER_INITIAL
+      `FIRRTL_AFTER_INITIAL
+    `endif // FIRRTL_AFTER_INITIAL
+  `endif // ENABLE_INITIAL_REG_
+  ram_2x47 ram_ext (
+    .R0_addr (wrap_1),
+    .R0_en   (1'h1),
+    .R0_clk  (clock),
+    .R0_data (_ram_ext_R0_data),
+    .W0_addr (wrap),
+    .W0_en   (do_enq),
+    .W0_clk  (clock),
+    .W0_data ({io_enq_bits_id, io_enq_bits_addr, 8'h0, io_enq_bits_size})
+  );
+  assign io_enq_ready = ~full;
+  assign io_deq_valid = ~empty;
+  assign io_deq_bits_id = _ram_ext_R0_data[46:43];
+  assign io_deq_bits_addr = _ram_ext_R0_data[42:11];
+  assign io_deq_bits_len = _ram_ext_R0_data[10:3];
+  assign io_deq_bits_size = _ram_ext_R0_data[2:0];
+endmodule
+
+// VCS coverage exclude_file
+module ram_2x39(
+  input         R0_addr,
+                R0_en,
+                R0_clk,
+  output [38:0] R0_data,
+  input         W0_addr,
+                W0_en,
+                W0_clk,
+  input  [38:0] W0_data
+);
+
+  reg [38:0] Memory[0:1];
+  always @(posedge W0_clk) begin
+    if (W0_en & 1'h1)
+      Memory[W0_addr] <= W0_data;
+  end // always @(posedge)
+  `ifdef ENABLE_INITIAL_MEM_
+    reg [63:0] _RANDOM_MEM;
+    initial begin
+      `INIT_RANDOM_PROLOG_
+      `ifdef RANDOMIZE_MEM_INIT
+        for (logic [1:0] i = 2'h0; i < 2'h2; i += 2'h1) begin
+          for (logic [6:0] j = 7'h0; j < 7'h40; j += 7'h20) begin
+            _RANDOM_MEM[j +: 32] = `RANDOM;
+          end
+          Memory[i[0]] = _RANDOM_MEM[38:0];
+        end
+      `endif // RANDOMIZE_MEM_INIT
+    end // initial
+  `endif // ENABLE_INITIAL_MEM_
+  assign R0_data = R0_en ? Memory[R0_addr] : 39'bx;
+endmodule
+
+module Queue2_AXI4BundleR(
+  input         clock,
+                reset,
+  output        io_enq_ready,
+  input         io_enq_valid,
+  input  [3:0]  io_enq_bits_id,
+  input  [31:0] io_enq_bits_data,
+  input  [1:0]  io_enq_bits_resp,
+  input         io_deq_ready,
+  output        io_deq_valid,
+  output [3:0]  io_deq_bits_id,
+  output [31:0] io_deq_bits_data,
+  output [1:0]  io_deq_bits_resp,
+  output        io_deq_bits_last
+);
+
+  wire [38:0] _ram_ext_R0_data;
+  reg         wrap;
+  reg         wrap_1;
+  reg         maybe_full;
+  wire        ptr_match = wrap == wrap_1;
+  wire        empty = ptr_match & ~maybe_full;
+  wire        full = ptr_match & maybe_full;
+  wire        do_enq = ~full & io_enq_valid;
+  wire        do_deq = io_deq_ready & ~empty;
+  always @(posedge clock) begin
+    if (reset) begin
+      wrap <= 1'h0;
+      wrap_1 <= 1'h0;
+      maybe_full <= 1'h0;
+    end
+    else begin
+      if (do_enq)
+        wrap <= wrap - 1'h1;
+      if (do_deq)
+        wrap_1 <= wrap_1 - 1'h1;
+      if (~(do_enq == do_deq))
+        maybe_full <= do_enq;
+    end
+  end // always @(posedge)
+  `ifdef ENABLE_INITIAL_REG_
+    `ifdef FIRRTL_BEFORE_INITIAL
+      `FIRRTL_BEFORE_INITIAL
+    `endif // FIRRTL_BEFORE_INITIAL
+    logic [31:0] _RANDOM[0:0];
+    initial begin
+      `ifdef INIT_RANDOM_PROLOG_
+        `INIT_RANDOM_PROLOG_
+      `endif // INIT_RANDOM_PROLOG_
+      `ifdef RANDOMIZE_REG_INIT
+        _RANDOM[/*Zero width*/ 1'b0] = `RANDOM;
+        wrap = _RANDOM[/*Zero width*/ 1'b0][0];
+        wrap_1 = _RANDOM[/*Zero width*/ 1'b0][1];
+        maybe_full = _RANDOM[/*Zero width*/ 1'b0][2];
+      `endif // RANDOMIZE_REG_INIT
+    end // initial
+    `ifdef FIRRTL_AFTER_INITIAL
+      `FIRRTL_AFTER_INITIAL
+    `endif // FIRRTL_AFTER_INITIAL
+  `endif // ENABLE_INITIAL_REG_
+  ram_2x39 ram_ext (
+    .R0_addr (wrap_1),
+    .R0_en   (1'h1),
+    .R0_clk  (clock),
+    .R0_data (_ram_ext_R0_data),
+    .W0_addr (wrap),
+    .W0_en   (do_enq),
+    .W0_clk  (clock),
+    .W0_data ({io_enq_bits_id, io_enq_bits_data, io_enq_bits_resp, 1'h1})
+  );
+  assign io_enq_ready = ~full;
+  assign io_deq_valid = ~empty;
+  assign io_deq_bits_id = _ram_ext_R0_data[38:35];
+  assign io_deq_bits_data = _ram_ext_R0_data[34:3];
+  assign io_deq_bits_resp = _ram_ext_R0_data[2:1];
+  assign io_deq_bits_last = _ram_ext_R0_data[0];
+endmodule
+
+module AXI4Buffer(
+  input         clock,
+                reset,
+  output        auto_in_awready,
+  input         auto_in_awvalid,
+  input  [3:0]  auto_in_awid,
+  input  [31:0] auto_in_awaddr,
+  input  [2:0]  auto_in_awsize,
+  input  [1:0]  auto_in_awburst,
+  output        auto_in_wready,
+  input         auto_in_wvalid,
+  input  [31:0] auto_in_wdata,
+  input  [3:0]  auto_in_wstrb,
+  input         auto_in_wlast,
+                auto_in_bready,
+  output        auto_in_bvalid,
+  output [3:0]  auto_in_bid,
+  output [1:0]  auto_in_bresp,
+  output        auto_in_arready,
+  input         auto_in_arvalid,
+  input  [3:0]  auto_in_arid,
+  input  [31:0] auto_in_araddr,
+  input  [2:0]  auto_in_arsize,
+  input  [1:0]  auto_in_arburst,
+  input         auto_in_rready,
+  output        auto_in_rvalid,
+  output [3:0]  auto_in_rid,
+  output [31:0] auto_in_rdata,
+  output [1:0]  auto_in_rresp,
+  output        auto_in_rlast,
+  input         auto_out_awready,
+  output        auto_out_awvalid,
+  output [3:0]  auto_out_awid,
+  output [31:0] auto_out_awaddr,
+  output [7:0]  auto_out_awlen,
+  output [2:0]  auto_out_awsize,
+  input         auto_out_wready,
+  output        auto_out_wvalid,
+  output [31:0] auto_out_wdata,
+  output [3:0]  auto_out_wstrb,
+  output        auto_out_bready,
+  input         auto_out_bvalid,
+  input  [3:0]  auto_out_bid,
+  input  [1:0]  auto_out_bresp,
+  input         auto_out_arready,
+  output        auto_out_arvalid,
+  output [3:0]  auto_out_arid,
+  output [31:0] auto_out_araddr,
+  output [7:0]  auto_out_arlen,
+  output [2:0]  auto_out_arsize,
+  output        auto_out_rready,
+  input         auto_out_rvalid,
+  input  [3:0]  auto_out_rid,
+  input  [31:0] auto_out_rdata,
+  input  [1:0]  auto_out_rresp
+);
+
+  Queue2_AXI4BundleAW nodeOut_awdeq_q (
+    .clock             (clock),
+    .reset             (reset),
+    .io_enq_ready      (auto_in_awready),
+    .io_enq_valid      (auto_in_awvalid),
+    .io_enq_bits_id    (auto_in_awid),
+    .io_enq_bits_addr  (auto_in_awaddr),
+    .io_enq_bits_size  (auto_in_awsize),
+    .io_enq_bits_burst (auto_in_awburst),
+    .io_deq_ready      (auto_out_awready),
+    .io_deq_valid      (auto_out_awvalid),
+    .io_deq_bits_id    (auto_out_awid),
+    .io_deq_bits_addr  (auto_out_awaddr),
+    .io_deq_bits_len   (auto_out_awlen),
+    .io_deq_bits_size  (auto_out_awsize)
+  );
+  Queue2_AXI4BundleW nodeOut_wdeq_q (
+    .clock            (clock),
+    .reset            (reset),
+    .io_enq_ready     (auto_in_wready),
+    .io_enq_valid     (auto_in_wvalid),
+    .io_enq_bits_data (auto_in_wdata),
+    .io_enq_bits_strb (auto_in_wstrb),
+    .io_enq_bits_last (auto_in_wlast),
+    .io_deq_ready     (auto_out_wready),
+    .io_deq_valid     (auto_out_wvalid),
+    .io_deq_bits_data (auto_out_wdata),
+    .io_deq_bits_strb (auto_out_wstrb)
+  );
+  Queue2_AXI4BundleB nodeIn_bdeq_q (
+    .clock            (clock),
+    .reset            (reset),
+    .io_enq_ready     (auto_out_bready),
+    .io_enq_valid     (auto_out_bvalid),
+    .io_enq_bits_id   (auto_out_bid),
+    .io_enq_bits_resp (auto_out_bresp),
+    .io_deq_ready     (auto_in_bready),
+    .io_deq_valid     (auto_in_bvalid),
+    .io_deq_bits_id   (auto_in_bid),
+    .io_deq_bits_resp (auto_in_bresp)
+  );
+  Queue2_AXI4BundleAR nodeOut_ardeq_q (
+    .clock             (clock),
+    .reset             (reset),
+    .io_enq_ready      (auto_in_arready),
+    .io_enq_valid      (auto_in_arvalid),
+    .io_enq_bits_id    (auto_in_arid),
+    .io_enq_bits_addr  (auto_in_araddr),
+    .io_enq_bits_size  (auto_in_arsize),
+    .io_enq_bits_burst (auto_in_arburst),
+    .io_deq_ready      (auto_out_arready),
+    .io_deq_valid      (auto_out_arvalid),
+    .io_deq_bits_id    (auto_out_arid),
+    .io_deq_bits_addr  (auto_out_araddr),
+    .io_deq_bits_len   (auto_out_arlen),
+    .io_deq_bits_size  (auto_out_arsize)
+  );
+  Queue2_AXI4BundleR nodeIn_rdeq_q (
+    .clock            (clock),
+    .reset            (reset),
+    .io_enq_ready     (auto_out_rready),
+    .io_enq_valid     (auto_out_rvalid),
+    .io_enq_bits_id   (auto_out_rid),
+    .io_enq_bits_data (auto_out_rdata),
+    .io_enq_bits_resp (auto_out_rresp),
+    .io_deq_ready     (auto_in_rready),
+    .io_deq_valid     (auto_in_rvalid),
+    .io_deq_bits_id   (auto_in_rid),
+    .io_deq_bits_data (auto_in_rdata),
+    .io_deq_bits_resp (auto_in_rresp),
+    .io_deq_bits_last (auto_in_rlast)
+  );
 endmodule
 
 module ysyxSoC(
   input        clock,
                reset,
-               clock_half,
-               intr,
   input  [3:0] coreSel,
   input        uart0_rx,
   output       uart0_tx,
                spi_sck,
-  output [7:0] spi_ss,
-  output       spi_mosi,
+               spi_ss,
+               spi_mosi,
   input        spi_miso,
   output       psram_sck_o,
-  output [3:0] psram_nss_o,
-               psram_io_oe_o,
+  output [2:0] psram_nss_o,
+  output [3:0] psram_io_oe_o,
   input  [3:0] psram_io_di_i,
   output [3:0] psram_io_do_o,
+  input        pll_en_i,
+  input  [1:0] clk_cfg_i,
+  output       clk_o,
+  input  [3:0] gpio0_gpio_in_i,
+  output [3:0] gpio0_gpio_out_o,
+               gpio0_gpio_dir_o,
   input        uart1_uart_rx_i,
   output       uart1_uart_tx_o,
   input        i2c_scl_i,
@@ -6586,79 +7201,40 @@ module ysyxSoC(
   input        i2c_sda_i,
   output       i2c_sda_o,
                i2c_sda_dir_o,
-  input        ps2_ps2_clk_i,
-               ps2_ps2_dat_i,
   output [3:0] pwm0_pwm_o,
-               pwm1_pwm_o,
-  input        tim0_capch,
-               tim1_capch,
-               tim2_capch,
-               tim3_capch,
   output       qspi_spi_sck_o,
-  output [3:0] qspi_spi_nss_o,
-               qspi_spi_io_en_o,
+  output [1:0] qspi_spi_nss_o,
+  output [3:0] qspi_spi_io_en_o,
   input  [3:0] qspi_spi_io_in_i,
-  output [3:0] qspi_spi_io_out_o,
-  output       i2s_sck_o,
-  input        i2s_sck_i,
-  output       i2s_sck_en_o,
-               i2s_ws_o,
-  input        i2s_ws_i,
-  output       i2s_ws_en_o,
-  input        i2s_sd_i
+  output [3:0] qspi_spi_io_out_o
 );
 
-  wire        _axi4frag_auto_in_awready;
-  wire        _axi4frag_auto_in_wready;
-  wire        _axi4frag_auto_in_bvalid;
-  wire [3:0]  _axi4frag_auto_in_bid;
-  wire [1:0]  _axi4frag_auto_in_bresp;
-  wire        _axi4frag_auto_in_arready;
-  wire        _axi4frag_auto_in_rvalid;
-  wire [3:0]  _axi4frag_auto_in_rid;
-  wire [31:0] _axi4frag_auto_in_rdata;
-  wire [1:0]  _axi4frag_auto_in_rresp;
-  wire        _axi4frag_auto_in_rlast;
-  wire        _axi4frag_auto_out_awvalid;
-  wire [3:0]  _axi4frag_auto_out_awid;
-  wire [31:0] _axi4frag_auto_out_awaddr;
-  wire [2:0]  _axi4frag_auto_out_awsize;
-  wire        _axi4frag_auto_out_awecho_real_last;
-  wire        _axi4frag_auto_out_wvalid;
-  wire [31:0] _axi4frag_auto_out_wdata;
-  wire [3:0]  _axi4frag_auto_out_wstrb;
-  wire        _axi4frag_auto_out_bready;
-  wire        _axi4frag_auto_out_arvalid;
-  wire [3:0]  _axi4frag_auto_out_arid;
-  wire [31:0] _axi4frag_auto_out_araddr;
-  wire [2:0]  _axi4frag_auto_out_arsize;
-  wire        _axi4frag_auto_out_arecho_real_last;
-  wire        _axi4frag_auto_out_rready;
-  wire        _axi4yank_auto_in_awready;
-  wire        _axi4yank_auto_in_wready;
-  wire        _axi4yank_auto_in_bvalid;
-  wire [3:0]  _axi4yank_auto_in_bid;
-  wire [1:0]  _axi4yank_auto_in_bresp;
-  wire        _axi4yank_auto_in_becho_real_last;
-  wire        _axi4yank_auto_in_arready;
-  wire        _axi4yank_auto_in_rvalid;
-  wire [3:0]  _axi4yank_auto_in_rid;
-  wire [31:0] _axi4yank_auto_in_rdata;
-  wire [1:0]  _axi4yank_auto_in_rresp;
-  wire        _axi4yank_auto_in_recho_real_last;
-  wire        _axi4yank_auto_out_awvalid;
-  wire [3:0]  _axi4yank_auto_out_awid;
-  wire [31:0] _axi4yank_auto_out_awaddr;
-  wire [2:0]  _axi4yank_auto_out_awsize;
-  wire        _axi4yank_auto_out_wvalid;
-  wire [31:0] _axi4yank_auto_out_wdata;
-  wire [3:0]  _axi4yank_auto_out_wstrb;
-  wire        _axi4yank_auto_out_bready;
-  wire        _axi4yank_auto_out_arvalid;
-  wire [3:0]  _axi4yank_auto_out_arid;
-  wire [31:0] _axi4yank_auto_out_araddr;
-  wire [2:0]  _axi4yank_auto_out_arsize;
-  wire        _axi4yank_auto_out_rready;
+  wire        _axi4buf_auto_in_awready;
+  wire        _axi4buf_auto_in_wready;
+  wire        _axi4buf_auto_in_bvalid;
+  wire [3:0]  _axi4buf_auto_in_bid;
+  wire [1:0]  _axi4buf_auto_in_bresp;
+  wire        _axi4buf_auto_in_arready;
+  wire        _axi4buf_auto_in_rvalid;
+  wire [3:0]  _axi4buf_auto_in_rid;
+  wire [31:0] _axi4buf_auto_in_rdata;
+  wire [1:0]  _axi4buf_auto_in_rresp;
+  wire        _axi4buf_auto_in_rlast;
+  wire        _axi4buf_auto_out_awvalid;
+  wire [3:0]  _axi4buf_auto_out_awid;
+  wire [31:0] _axi4buf_auto_out_awaddr;
+  wire [7:0]  _axi4buf_auto_out_awlen;
+  wire [2:0]  _axi4buf_auto_out_awsize;
+  wire        _axi4buf_auto_out_wvalid;
+  wire [31:0] _axi4buf_auto_out_wdata;
+  wire [3:0]  _axi4buf_auto_out_wstrb;
+  wire        _axi4buf_auto_out_bready;
+  wire        _axi4buf_auto_out_arvalid;
+  wire [3:0]  _axi4buf_auto_out_arid;
+  wire [31:0] _axi4buf_auto_out_araddr;
+  wire [7:0]  _axi4buf_auto_out_arlen;
+  wire [2:0]  _axi4buf_auto_out_arsize;
+  wire        _axi4buf_auto_out_rready;
   wire        _axi42apb_auto_in_awready;
   wire        _axi42apb_auto_in_wready;
   wire        _axi42apb_auto_in_bvalid;
@@ -6685,34 +7261,72 @@ module ysyxSoC(
   wire [2:0]  _apbdelay_delayer_out_pprot;
   wire [31:0] _apbdelay_delayer_out_pwdata;
   wire [3:0]  _apbdelay_delayer_out_pstrb;
-  wire        _DefDevice_24_auto_apply_in_pready;
-  wire [31:0] _DefDevice_24_auto_apply_in_prdata;
-  wire        _DefDevice_23_auto_apply_in_pready;
-  wire        _DefDevice_23_auto_apply_in_pslverr;
-  wire [31:0] _DefDevice_23_auto_apply_in_prdata;
-  wire        _DefDevice_22_auto_apply_in_pready;
-  wire        _DefDevice_22_auto_apply_in_pslverr;
-  wire [31:0] _DefDevice_22_auto_apply_in_prdata;
-  wire        _DefDevice_21_auto_apply_in_pready;
-  wire        _DefDevice_21_auto_apply_in_pslverr;
-  wire [31:0] _DefDevice_21_auto_apply_in_prdata;
-  wire        _DefDevice_21_irq_o;
-  wire        _DefDevice_20_auto_apply_in_pready;
-  wire        _DefDevice_20_auto_apply_in_pslverr;
-  wire [31:0] _DefDevice_20_auto_apply_in_prdata;
-  wire        _DefDevice_20_irq_o;
+  wire        _axi4frag_auto_in_awready;
+  wire        _axi4frag_auto_in_wready;
+  wire        _axi4frag_auto_in_bvalid;
+  wire [3:0]  _axi4frag_auto_in_bid;
+  wire [1:0]  _axi4frag_auto_in_bresp;
+  wire        _axi4frag_auto_in_arready;
+  wire        _axi4frag_auto_in_rvalid;
+  wire [3:0]  _axi4frag_auto_in_rid;
+  wire [31:0] _axi4frag_auto_in_rdata;
+  wire [1:0]  _axi4frag_auto_in_rresp;
+  wire        _axi4frag_auto_in_rlast;
+  wire        _axi4frag_auto_out_awvalid;
+  wire [3:0]  _axi4frag_auto_out_awid;
+  wire [31:0] _axi4frag_auto_out_awaddr;
+  wire [2:0]  _axi4frag_auto_out_awsize;
+  wire [1:0]  _axi4frag_auto_out_awburst;
+  wire        _axi4frag_auto_out_awecho_real_last;
+  wire        _axi4frag_auto_out_wvalid;
+  wire [31:0] _axi4frag_auto_out_wdata;
+  wire [3:0]  _axi4frag_auto_out_wstrb;
+  wire        _axi4frag_auto_out_wlast;
+  wire        _axi4frag_auto_out_bready;
+  wire        _axi4frag_auto_out_arvalid;
+  wire [3:0]  _axi4frag_auto_out_arid;
+  wire [31:0] _axi4frag_auto_out_araddr;
+  wire [2:0]  _axi4frag_auto_out_arsize;
+  wire [1:0]  _axi4frag_auto_out_arburst;
+  wire        _axi4frag_auto_out_arecho_real_last;
+  wire        _axi4frag_auto_out_rready;
+  wire        _axi4yank_auto_in_awready;
+  wire        _axi4yank_auto_in_wready;
+  wire        _axi4yank_auto_in_bvalid;
+  wire [3:0]  _axi4yank_auto_in_bid;
+  wire [1:0]  _axi4yank_auto_in_bresp;
+  wire        _axi4yank_auto_in_becho_real_last;
+  wire        _axi4yank_auto_in_arready;
+  wire        _axi4yank_auto_in_rvalid;
+  wire [3:0]  _axi4yank_auto_in_rid;
+  wire [31:0] _axi4yank_auto_in_rdata;
+  wire [1:0]  _axi4yank_auto_in_rresp;
+  wire        _axi4yank_auto_in_recho_real_last;
+  wire        _axi4yank_auto_in_rlast;
+  wire        _axi4yank_auto_out_awvalid;
+  wire [3:0]  _axi4yank_auto_out_awid;
+  wire [31:0] _axi4yank_auto_out_awaddr;
+  wire [2:0]  _axi4yank_auto_out_awsize;
+  wire [1:0]  _axi4yank_auto_out_awburst;
+  wire        _axi4yank_auto_out_wvalid;
+  wire [31:0] _axi4yank_auto_out_wdata;
+  wire [3:0]  _axi4yank_auto_out_wstrb;
+  wire        _axi4yank_auto_out_wlast;
+  wire        _axi4yank_auto_out_bready;
+  wire        _axi4yank_auto_out_arvalid;
+  wire [3:0]  _axi4yank_auto_out_arid;
+  wire [31:0] _axi4yank_auto_out_araddr;
+  wire [2:0]  _axi4yank_auto_out_arsize;
+  wire [1:0]  _axi4yank_auto_out_arburst;
+  wire        _axi4yank_auto_out_rready;
   wire        _DefDevice_19_auto_apply_in_pready;
-  wire        _DefDevice_19_auto_apply_in_pslverr;
   wire [31:0] _DefDevice_19_auto_apply_in_prdata;
-  wire        _DefDevice_19_irq_o;
   wire        _DefDevice_18_auto_apply_in_pready;
   wire        _DefDevice_18_auto_apply_in_pslverr;
   wire [31:0] _DefDevice_18_auto_apply_in_prdata;
-  wire        _DefDevice_18_irq_o;
   wire        _DefDevice_17_auto_apply_in_pready;
   wire        _DefDevice_17_auto_apply_in_pslverr;
   wire [31:0] _DefDevice_17_auto_apply_in_prdata;
-  wire        _DefDevice_17_irq_o;
   wire        _DefDevice_16_auto_apply_in_pready;
   wire        _DefDevice_16_auto_apply_in_pslverr;
   wire [31:0] _DefDevice_16_auto_apply_in_prdata;
@@ -6736,6 +7350,7 @@ module ysyxSoC(
   wire        _DefDevice_11_auto_apply_in_pready;
   wire        _DefDevice_11_auto_apply_in_pslverr;
   wire [31:0] _DefDevice_11_auto_apply_in_prdata;
+  wire        _DefDevice_11_irq_o;
   wire        _DefDevice_10_auto_apply_in_pready;
   wire        _DefDevice_10_auto_apply_in_pslverr;
   wire [31:0] _DefDevice_10_auto_apply_in_prdata;
@@ -6743,7 +7358,6 @@ module ysyxSoC(
   wire        _DefDevice_9_auto_apply_in_pready;
   wire        _DefDevice_9_auto_apply_in_pslverr;
   wire [31:0] _DefDevice_9_auto_apply_in_prdata;
-  wire        _DefDevice_9_irq_o;
   wire        _DefDevice_8_auto_apply_in_pready;
   wire        _DefDevice_8_auto_apply_in_pslverr;
   wire [31:0] _DefDevice_8_auto_apply_in_prdata;
@@ -6754,6 +7368,7 @@ module ysyxSoC(
   wire        _DefDevice_6_auto_apply_in_pready;
   wire        _DefDevice_6_auto_apply_in_pslverr;
   wire [31:0] _DefDevice_6_auto_apply_in_prdata;
+  wire        _DefDevice_6_extra_rst_o;
   wire        _DefDevice_5_auto_apply_in_pready;
   wire        _DefDevice_5_auto_apply_in_pslverr;
   wire [31:0] _DefDevice_5_auto_apply_in_prdata;
@@ -6761,6 +7376,7 @@ module ysyxSoC(
   wire        _DefDevice_4_auto_apply_in_pready;
   wire        _DefDevice_4_auto_apply_in_pslverr;
   wire [31:0] _DefDevice_4_auto_apply_in_prdata;
+  wire [6:0]  _DefDevice_4_extra_clk_o;
   wire        _DefDevice_3_auto_apply_in_pready;
   wire        _DefDevice_3_auto_apply_in_pslverr;
   wire [31:0] _DefDevice_3_auto_apply_in_prdata;
@@ -6795,41 +7411,6 @@ module ysyxSoC(
   wire        _apbxbar_auto_anon_in_pready;
   wire        _apbxbar_auto_anon_in_pslverr;
   wire [31:0] _apbxbar_auto_anon_in_prdata;
-  wire        _apbxbar_auto_anon_out_24_psel;
-  wire        _apbxbar_auto_anon_out_24_penable;
-  wire        _apbxbar_auto_anon_out_24_pwrite;
-  wire [28:0] _apbxbar_auto_anon_out_24_paddr;
-  wire [2:0]  _apbxbar_auto_anon_out_24_pprot;
-  wire [31:0] _apbxbar_auto_anon_out_24_pwdata;
-  wire [3:0]  _apbxbar_auto_anon_out_24_pstrb;
-  wire        _apbxbar_auto_anon_out_23_psel;
-  wire        _apbxbar_auto_anon_out_23_penable;
-  wire        _apbxbar_auto_anon_out_23_pwrite;
-  wire [28:0] _apbxbar_auto_anon_out_23_paddr;
-  wire [2:0]  _apbxbar_auto_anon_out_23_pprot;
-  wire [31:0] _apbxbar_auto_anon_out_23_pwdata;
-  wire [3:0]  _apbxbar_auto_anon_out_23_pstrb;
-  wire        _apbxbar_auto_anon_out_22_psel;
-  wire        _apbxbar_auto_anon_out_22_penable;
-  wire        _apbxbar_auto_anon_out_22_pwrite;
-  wire [28:0] _apbxbar_auto_anon_out_22_paddr;
-  wire [2:0]  _apbxbar_auto_anon_out_22_pprot;
-  wire [31:0] _apbxbar_auto_anon_out_22_pwdata;
-  wire [3:0]  _apbxbar_auto_anon_out_22_pstrb;
-  wire        _apbxbar_auto_anon_out_21_psel;
-  wire        _apbxbar_auto_anon_out_21_penable;
-  wire        _apbxbar_auto_anon_out_21_pwrite;
-  wire [28:0] _apbxbar_auto_anon_out_21_paddr;
-  wire [2:0]  _apbxbar_auto_anon_out_21_pprot;
-  wire [31:0] _apbxbar_auto_anon_out_21_pwdata;
-  wire [3:0]  _apbxbar_auto_anon_out_21_pstrb;
-  wire        _apbxbar_auto_anon_out_20_psel;
-  wire        _apbxbar_auto_anon_out_20_penable;
-  wire        _apbxbar_auto_anon_out_20_pwrite;
-  wire [28:0] _apbxbar_auto_anon_out_20_paddr;
-  wire [2:0]  _apbxbar_auto_anon_out_20_pprot;
-  wire [31:0] _apbxbar_auto_anon_out_20_pwdata;
-  wire [3:0]  _apbxbar_auto_anon_out_20_pstrb;
   wire        _apbxbar_auto_anon_out_19_psel;
   wire        _apbxbar_auto_anon_out_19_penable;
   wire        _apbxbar_auto_anon_out_19_pwrite;
@@ -7071,56 +7652,6 @@ module ysyxSoC(
     .auto_anon_in_pready      (_apbxbar_auto_anon_in_pready),
     .auto_anon_in_pslverr     (_apbxbar_auto_anon_in_pslverr),
     .auto_anon_in_prdata      (_apbxbar_auto_anon_in_prdata),
-    .auto_anon_out_24_psel    (_apbxbar_auto_anon_out_24_psel),
-    .auto_anon_out_24_penable (_apbxbar_auto_anon_out_24_penable),
-    .auto_anon_out_24_pwrite  (_apbxbar_auto_anon_out_24_pwrite),
-    .auto_anon_out_24_paddr   (_apbxbar_auto_anon_out_24_paddr),
-    .auto_anon_out_24_pprot   (_apbxbar_auto_anon_out_24_pprot),
-    .auto_anon_out_24_pwdata  (_apbxbar_auto_anon_out_24_pwdata),
-    .auto_anon_out_24_pstrb   (_apbxbar_auto_anon_out_24_pstrb),
-    .auto_anon_out_24_pready  (_DefDevice_23_auto_apply_in_pready),
-    .auto_anon_out_24_pslverr (_DefDevice_23_auto_apply_in_pslverr),
-    .auto_anon_out_24_prdata  (_DefDevice_23_auto_apply_in_prdata),
-    .auto_anon_out_23_psel    (_apbxbar_auto_anon_out_23_psel),
-    .auto_anon_out_23_penable (_apbxbar_auto_anon_out_23_penable),
-    .auto_anon_out_23_pwrite  (_apbxbar_auto_anon_out_23_pwrite),
-    .auto_anon_out_23_paddr   (_apbxbar_auto_anon_out_23_paddr),
-    .auto_anon_out_23_pprot   (_apbxbar_auto_anon_out_23_pprot),
-    .auto_anon_out_23_pwdata  (_apbxbar_auto_anon_out_23_pwdata),
-    .auto_anon_out_23_pstrb   (_apbxbar_auto_anon_out_23_pstrb),
-    .auto_anon_out_23_pready  (_DefDevice_22_auto_apply_in_pready),
-    .auto_anon_out_23_pslverr (_DefDevice_22_auto_apply_in_pslverr),
-    .auto_anon_out_23_prdata  (_DefDevice_22_auto_apply_in_prdata),
-    .auto_anon_out_22_psel    (_apbxbar_auto_anon_out_22_psel),
-    .auto_anon_out_22_penable (_apbxbar_auto_anon_out_22_penable),
-    .auto_anon_out_22_pwrite  (_apbxbar_auto_anon_out_22_pwrite),
-    .auto_anon_out_22_paddr   (_apbxbar_auto_anon_out_22_paddr),
-    .auto_anon_out_22_pprot   (_apbxbar_auto_anon_out_22_pprot),
-    .auto_anon_out_22_pwdata  (_apbxbar_auto_anon_out_22_pwdata),
-    .auto_anon_out_22_pstrb   (_apbxbar_auto_anon_out_22_pstrb),
-    .auto_anon_out_22_pready  (_DefDevice_21_auto_apply_in_pready),
-    .auto_anon_out_22_pslverr (_DefDevice_21_auto_apply_in_pslverr),
-    .auto_anon_out_22_prdata  (_DefDevice_21_auto_apply_in_prdata),
-    .auto_anon_out_21_psel    (_apbxbar_auto_anon_out_21_psel),
-    .auto_anon_out_21_penable (_apbxbar_auto_anon_out_21_penable),
-    .auto_anon_out_21_pwrite  (_apbxbar_auto_anon_out_21_pwrite),
-    .auto_anon_out_21_paddr   (_apbxbar_auto_anon_out_21_paddr),
-    .auto_anon_out_21_pprot   (_apbxbar_auto_anon_out_21_pprot),
-    .auto_anon_out_21_pwdata  (_apbxbar_auto_anon_out_21_pwdata),
-    .auto_anon_out_21_pstrb   (_apbxbar_auto_anon_out_21_pstrb),
-    .auto_anon_out_21_pready  (_DefDevice_20_auto_apply_in_pready),
-    .auto_anon_out_21_pslverr (_DefDevice_20_auto_apply_in_pslverr),
-    .auto_anon_out_21_prdata  (_DefDevice_20_auto_apply_in_prdata),
-    .auto_anon_out_20_psel    (_apbxbar_auto_anon_out_20_psel),
-    .auto_anon_out_20_penable (_apbxbar_auto_anon_out_20_penable),
-    .auto_anon_out_20_pwrite  (_apbxbar_auto_anon_out_20_pwrite),
-    .auto_anon_out_20_paddr   (_apbxbar_auto_anon_out_20_paddr),
-    .auto_anon_out_20_pprot   (_apbxbar_auto_anon_out_20_pprot),
-    .auto_anon_out_20_pwdata  (_apbxbar_auto_anon_out_20_pwdata),
-    .auto_anon_out_20_pstrb   (_apbxbar_auto_anon_out_20_pstrb),
-    .auto_anon_out_20_pready  (_DefDevice_19_auto_apply_in_pready),
-    .auto_anon_out_20_pslverr (_DefDevice_19_auto_apply_in_pslverr),
-    .auto_anon_out_20_prdata  (_DefDevice_19_auto_apply_in_prdata),
     .auto_anon_out_19_psel    (_apbxbar_auto_anon_out_19_psel),
     .auto_anon_out_19_penable (_apbxbar_auto_anon_out_19_penable),
     .auto_anon_out_19_pwrite  (_apbxbar_auto_anon_out_19_pwrite),
@@ -7297,8 +7828,8 @@ module ysyxSoC(
     .auto_anon_out_2_paddr    (_apbxbar_auto_anon_out_2_paddr),
     .auto_anon_out_2_pwdata   (_apbxbar_auto_anon_out_2_pwdata),
     .auto_anon_out_2_pstrb    (_apbxbar_auto_anon_out_2_pstrb),
-    .auto_anon_out_2_pready   (_DefDevice_24_auto_apply_in_pready),
-    .auto_anon_out_2_prdata   (_DefDevice_24_auto_apply_in_prdata),
+    .auto_anon_out_2_pready   (_DefDevice_19_auto_apply_in_pready),
+    .auto_anon_out_2_prdata   (_DefDevice_19_auto_apply_in_prdata),
     .auto_anon_out_1_psel     (_apbxbar_auto_anon_out_1_psel),
     .auto_anon_out_1_penable  (_apbxbar_auto_anon_out_1_penable),
     .auto_anon_out_1_pwrite   (_apbxbar_auto_anon_out_1_pwrite),
@@ -7383,22 +7914,16 @@ module ysyxSoC(
     .auto_apply_in_pslverr (_DefDevice_1_auto_apply_in_pslverr),
     .auto_apply_in_prdata  (_DefDevice_1_auto_apply_in_prdata),
     .extra_irq_i
-      ({17'h0,
+      ({23'h0,
         _DefDevice_8_irq_o,
-        _DefDevice_9_irq_o,
-        _DefDevice_10_irq_o,
         _DefDevice_5_irq_o,
-        _DefDevice_12_irq_o,
-        _DefDevice_20_irq_o,
-        _DefDevice_21_irq_o,
-        _DefDevice_14_irq_o,
-        _DefDevice_15_irq_o,
+        _DefDevice_10_irq_o,
         _DefDevice_16_irq_o,
-        _DefDevice_17_irq_o,
-        _DefDevice_18_irq_o,
-        _DefDevice_19_irq_o,
+        _DefDevice_11_irq_o,
+        _DefDevice_12_irq_o,
         _DefDevice_13_irq_o,
-        intr}),
+        _DefDevice_14_irq_o,
+        _DefDevice_15_irq_o}),
     .irq_o                 (_DefDevice_1_irq_o)
   );
   APBUart16550 DefDevice_2 (
@@ -7447,7 +7972,13 @@ module ysyxSoC(
     .auto_apply_in_pstrb   (_apbxbar_auto_anon_out_5_pstrb),
     .auto_apply_in_pready  (_DefDevice_4_auto_apply_in_pready),
     .auto_apply_in_pslverr (_DefDevice_4_auto_apply_in_pslverr),
-    .auto_apply_in_prdata  (_DefDevice_4_auto_apply_in_prdata)
+    .auto_apply_in_prdata  (_DefDevice_4_auto_apply_in_prdata),
+    .extra_ext_lfosc_clk_i (clock),
+    .extra_ext_rst_n_i     (~reset),
+    .extra_wdt_rst_n_i     (_DefDevice_6_extra_rst_o),
+    .extra_pll_en_i        (pll_en_i),
+    .extra_clk_cfg_i       (clk_cfg_i),
+    .extra_clk_o           (_DefDevice_4_extra_clk_o)
   );
   APB4RTC DefDevice_5 (
     .clock                 (clock),
@@ -7462,7 +7993,7 @@ module ysyxSoC(
     .auto_apply_in_pready  (_DefDevice_5_auto_apply_in_pready),
     .auto_apply_in_pslverr (_DefDevice_5_auto_apply_in_pslverr),
     .auto_apply_in_prdata  (_DefDevice_5_auto_apply_in_prdata),
-    .extra_rtc_clk_i       (clock_half),
+    .extra_rtc_clk_i       (clock),
     .extra_rtc_rst_n_i     (~reset),
     .irq_o                 (_DefDevice_5_irq_o)
   );
@@ -7479,7 +8010,8 @@ module ysyxSoC(
     .auto_apply_in_pready  (_DefDevice_6_auto_apply_in_pready),
     .auto_apply_in_pslverr (_DefDevice_6_auto_apply_in_pslverr),
     .auto_apply_in_prdata  (_DefDevice_6_auto_apply_in_prdata),
-    .extra_rtc_clk_i       (clock_half)
+    .extra_rtc_clk_i       (clock),
+    .extra_rst_o           (_DefDevice_6_extra_rst_o)
   );
   APB4ArchInfo DefDevice_7 (
     .clock                 (clock),
@@ -7508,9 +8040,12 @@ module ysyxSoC(
     .auto_apply_in_pready  (_DefDevice_8_auto_apply_in_pready),
     .auto_apply_in_pslverr (_DefDevice_8_auto_apply_in_pslverr),
     .auto_apply_in_prdata  (_DefDevice_8_auto_apply_in_prdata),
+    .extra_gpio_in_i       (gpio0_gpio_in_i),
+    .extra_gpio_out_o      (gpio0_gpio_out_o),
+    .extra_gpio_dir_o      (gpio0_gpio_dir_o),
     .irq_o                 (_DefDevice_8_irq_o)
   );
-  APB4GPIO DefDevice_9 (
+  APB4UART DefDevice_9 (
     .clock                 (clock),
     .reset                 (reset),
     .auto_apply_in_psel    (_apbxbar_auto_anon_out_10_psel),
@@ -7523,9 +8058,10 @@ module ysyxSoC(
     .auto_apply_in_pready  (_DefDevice_9_auto_apply_in_pready),
     .auto_apply_in_pslverr (_DefDevice_9_auto_apply_in_pslverr),
     .auto_apply_in_prdata  (_DefDevice_9_auto_apply_in_prdata),
-    .irq_o                 (_DefDevice_9_irq_o)
+    .extra_uart_rx_i       (uart1_uart_rx_i),
+    .extra_uart_tx_o       (uart1_uart_tx_o)
   );
-  APB4GPIO DefDevice_10 (
+  APB4I2C DefDevice_10 (
     .clock                 (clock),
     .reset                 (reset),
     .auto_apply_in_psel    (_apbxbar_auto_anon_out_11_psel),
@@ -7538,9 +8074,15 @@ module ysyxSoC(
     .auto_apply_in_pready  (_DefDevice_10_auto_apply_in_pready),
     .auto_apply_in_pslverr (_DefDevice_10_auto_apply_in_pslverr),
     .auto_apply_in_prdata  (_DefDevice_10_auto_apply_in_prdata),
+    .extra_scl_i           (i2c_scl_i),
+    .extra_scl_o           (i2c_scl_o),
+    .extra_scl_dir_o       (i2c_scl_dir_o),
+    .extra_sda_i           (i2c_sda_i),
+    .extra_sda_o           (i2c_sda_o),
+    .extra_sda_dir_o       (i2c_sda_dir_o),
     .irq_o                 (_DefDevice_10_irq_o)
   );
-  APB4UART DefDevice_11 (
+  APB4PWM DefDevice_11 (
     .clock                 (clock),
     .reset                 (reset),
     .auto_apply_in_psel    (_apbxbar_auto_anon_out_12_psel),
@@ -7553,10 +8095,10 @@ module ysyxSoC(
     .auto_apply_in_pready  (_DefDevice_11_auto_apply_in_pready),
     .auto_apply_in_pslverr (_DefDevice_11_auto_apply_in_pslverr),
     .auto_apply_in_prdata  (_DefDevice_11_auto_apply_in_prdata),
-    .extra_uart_rx_i       (uart1_uart_rx_i),
-    .extra_uart_tx_o       (uart1_uart_tx_o)
+    .extra_pwm_o           (pwm0_pwm_o),
+    .irq_o                 (_DefDevice_11_irq_o)
   );
-  APB4I2C DefDevice_12 (
+  APB4Timer DefDevice_12 (
     .clock                 (clock),
     .reset                 (reset),
     .auto_apply_in_psel    (_apbxbar_auto_anon_out_13_psel),
@@ -7569,15 +8111,10 @@ module ysyxSoC(
     .auto_apply_in_pready  (_DefDevice_12_auto_apply_in_pready),
     .auto_apply_in_pslverr (_DefDevice_12_auto_apply_in_pslverr),
     .auto_apply_in_prdata  (_DefDevice_12_auto_apply_in_prdata),
-    .extra_scl_i           (i2c_scl_i),
-    .extra_scl_o           (i2c_scl_o),
-    .extra_scl_dir_o       (i2c_scl_dir_o),
-    .extra_sda_i           (i2c_sda_i),
-    .extra_sda_o           (i2c_sda_o),
-    .extra_sda_dir_o       (i2c_sda_dir_o),
+    .extra_exclk_i         (clock),
     .irq_o                 (_DefDevice_12_irq_o)
   );
-  APB4PS2 DefDevice_13 (
+  APB4Timer DefDevice_13 (
     .clock                 (clock),
     .reset                 (reset),
     .auto_apply_in_psel    (_apbxbar_auto_anon_out_14_psel),
@@ -7590,11 +8127,10 @@ module ysyxSoC(
     .auto_apply_in_pready  (_DefDevice_13_auto_apply_in_pready),
     .auto_apply_in_pslverr (_DefDevice_13_auto_apply_in_pslverr),
     .auto_apply_in_prdata  (_DefDevice_13_auto_apply_in_prdata),
-    .extra_ps2_clk_i       (ps2_ps2_clk_i),
-    .extra_ps2_dat_i       (ps2_ps2_dat_i),
+    .extra_exclk_i         (clock),
     .irq_o                 (_DefDevice_13_irq_o)
   );
-  APB4PWM DefDevice_14 (
+  APB4Timer DefDevice_14 (
     .clock                 (clock),
     .reset                 (reset),
     .auto_apply_in_psel    (_apbxbar_auto_anon_out_15_psel),
@@ -7607,10 +8143,10 @@ module ysyxSoC(
     .auto_apply_in_pready  (_DefDevice_14_auto_apply_in_pready),
     .auto_apply_in_pslverr (_DefDevice_14_auto_apply_in_pslverr),
     .auto_apply_in_prdata  (_DefDevice_14_auto_apply_in_prdata),
-    .extra_pwm_o           (pwm0_pwm_o),
+    .extra_exclk_i         (clock),
     .irq_o                 (_DefDevice_14_irq_o)
   );
-  APB4PWM DefDevice_15 (
+  APB4Timer DefDevice_15 (
     .clock                 (clock),
     .reset                 (reset),
     .auto_apply_in_psel    (_apbxbar_auto_anon_out_16_psel),
@@ -7623,10 +8159,10 @@ module ysyxSoC(
     .auto_apply_in_pready  (_DefDevice_15_auto_apply_in_pready),
     .auto_apply_in_pslverr (_DefDevice_15_auto_apply_in_pslverr),
     .auto_apply_in_prdata  (_DefDevice_15_auto_apply_in_prdata),
-    .extra_pwm_o           (pwm1_pwm_o),
+    .extra_exclk_i         (clock),
     .irq_o                 (_DefDevice_15_irq_o)
   );
-  APB4Timer DefDevice_16 (
+  APB4QSPI DefDevice_16 (
     .clock                 (clock),
     .reset                 (reset),
     .auto_apply_in_psel    (_apbxbar_auto_anon_out_17_psel),
@@ -7639,11 +8175,14 @@ module ysyxSoC(
     .auto_apply_in_pready  (_DefDevice_16_auto_apply_in_pready),
     .auto_apply_in_pslverr (_DefDevice_16_auto_apply_in_pslverr),
     .auto_apply_in_prdata  (_DefDevice_16_auto_apply_in_prdata),
-    .extra_exclk_i         (clock_half),
-    .extra_capch_i         (tim0_capch),
+    .extra_spi_sck_o       (qspi_spi_sck_o),
+    .extra_spi_nss_o       (qspi_spi_nss_o),
+    .extra_spi_io_en_o     (qspi_spi_io_en_o),
+    .extra_spi_io_in_i     (qspi_spi_io_in_i),
+    .extra_spi_io_out_o    (qspi_spi_io_out_o),
     .irq_o                 (_DefDevice_16_irq_o)
   );
-  APB4Timer DefDevice_17 (
+  APB4RNG DefDevice_17 (
     .clock                 (clock),
     .reset                 (reset),
     .auto_apply_in_psel    (_apbxbar_auto_anon_out_18_psel),
@@ -7655,12 +8194,9 @@ module ysyxSoC(
     .auto_apply_in_pstrb   (_apbxbar_auto_anon_out_18_pstrb),
     .auto_apply_in_pready  (_DefDevice_17_auto_apply_in_pready),
     .auto_apply_in_pslverr (_DefDevice_17_auto_apply_in_pslverr),
-    .auto_apply_in_prdata  (_DefDevice_17_auto_apply_in_prdata),
-    .extra_exclk_i         (clock_half),
-    .extra_capch_i         (tim1_capch),
-    .irq_o                 (_DefDevice_17_irq_o)
+    .auto_apply_in_prdata  (_DefDevice_17_auto_apply_in_prdata)
   );
-  APB4Timer DefDevice_18 (
+  APB4CRC DefDevice_18 (
     .clock                 (clock),
     .reset                 (reset),
     .auto_apply_in_psel    (_apbxbar_auto_anon_out_19_psel),
@@ -7672,99 +8208,9 @@ module ysyxSoC(
     .auto_apply_in_pstrb   (_apbxbar_auto_anon_out_19_pstrb),
     .auto_apply_in_pready  (_DefDevice_18_auto_apply_in_pready),
     .auto_apply_in_pslverr (_DefDevice_18_auto_apply_in_pslverr),
-    .auto_apply_in_prdata  (_DefDevice_18_auto_apply_in_prdata),
-    .extra_exclk_i         (clock_half),
-    .extra_capch_i         (tim2_capch),
-    .irq_o                 (_DefDevice_18_irq_o)
+    .auto_apply_in_prdata  (_DefDevice_18_auto_apply_in_prdata)
   );
-  APB4Timer DefDevice_19 (
-    .clock                 (clock),
-    .reset                 (reset),
-    .auto_apply_in_psel    (_apbxbar_auto_anon_out_20_psel),
-    .auto_apply_in_penable (_apbxbar_auto_anon_out_20_penable),
-    .auto_apply_in_pwrite  (_apbxbar_auto_anon_out_20_pwrite),
-    .auto_apply_in_paddr   (_apbxbar_auto_anon_out_20_paddr),
-    .auto_apply_in_pprot   (_apbxbar_auto_anon_out_20_pprot),
-    .auto_apply_in_pwdata  (_apbxbar_auto_anon_out_20_pwdata),
-    .auto_apply_in_pstrb   (_apbxbar_auto_anon_out_20_pstrb),
-    .auto_apply_in_pready  (_DefDevice_19_auto_apply_in_pready),
-    .auto_apply_in_pslverr (_DefDevice_19_auto_apply_in_pslverr),
-    .auto_apply_in_prdata  (_DefDevice_19_auto_apply_in_prdata),
-    .extra_exclk_i         (clock_half),
-    .extra_capch_i         (tim3_capch),
-    .irq_o                 (_DefDevice_19_irq_o)
-  );
-  APB4QSPI DefDevice_20 (
-    .clock                 (clock),
-    .reset                 (reset),
-    .auto_apply_in_psel    (_apbxbar_auto_anon_out_21_psel),
-    .auto_apply_in_penable (_apbxbar_auto_anon_out_21_penable),
-    .auto_apply_in_pwrite  (_apbxbar_auto_anon_out_21_pwrite),
-    .auto_apply_in_paddr   (_apbxbar_auto_anon_out_21_paddr),
-    .auto_apply_in_pprot   (_apbxbar_auto_anon_out_21_pprot),
-    .auto_apply_in_pwdata  (_apbxbar_auto_anon_out_21_pwdata),
-    .auto_apply_in_pstrb   (_apbxbar_auto_anon_out_21_pstrb),
-    .auto_apply_in_pready  (_DefDevice_20_auto_apply_in_pready),
-    .auto_apply_in_pslverr (_DefDevice_20_auto_apply_in_pslverr),
-    .auto_apply_in_prdata  (_DefDevice_20_auto_apply_in_prdata),
-    .extra_spi_sck_o       (qspi_spi_sck_o),
-    .extra_spi_nss_o       (qspi_spi_nss_o),
-    .extra_spi_io_en_o     (qspi_spi_io_en_o),
-    .extra_spi_io_in_i     (qspi_spi_io_in_i),
-    .extra_spi_io_out_o    (qspi_spi_io_out_o),
-    .irq_o                 (_DefDevice_20_irq_o)
-  );
-  APB4I2S DefDevice_21 (
-    .clock                 (clock),
-    .reset                 (reset),
-    .auto_apply_in_psel    (_apbxbar_auto_anon_out_22_psel),
-    .auto_apply_in_penable (_apbxbar_auto_anon_out_22_penable),
-    .auto_apply_in_pwrite  (_apbxbar_auto_anon_out_22_pwrite),
-    .auto_apply_in_paddr   (_apbxbar_auto_anon_out_22_paddr),
-    .auto_apply_in_pprot   (_apbxbar_auto_anon_out_22_pprot),
-    .auto_apply_in_pwdata  (_apbxbar_auto_anon_out_22_pwdata),
-    .auto_apply_in_pstrb   (_apbxbar_auto_anon_out_22_pstrb),
-    .auto_apply_in_pready  (_DefDevice_21_auto_apply_in_pready),
-    .auto_apply_in_pslverr (_DefDevice_21_auto_apply_in_pslverr),
-    .auto_apply_in_prdata  (_DefDevice_21_auto_apply_in_prdata),
-    .extra_sck_o           (i2s_sck_o),
-    .extra_sck_i           (i2s_sck_i),
-    .extra_sck_en_o        (i2s_sck_en_o),
-    .extra_ws_o            (i2s_ws_o),
-    .extra_ws_i            (i2s_ws_i),
-    .extra_ws_en_o         (i2s_ws_en_o),
-    .extra_sd_i            (i2s_sd_i),
-    .irq_o                 (_DefDevice_21_irq_o)
-  );
-  APB4RNG DefDevice_22 (
-    .clock                 (clock),
-    .reset                 (reset),
-    .auto_apply_in_psel    (_apbxbar_auto_anon_out_23_psel),
-    .auto_apply_in_penable (_apbxbar_auto_anon_out_23_penable),
-    .auto_apply_in_pwrite  (_apbxbar_auto_anon_out_23_pwrite),
-    .auto_apply_in_paddr   (_apbxbar_auto_anon_out_23_paddr),
-    .auto_apply_in_pprot   (_apbxbar_auto_anon_out_23_pprot),
-    .auto_apply_in_pwdata  (_apbxbar_auto_anon_out_23_pwdata),
-    .auto_apply_in_pstrb   (_apbxbar_auto_anon_out_23_pstrb),
-    .auto_apply_in_pready  (_DefDevice_22_auto_apply_in_pready),
-    .auto_apply_in_pslverr (_DefDevice_22_auto_apply_in_pslverr),
-    .auto_apply_in_prdata  (_DefDevice_22_auto_apply_in_prdata)
-  );
-  APB4CRC DefDevice_23 (
-    .clock                 (clock),
-    .reset                 (reset),
-    .auto_apply_in_psel    (_apbxbar_auto_anon_out_24_psel),
-    .auto_apply_in_penable (_apbxbar_auto_anon_out_24_penable),
-    .auto_apply_in_pwrite  (_apbxbar_auto_anon_out_24_pwrite),
-    .auto_apply_in_paddr   (_apbxbar_auto_anon_out_24_paddr),
-    .auto_apply_in_pprot   (_apbxbar_auto_anon_out_24_pprot),
-    .auto_apply_in_pwdata  (_apbxbar_auto_anon_out_24_pwdata),
-    .auto_apply_in_pstrb   (_apbxbar_auto_anon_out_24_pstrb),
-    .auto_apply_in_pready  (_DefDevice_23_auto_apply_in_pready),
-    .auto_apply_in_pslverr (_DefDevice_23_auto_apply_in_pslverr),
-    .auto_apply_in_prdata  (_DefDevice_23_auto_apply_in_prdata)
-  );
-  APBPSRAM DefDevice_24 (
+  APBPSRAM DefDevice_19 (
     .clock                 (clock),
     .reset                 (reset),
     .auto_apply_in_psel    (_apbxbar_auto_anon_out_2_psel),
@@ -7773,73 +8219,13 @@ module ysyxSoC(
     .auto_apply_in_paddr   (_apbxbar_auto_anon_out_2_paddr),
     .auto_apply_in_pwdata  (_apbxbar_auto_anon_out_2_pwdata),
     .auto_apply_in_pstrb   (_apbxbar_auto_anon_out_2_pstrb),
-    .auto_apply_in_pready  (_DefDevice_24_auto_apply_in_pready),
-    .auto_apply_in_prdata  (_DefDevice_24_auto_apply_in_prdata),
+    .auto_apply_in_pready  (_DefDevice_19_auto_apply_in_pready),
+    .auto_apply_in_prdata  (_DefDevice_19_auto_apply_in_prdata),
     .extra_sck_o           (psram_sck_o),
     .extra_nss_o           (psram_nss_o),
     .extra_io_oe_o         (psram_io_oe_o),
     .extra_io_di_i         (psram_io_di_i),
     .extra_io_do_o         (psram_io_do_o)
-  );
-  apb_delayer apbdelay_delayer (
-    .clock       (clock),
-    .reset       (reset),
-    .in_psel     (_axi42apb_auto_out_psel),
-    .in_penable  (_axi42apb_auto_out_penable),
-    .in_pwrite   (_axi42apb_auto_out_pwrite),
-    .in_paddr    (_axi42apb_auto_out_paddr),
-    .in_pprot    (3'h1),
-    .in_pwdata   (_axi42apb_auto_out_pwdata),
-    .in_pstrb    (_axi42apb_auto_out_pstrb),
-    .in_pready   (_apbdelay_delayer_in_pready),
-    .in_pslverr  (_apbdelay_delayer_in_pslverr),
-    .in_prdata   (_apbdelay_delayer_in_prdata),
-    .out_psel    (_apbdelay_delayer_out_psel),
-    .out_penable (_apbdelay_delayer_out_penable),
-    .out_pwrite  (_apbdelay_delayer_out_pwrite),
-    .out_paddr   (_apbdelay_delayer_out_paddr),
-    .out_pprot   (_apbdelay_delayer_out_pprot),
-    .out_pwdata  (_apbdelay_delayer_out_pwdata),
-    .out_pstrb   (_apbdelay_delayer_out_pstrb),
-    .out_pready  (_apbxbar_auto_anon_in_pready),
-    .out_pslverr (_apbxbar_auto_anon_in_pslverr),
-    .out_prdata  (_apbxbar_auto_anon_in_prdata)
-  );
-  AXI4ToAPB axi42apb (
-    .clock                (clock),
-    .reset                (reset),
-    .auto_in_awready     (_axi42apb_auto_in_awready),
-    .auto_in_awvalid     (_axi4yank_auto_out_awvalid),
-    .auto_in_awid   (_axi4yank_auto_out_awid),
-    .auto_in_awaddr (_axi4yank_auto_out_awaddr),
-    .auto_in_awsize (_axi4yank_auto_out_awsize),
-    .auto_in_wready      (_axi42apb_auto_in_wready),
-    .auto_in_wvalid      (_axi4yank_auto_out_wvalid),
-    .auto_in_wdata  (_axi4yank_auto_out_wdata),
-    .auto_in_wstrb  (_axi4yank_auto_out_wstrb),
-    .auto_in_bready      (_axi4yank_auto_out_bready),
-    .auto_in_bvalid      (_axi42apb_auto_in_bvalid),
-    .auto_in_bid    (_axi42apb_auto_in_bid),
-    .auto_in_bresp  (_axi42apb_auto_in_bresp),
-    .auto_in_arready     (_axi42apb_auto_in_arready),
-    .auto_in_arvalid     (_axi4yank_auto_out_arvalid),
-    .auto_in_arid   (_axi4yank_auto_out_arid),
-    .auto_in_araddr (_axi4yank_auto_out_araddr),
-    .auto_in_arsize (_axi4yank_auto_out_arsize),
-    .auto_in_rready      (_axi4yank_auto_out_rready),
-    .auto_in_rvalid      (_axi42apb_auto_in_rvalid),
-    .auto_in_rid    (_axi42apb_auto_in_rid),
-    .auto_in_rdata  (_axi42apb_auto_in_rdata),
-    .auto_in_rresp  (_axi42apb_auto_in_rresp),
-    .auto_out_psel        (_axi42apb_auto_out_psel),
-    .auto_out_penable     (_axi42apb_auto_out_penable),
-    .auto_out_pwrite      (_axi42apb_auto_out_pwrite),
-    .auto_out_paddr       (_axi42apb_auto_out_paddr),
-    .auto_out_pwdata      (_axi42apb_auto_out_pwdata),
-    .auto_out_pstrb       (_axi42apb_auto_out_pstrb),
-    .auto_out_pready      (_apbdelay_delayer_in_pready),
-    .auto_out_pslverr     (_apbdelay_delayer_in_pslverr),
-    .auto_out_prdata      (_apbdelay_delayer_in_prdata)
   );
   AXI4UserYanker axi4yank (
     .clock                          (clock),
@@ -7849,11 +8235,13 @@ module ysyxSoC(
     .auto_in_awid             (_axi4frag_auto_out_awid),
     .auto_in_awaddr           (_axi4frag_auto_out_awaddr),
     .auto_in_awsize           (_axi4frag_auto_out_awsize),
+    .auto_in_awburst          (_axi4frag_auto_out_awburst),
     .auto_in_awecho_real_last (_axi4frag_auto_out_awecho_real_last),
     .auto_in_wready                (_axi4yank_auto_in_wready),
     .auto_in_wvalid                (_axi4frag_auto_out_wvalid),
     .auto_in_wdata            (_axi4frag_auto_out_wdata),
     .auto_in_wstrb            (_axi4frag_auto_out_wstrb),
+    .auto_in_wlast            (_axi4frag_auto_out_wlast),
     .auto_in_bready                (_axi4frag_auto_out_bready),
     .auto_in_bvalid                (_axi4yank_auto_in_bvalid),
     .auto_in_bid              (_axi4yank_auto_in_bid),
@@ -7864,6 +8252,7 @@ module ysyxSoC(
     .auto_in_arid             (_axi4frag_auto_out_arid),
     .auto_in_araddr           (_axi4frag_auto_out_araddr),
     .auto_in_arsize           (_axi4frag_auto_out_arsize),
+    .auto_in_arburst          (_axi4frag_auto_out_arburst),
     .auto_in_arecho_real_last (_axi4frag_auto_out_arecho_real_last),
     .auto_in_rready                (_axi4frag_auto_out_rready),
     .auto_in_rvalid                (_axi4yank_auto_in_rvalid),
@@ -7871,29 +8260,34 @@ module ysyxSoC(
     .auto_in_rdata            (_axi4yank_auto_in_rdata),
     .auto_in_rresp            (_axi4yank_auto_in_rresp),
     .auto_in_recho_real_last  (_axi4yank_auto_in_recho_real_last),
-    .auto_out_awready              (_axi42apb_auto_in_awready),
+    .auto_in_rlast            (_axi4yank_auto_in_rlast),
+    .auto_out_awready              (_axi4buf_auto_in_awready),
     .auto_out_awvalid              (_axi4yank_auto_out_awvalid),
     .auto_out_awid            (_axi4yank_auto_out_awid),
     .auto_out_awaddr          (_axi4yank_auto_out_awaddr),
     .auto_out_awsize          (_axi4yank_auto_out_awsize),
-    .auto_out_wready               (_axi42apb_auto_in_wready),
+    .auto_out_awburst         (_axi4yank_auto_out_awburst),
+    .auto_out_wready               (_axi4buf_auto_in_wready),
     .auto_out_wvalid               (_axi4yank_auto_out_wvalid),
     .auto_out_wdata           (_axi4yank_auto_out_wdata),
     .auto_out_wstrb           (_axi4yank_auto_out_wstrb),
+    .auto_out_wlast           (_axi4yank_auto_out_wlast),
     .auto_out_bready               (_axi4yank_auto_out_bready),
-    .auto_out_bvalid               (_axi42apb_auto_in_bvalid),
-    .auto_out_bid             (_axi42apb_auto_in_bid),
-    .auto_out_bresp           (_axi42apb_auto_in_bresp),
-    .auto_out_arready              (_axi42apb_auto_in_arready),
+    .auto_out_bvalid               (_axi4buf_auto_in_bvalid),
+    .auto_out_bid             (_axi4buf_auto_in_bid),
+    .auto_out_bresp           (_axi4buf_auto_in_bresp),
+    .auto_out_arready              (_axi4buf_auto_in_arready),
     .auto_out_arvalid              (_axi4yank_auto_out_arvalid),
     .auto_out_arid            (_axi4yank_auto_out_arid),
     .auto_out_araddr          (_axi4yank_auto_out_araddr),
     .auto_out_arsize          (_axi4yank_auto_out_arsize),
+    .auto_out_arburst         (_axi4yank_auto_out_arburst),
     .auto_out_rready               (_axi4yank_auto_out_rready),
-    .auto_out_rvalid               (_axi42apb_auto_in_rvalid),
-    .auto_out_rid             (_axi42apb_auto_in_rid),
-    .auto_out_rdata           (_axi42apb_auto_in_rdata),
-    .auto_out_rresp           (_axi42apb_auto_in_rresp)
+    .auto_out_rvalid               (_axi4buf_auto_in_rvalid),
+    .auto_out_rid             (_axi4buf_auto_in_rid),
+    .auto_out_rdata           (_axi4buf_auto_in_rdata),
+    .auto_out_rresp           (_axi4buf_auto_in_rresp),
+    .auto_out_rlast           (_axi4buf_auto_in_rlast)
   );
   AXI4Fragmenter axi4frag (
     .clock                           (clock),
@@ -7932,11 +8326,13 @@ module ysyxSoC(
     .auto_out_awid             (_axi4frag_auto_out_awid),
     .auto_out_awaddr           (_axi4frag_auto_out_awaddr),
     .auto_out_awsize           (_axi4frag_auto_out_awsize),
+    .auto_out_awburst          (_axi4frag_auto_out_awburst),
     .auto_out_awecho_real_last (_axi4frag_auto_out_awecho_real_last),
     .auto_out_wready                (_axi4yank_auto_in_wready),
     .auto_out_wvalid                (_axi4frag_auto_out_wvalid),
     .auto_out_wdata            (_axi4frag_auto_out_wdata),
     .auto_out_wstrb            (_axi4frag_auto_out_wstrb),
+    .auto_out_wlast            (_axi4frag_auto_out_wlast),
     .auto_out_bready                (_axi4frag_auto_out_bready),
     .auto_out_bvalid                (_axi4yank_auto_in_bvalid),
     .auto_out_bid              (_axi4yank_auto_in_bid),
@@ -7947,139 +8343,232 @@ module ysyxSoC(
     .auto_out_arid             (_axi4frag_auto_out_arid),
     .auto_out_araddr           (_axi4frag_auto_out_araddr),
     .auto_out_arsize           (_axi4frag_auto_out_arsize),
+    .auto_out_arburst          (_axi4frag_auto_out_arburst),
     .auto_out_arecho_real_last (_axi4frag_auto_out_arecho_real_last),
     .auto_out_rready                (_axi4frag_auto_out_rready),
     .auto_out_rvalid                (_axi4yank_auto_in_rvalid),
     .auto_out_rid              (_axi4yank_auto_in_rid),
     .auto_out_rdata            (_axi4yank_auto_in_rdata),
     .auto_out_rresp            (_axi4yank_auto_in_rresp),
-    .auto_out_recho_real_last  (_axi4yank_auto_in_recho_real_last)
+    .auto_out_recho_real_last  (_axi4yank_auto_in_recho_real_last),
+    .auto_out_rlast            (_axi4yank_auto_in_rlast)
   );
+  apb_delayer apbdelay_delayer (
+    .clock       (clock),
+    .reset       (reset),
+    .in_psel     (_axi42apb_auto_out_psel),
+    .in_penable  (_axi42apb_auto_out_penable),
+    .in_pwrite   (_axi42apb_auto_out_pwrite),
+    .in_paddr    (_axi42apb_auto_out_paddr),
+    .in_pprot    (3'h1),
+    .in_pwdata   (_axi42apb_auto_out_pwdata),
+    .in_pstrb    (_axi42apb_auto_out_pstrb),
+    .in_pready   (_apbdelay_delayer_in_pready),
+    .in_pslverr  (_apbdelay_delayer_in_pslverr),
+    .in_prdata   (_apbdelay_delayer_in_prdata),
+    .out_psel    (_apbdelay_delayer_out_psel),
+    .out_penable (_apbdelay_delayer_out_penable),
+    .out_pwrite  (_apbdelay_delayer_out_pwrite),
+    .out_paddr   (_apbdelay_delayer_out_paddr),
+    .out_pprot   (_apbdelay_delayer_out_pprot),
+    .out_pwdata  (_apbdelay_delayer_out_pwdata),
+    .out_pstrb   (_apbdelay_delayer_out_pstrb),
+    .out_pready  (_apbxbar_auto_anon_in_pready),
+    .out_pslverr (_apbxbar_auto_anon_in_pslverr),
+    .out_prdata  (_apbxbar_auto_anon_in_prdata)
+  );
+  AXI4ToAPB axi42apb (
+    .clock                (clock),
+    .reset                (reset),
+    .auto_in_awready     (_axi42apb_auto_in_awready),
+    .auto_in_awvalid     (_axi4buf_auto_out_awvalid),
+    .auto_in_awid   (_axi4buf_auto_out_awid),
+    .auto_in_awaddr (_axi4buf_auto_out_awaddr),
+    .auto_in_awlen  (_axi4buf_auto_out_awlen),
+    .auto_in_awsize (_axi4buf_auto_out_awsize),
+    .auto_in_wready      (_axi42apb_auto_in_wready),
+    .auto_in_wvalid      (_axi4buf_auto_out_wvalid),
+    .auto_in_wdata  (_axi4buf_auto_out_wdata),
+    .auto_in_wstrb  (_axi4buf_auto_out_wstrb),
+    .auto_in_bready      (_axi4buf_auto_out_bready),
+    .auto_in_bvalid      (_axi42apb_auto_in_bvalid),
+    .auto_in_bid    (_axi42apb_auto_in_bid),
+    .auto_in_bresp  (_axi42apb_auto_in_bresp),
+    .auto_in_arready     (_axi42apb_auto_in_arready),
+    .auto_in_arvalid     (_axi4buf_auto_out_arvalid),
+    .auto_in_arid   (_axi4buf_auto_out_arid),
+    .auto_in_araddr (_axi4buf_auto_out_araddr),
+    .auto_in_arlen  (_axi4buf_auto_out_arlen),
+    .auto_in_arsize (_axi4buf_auto_out_arsize),
+    .auto_in_rready      (_axi4buf_auto_out_rready),
+    .auto_in_rvalid      (_axi42apb_auto_in_rvalid),
+    .auto_in_rid    (_axi42apb_auto_in_rid),
+    .auto_in_rdata  (_axi42apb_auto_in_rdata),
+    .auto_in_rresp  (_axi42apb_auto_in_rresp),
+    .auto_out_psel        (_axi42apb_auto_out_psel),
+    .auto_out_penable     (_axi42apb_auto_out_penable),
+    .auto_out_pwrite      (_axi42apb_auto_out_pwrite),
+    .auto_out_paddr       (_axi42apb_auto_out_paddr),
+    .auto_out_pwdata      (_axi42apb_auto_out_pwdata),
+    .auto_out_pstrb       (_axi42apb_auto_out_pstrb),
+    .auto_out_pready      (_apbdelay_delayer_in_pready),
+    .auto_out_pslverr     (_apbdelay_delayer_in_pslverr),
+    .auto_out_prdata      (_apbdelay_delayer_in_prdata)
+  );
+  AXI4Buffer axi4buf (
+    .clock                 (clock),
+    .reset                 (reset),
+    .auto_in_awready      (_axi4buf_auto_in_awready),
+    .auto_in_awvalid      (_axi4yank_auto_out_awvalid),
+    .auto_in_awid    (_axi4yank_auto_out_awid),
+    .auto_in_awaddr  (_axi4yank_auto_out_awaddr),
+    .auto_in_awsize  (_axi4yank_auto_out_awsize),
+    .auto_in_awburst (_axi4yank_auto_out_awburst),
+    .auto_in_wready       (_axi4buf_auto_in_wready),
+    .auto_in_wvalid       (_axi4yank_auto_out_wvalid),
+    .auto_in_wdata   (_axi4yank_auto_out_wdata),
+    .auto_in_wstrb   (_axi4yank_auto_out_wstrb),
+    .auto_in_wlast   (_axi4yank_auto_out_wlast),
+    .auto_in_bready       (_axi4yank_auto_out_bready),
+    .auto_in_bvalid       (_axi4buf_auto_in_bvalid),
+    .auto_in_bid     (_axi4buf_auto_in_bid),
+    .auto_in_bresp   (_axi4buf_auto_in_bresp),
+    .auto_in_arready      (_axi4buf_auto_in_arready),
+    .auto_in_arvalid      (_axi4yank_auto_out_arvalid),
+    .auto_in_arid    (_axi4yank_auto_out_arid),
+    .auto_in_araddr  (_axi4yank_auto_out_araddr),
+    .auto_in_arsize  (_axi4yank_auto_out_arsize),
+    .auto_in_arburst (_axi4yank_auto_out_arburst),
+    .auto_in_rready       (_axi4yank_auto_out_rready),
+    .auto_in_rvalid       (_axi4buf_auto_in_rvalid),
+    .auto_in_rid     (_axi4buf_auto_in_rid),
+    .auto_in_rdata   (_axi4buf_auto_in_rdata),
+    .auto_in_rresp   (_axi4buf_auto_in_rresp),
+    .auto_in_rlast   (_axi4buf_auto_in_rlast),
+    .auto_out_awready     (_axi42apb_auto_in_awready),
+    .auto_out_awvalid     (_axi4buf_auto_out_awvalid),
+    .auto_out_awid   (_axi4buf_auto_out_awid),
+    .auto_out_awaddr (_axi4buf_auto_out_awaddr),
+    .auto_out_awlen  (_axi4buf_auto_out_awlen),
+    .auto_out_awsize (_axi4buf_auto_out_awsize),
+    .auto_out_wready      (_axi42apb_auto_in_wready),
+    .auto_out_wvalid      (_axi4buf_auto_out_wvalid),
+    .auto_out_wdata  (_axi4buf_auto_out_wdata),
+    .auto_out_wstrb  (_axi4buf_auto_out_wstrb),
+    .auto_out_bready      (_axi4buf_auto_out_bready),
+    .auto_out_bvalid      (_axi42apb_auto_in_bvalid),
+    .auto_out_bid    (_axi42apb_auto_in_bid),
+    .auto_out_bresp  (_axi42apb_auto_in_bresp),
+    .auto_out_arready     (_axi42apb_auto_in_arready),
+    .auto_out_arvalid     (_axi4buf_auto_out_arvalid),
+    .auto_out_arid   (_axi4buf_auto_out_arid),
+    .auto_out_araddr (_axi4buf_auto_out_araddr),
+    .auto_out_arlen  (_axi4buf_auto_out_arlen),
+    .auto_out_arsize (_axi4buf_auto_out_arsize),
+    .auto_out_rready      (_axi4buf_auto_out_rready),
+    .auto_out_rvalid      (_axi42apb_auto_in_rvalid),
+    .auto_out_rid    (_axi42apb_auto_in_rid),
+    .auto_out_rdata  (_axi42apb_auto_in_rdata),
+    .auto_out_rresp  (_axi42apb_auto_in_rresp)
+  );
+  assign clk_o = _DefDevice_4_extra_clk_o[0];
 endmodule
 
 module asicTop(
   input        clock,
                reset,
-               clock_half,
   input  [3:0] coreSel,
-  input        intr,
-               uart0_rx,
+  input        pll_en_i,
+  input  [1:0] clk_cfg_i,
+  output       clk_o,
+  input        uart0_rx,
   output       uart0_tx,
                spi_sck,
-  output [7:0] spi_ss,
-  output       spi_mosi,
+               spi_ss,
+               spi_mosi,
   input        spi_miso,
   output       psram_sck_o,
-  output [3:0] psram_nss_o,
+  output [2:0] psram_nss_o,
   inout        psram_dio_0,
                psram_dio_1,
                psram_dio_2,
                psram_dio_3,
+               gpio0_0,
+               gpio0_1,
+               gpio0_2,
+               gpio0_3,
   input        uart1_uart_rx_i,
   output       uart1_uart_tx_o,
   inout        i2c_scl_0,
                i2c_sda_0,
-  input        ps2_ps2_clk_i,
-               ps2_ps2_dat_i,
   output [3:0] pwm0_pwm_o,
-               pwm1_pwm_o,
-  input        tim0_capch,
-               tim1_capch,
-               tim2_capch,
-               tim3_capch,
   output       qspi_sck_o,
-  output [3:0] qspi_nss_o,
+  output [1:0] qspi_nss_o,
   inout        qspi_dio_0,
                qspi_dio_1,
                qspi_dio_2,
-               qspi_dio_3,
-               i2s_sck_0,
-               i2s_ws_0,
-  input        i2s_sd_i
+               qspi_dio_3
 );
 
-  wire       _i2s_sd_i_soc_i2s_sd_i_pad_p2c;
-  wire       _i2s_ws_list_pad_pad_p2c;
-  wire       _i2s_sck_list_pad_pad_p2c;
   wire       _qspi_dio_list_pad_pad_3_p2c;
   wire       _qspi_dio_list_pad_pad_2_p2c;
   wire       _qspi_dio_list_pad_pad_1_p2c;
   wire       _qspi_dio_list_pad_pad_p2c;
-  wire       _qspi_nss_o_qspi_nss_o_pad_3_pad;
-  wire       _qspi_nss_o_qspi_nss_o_pad_2_pad;
   wire       _qspi_nss_o_qspi_nss_o_pad_1_pad;
   wire       _qspi_nss_o_qspi_nss_o_pad_pad;
-  wire       _tim3_capch_soc_tim3_capch_pad_p2c;
-  wire       _tim2_capch_soc_tim2_capch_pad_p2c;
-  wire       _tim1_capch_soc_tim1_capch_pad_p2c;
-  wire       _tim0_capch_soc_tim0_capch_pad_p2c;
-  wire       _pwm1_pwm1_pwm_o_pad_3_pad;
-  wire       _pwm1_pwm1_pwm_o_pad_2_pad;
-  wire       _pwm1_pwm1_pwm_o_pad_1_pad;
-  wire       _pwm1_pwm1_pwm_o_pad_pad;
   wire       _pwm0_pwm0_pwm_o_pad_3_pad;
   wire       _pwm0_pwm0_pwm_o_pad_2_pad;
   wire       _pwm0_pwm0_pwm_o_pad_1_pad;
   wire       _pwm0_pwm0_pwm_o_pad_pad;
-  wire       _ps2_soc_ps2_ps2_clk_i_pad_p2c;
-  wire       _ps2_soc_ps2_ps2_dat_i_pad_p2c;
   wire       _i2c_sda_list_pad_pad_p2c;
   wire       _i2c_scl_list_pad_pad_p2c;
   wire       _uart1_soc_uart1_uart_rx_i_pad_p2c;
+  wire       _gpio0_list_pad_pad_3_p2c;
+  wire       _gpio0_list_pad_pad_2_p2c;
+  wire       _gpio0_list_pad_pad_1_p2c;
+  wire       _gpio0_list_pad_pad_p2c;
   wire       _psram_dio_list_pad_pad_3_p2c;
   wire       _psram_dio_list_pad_pad_2_p2c;
   wire       _psram_dio_list_pad_pad_1_p2c;
   wire       _psram_dio_list_pad_pad_p2c;
-  wire       _psram_nss_o_psram_nss_o_pad_3_pad;
   wire       _psram_nss_o_psram_nss_o_pad_2_pad;
   wire       _psram_nss_o_psram_nss_o_pad_1_pad;
   wire       _psram_nss_o_psram_nss_o_pad_pad;
-  wire       _spi_spi_ss_pad_7_pad;
-  wire       _spi_spi_ss_pad_6_pad;
-  wire       _spi_spi_ss_pad_5_pad;
-  wire       _spi_spi_ss_pad_4_pad;
-  wire       _spi_spi_ss_pad_3_pad;
-  wire       _spi_spi_ss_pad_2_pad;
-  wire       _spi_spi_ss_pad_1_pad;
-  wire       _spi_spi_ss_pad_pad;
   wire       _spi_soc_spi_miso_pad_p2c;
   wire       _uart0_soc_uart0_rx_pad_p2c;
-  wire       _intr_soc_intr_pad_p2c;
+  wire       _clk_cfg_i_soc_clk_cfg_i_pad_1_p2c;
+  wire       _clk_cfg_i_soc_clk_cfg_i_pad_p2c;
+  wire       _pll_en_i_soc_pll_en_i_pad_p2c;
   wire       _coreSel_soc_coreSel_pad_3_p2c;
   wire       _coreSel_soc_coreSel_pad_2_p2c;
   wire       _coreSel_soc_coreSel_pad_1_p2c;
   wire       _coreSel_soc_coreSel_pad_p2c;
-  wire       _clock_half_soc_clock_half_pad_p2c;
   wire       _soc_reset_pad_p2c;
   wire       _soc_clock_pad_clk;
   wire       _soc_uart0_tx;
   wire       _soc_spi_sck;
-  wire [7:0] _soc_spi_ss;
+  wire       _soc_spi_ss;
   wire       _soc_spi_mosi;
   wire       _soc_psram_sck_o;
-  wire [3:0] _soc_psram_nss_o;
+  wire [2:0] _soc_psram_nss_o;
   wire [3:0] _soc_psram_io_oe_o;
   wire [3:0] _soc_psram_io_do_o;
+  wire       _soc_clk_o;
+  wire [3:0] _soc_gpio0_gpio_out_o;
+  wire [3:0] _soc_gpio0_gpio_dir_o;
   wire       _soc_uart1_uart_tx_o;
   wire       _soc_i2c_scl_o;
   wire       _soc_i2c_scl_dir_o;
   wire       _soc_i2c_sda_o;
   wire       _soc_i2c_sda_dir_o;
   wire [3:0] _soc_pwm0_pwm_o;
-  wire [3:0] _soc_pwm1_pwm_o;
   wire       _soc_qspi_spi_sck_o;
-  wire [3:0] _soc_qspi_spi_nss_o;
+  wire [1:0] _soc_qspi_spi_nss_o;
   wire [3:0] _soc_qspi_spi_io_en_o;
   wire [3:0] _soc_qspi_spi_io_out_o;
-  wire       _soc_i2s_sck_o;
-  wire       _soc_i2s_sck_en_o;
-  wire       _soc_i2s_ws_o;
-  wire       _soc_i2s_ws_en_o;
   ysyxSoC soc (
     .clock             (_soc_clock_pad_clk),
     .reset             (_soc_reset_pad_p2c),
-    .clock_half        (_clock_half_soc_clock_half_pad_p2c),
-    .intr              (_intr_soc_intr_pad_p2c),
     .coreSel
       ({_coreSel_soc_coreSel_pad_3_p2c,
         _coreSel_soc_coreSel_pad_2_p2c,
@@ -8100,6 +8589,17 @@ module asicTop(
         _psram_dio_list_pad_pad_1_p2c,
         _psram_dio_list_pad_pad_p2c}),
     .psram_io_do_o     (_soc_psram_io_do_o),
+    .pll_en_i          (_pll_en_i_soc_pll_en_i_pad_p2c),
+    .clk_cfg_i
+      ({_clk_cfg_i_soc_clk_cfg_i_pad_1_p2c, _clk_cfg_i_soc_clk_cfg_i_pad_p2c}),
+    .clk_o             (_soc_clk_o),
+    .gpio0_gpio_in_i
+      ({_gpio0_list_pad_pad_3_p2c,
+        _gpio0_list_pad_pad_2_p2c,
+        _gpio0_list_pad_pad_1_p2c,
+        _gpio0_list_pad_pad_p2c}),
+    .gpio0_gpio_out_o  (_soc_gpio0_gpio_out_o),
+    .gpio0_gpio_dir_o  (_soc_gpio0_gpio_dir_o),
     .uart1_uart_rx_i   (_uart1_soc_uart1_uart_rx_i_pad_p2c),
     .uart1_uart_tx_o   (_soc_uart1_uart_tx_o),
     .i2c_scl_i         (_i2c_scl_list_pad_pad_p2c),
@@ -8108,14 +8608,7 @@ module asicTop(
     .i2c_sda_i         (_i2c_sda_list_pad_pad_p2c),
     .i2c_sda_o         (_soc_i2c_sda_o),
     .i2c_sda_dir_o     (_soc_i2c_sda_dir_o),
-    .ps2_ps2_clk_i     (_ps2_soc_ps2_ps2_clk_i_pad_p2c),
-    .ps2_ps2_dat_i     (_ps2_soc_ps2_ps2_dat_i_pad_p2c),
     .pwm0_pwm_o        (_soc_pwm0_pwm_o),
-    .pwm1_pwm_o        (_soc_pwm1_pwm_o),
-    .tim0_capch        (_tim0_capch_soc_tim0_capch_pad_p2c),
-    .tim1_capch        (_tim1_capch_soc_tim1_capch_pad_p2c),
-    .tim2_capch        (_tim2_capch_soc_tim2_capch_pad_p2c),
-    .tim3_capch        (_tim3_capch_soc_tim3_capch_pad_p2c),
     .qspi_spi_sck_o    (_soc_qspi_spi_sck_o),
     .qspi_spi_nss_o    (_soc_qspi_spi_nss_o),
     .qspi_spi_io_en_o  (_soc_qspi_spi_io_en_o),
@@ -8124,14 +8617,7 @@ module asicTop(
         _qspi_dio_list_pad_pad_2_p2c,
         _qspi_dio_list_pad_pad_1_p2c,
         _qspi_dio_list_pad_pad_p2c}),
-    .qspi_spi_io_out_o (_soc_qspi_spi_io_out_o),
-    .i2s_sck_o         (_soc_i2s_sck_o),
-    .i2s_sck_i         (_i2s_sck_list_pad_pad_p2c),
-    .i2s_sck_en_o      (_soc_i2s_sck_en_o),
-    .i2s_ws_o          (_soc_i2s_ws_o),
-    .i2s_ws_i          (_i2s_ws_list_pad_pad_p2c),
-    .i2s_ws_en_o       (_soc_i2s_ws_en_o),
-    .i2s_sd_i          (_i2s_sd_i_soc_i2s_sd_i_pad_p2c)
+    .qspi_spi_io_out_o (_soc_qspi_spi_io_out_o)
   );
   tc_io_xtl_pad soc_clock_pad (
     .xi_pad (clock),
@@ -8142,10 +8628,6 @@ module asicTop(
   tc_io_in_pad soc_reset_pad (
     .pad (reset),
     .p2c (_soc_reset_pad_p2c)
-  );
-  tc_io_in_pad clock_half_soc_clock_half_pad (
-    .pad (clock_half),
-    .p2c (_clock_half_soc_clock_half_pad_p2c)
   );
   tc_io_in_pad coreSel_soc_coreSel_pad (
     .pad (coreSel[0]),
@@ -8163,9 +8645,21 @@ module asicTop(
     .pad (coreSel[3]),
     .p2c (_coreSel_soc_coreSel_pad_3_p2c)
   );
-  tc_io_in_pad intr_soc_intr_pad (
-    .pad (intr),
-    .p2c (_intr_soc_intr_pad_p2c)
+  tc_io_in_pad pll_en_i_soc_pll_en_i_pad (
+    .pad (pll_en_i),
+    .p2c (_pll_en_i_soc_pll_en_i_pad_p2c)
+  );
+  tc_io_in_pad clk_cfg_i_soc_clk_cfg_i_pad (
+    .pad (clk_cfg_i[0]),
+    .p2c (_clk_cfg_i_soc_clk_cfg_i_pad_p2c)
+  );
+  tc_io_in_pad clk_cfg_i_soc_clk_cfg_i_pad_1 (
+    .pad (clk_cfg_i[1]),
+    .p2c (_clk_cfg_i_soc_clk_cfg_i_pad_1_p2c)
+  );
+  tc_io_out_pad clk_o_clk_o_pad (
+    .pad (clk_o),
+    .c2p (_soc_clk_o)
   );
   tc_io_out_pad uart0_uart0_tx_pad (
     .pad (uart0_tx),
@@ -8184,36 +8678,8 @@ module asicTop(
     .c2p (_soc_spi_mosi)
   );
   tc_io_out_pad spi_spi_ss_pad (
-    .pad (_spi_spi_ss_pad_pad),
-    .c2p (_soc_spi_ss[0])
-  );
-  tc_io_out_pad spi_spi_ss_pad_1 (
-    .pad (_spi_spi_ss_pad_1_pad),
-    .c2p (_soc_spi_ss[1])
-  );
-  tc_io_out_pad spi_spi_ss_pad_2 (
-    .pad (_spi_spi_ss_pad_2_pad),
-    .c2p (_soc_spi_ss[2])
-  );
-  tc_io_out_pad spi_spi_ss_pad_3 (
-    .pad (_spi_spi_ss_pad_3_pad),
-    .c2p (_soc_spi_ss[3])
-  );
-  tc_io_out_pad spi_spi_ss_pad_4 (
-    .pad (_spi_spi_ss_pad_4_pad),
-    .c2p (_soc_spi_ss[4])
-  );
-  tc_io_out_pad spi_spi_ss_pad_5 (
-    .pad (_spi_spi_ss_pad_5_pad),
-    .c2p (_soc_spi_ss[5])
-  );
-  tc_io_out_pad spi_spi_ss_pad_6 (
-    .pad (_spi_spi_ss_pad_6_pad),
-    .c2p (_soc_spi_ss[6])
-  );
-  tc_io_out_pad spi_spi_ss_pad_7 (
-    .pad (_spi_spi_ss_pad_7_pad),
-    .c2p (_soc_spi_ss[7])
+    .pad (spi_ss),
+    .c2p (_soc_spi_ss)
   );
   tc_io_out_pad spi_spi_sck_pad (
     .pad (spi_sck),
@@ -8234,10 +8700,6 @@ module asicTop(
   tc_io_out_pad psram_nss_o_psram_nss_o_pad_2 (
     .pad (_psram_nss_o_psram_nss_o_pad_2_pad),
     .c2p (_soc_psram_nss_o[2])
-  );
-  tc_io_out_pad psram_nss_o_psram_nss_o_pad_3 (
-    .pad (_psram_nss_o_psram_nss_o_pad_3_pad),
-    .c2p (_soc_psram_nss_o[3])
   );
   tc_io_tri_pad psram_dio_list_pad_pad (
     .pad    (psram_dio_0),
@@ -8263,6 +8725,30 @@ module asicTop(
     .c2p_en (_soc_psram_io_oe_o[3]),
     .p2c    (_psram_dio_list_pad_pad_3_p2c)
   );
+  tc_io_tri_pad gpio0_list_pad_pad (
+    .pad    (gpio0_0),
+    .c2p    (_soc_gpio0_gpio_out_o[0]),
+    .c2p_en (_soc_gpio0_gpio_dir_o[0]),
+    .p2c    (_gpio0_list_pad_pad_p2c)
+  );
+  tc_io_tri_pad gpio0_list_pad_pad_1 (
+    .pad    (gpio0_1),
+    .c2p    (_soc_gpio0_gpio_out_o[1]),
+    .c2p_en (_soc_gpio0_gpio_dir_o[1]),
+    .p2c    (_gpio0_list_pad_pad_1_p2c)
+  );
+  tc_io_tri_pad gpio0_list_pad_pad_2 (
+    .pad    (gpio0_2),
+    .c2p    (_soc_gpio0_gpio_out_o[2]),
+    .c2p_en (_soc_gpio0_gpio_dir_o[2]),
+    .p2c    (_gpio0_list_pad_pad_2_p2c)
+  );
+  tc_io_tri_pad gpio0_list_pad_pad_3 (
+    .pad    (gpio0_3),
+    .c2p    (_soc_gpio0_gpio_out_o[3]),
+    .c2p_en (_soc_gpio0_gpio_dir_o[3]),
+    .p2c    (_gpio0_list_pad_pad_3_p2c)
+  );
   tc_io_out_pad uart1_uart1_uart_tx_o_pad (
     .pad (uart1_uart_tx_o),
     .c2p (_soc_uart1_uart_tx_o)
@@ -8283,14 +8769,6 @@ module asicTop(
     .c2p_en (_soc_i2c_sda_dir_o),
     .p2c    (_i2c_sda_list_pad_pad_p2c)
   );
-  tc_io_in_pad ps2_soc_ps2_ps2_dat_i_pad (
-    .pad (ps2_ps2_dat_i),
-    .p2c (_ps2_soc_ps2_ps2_dat_i_pad_p2c)
-  );
-  tc_io_in_pad ps2_soc_ps2_ps2_clk_i_pad (
-    .pad (ps2_ps2_clk_i),
-    .p2c (_ps2_soc_ps2_ps2_clk_i_pad_p2c)
-  );
   tc_io_out_pad pwm0_pwm0_pwm_o_pad (
     .pad (_pwm0_pwm0_pwm_o_pad_pad),
     .c2p (_soc_pwm0_pwm_o[0])
@@ -8307,38 +8785,6 @@ module asicTop(
     .pad (_pwm0_pwm0_pwm_o_pad_3_pad),
     .c2p (_soc_pwm0_pwm_o[3])
   );
-  tc_io_out_pad pwm1_pwm1_pwm_o_pad (
-    .pad (_pwm1_pwm1_pwm_o_pad_pad),
-    .c2p (_soc_pwm1_pwm_o[0])
-  );
-  tc_io_out_pad pwm1_pwm1_pwm_o_pad_1 (
-    .pad (_pwm1_pwm1_pwm_o_pad_1_pad),
-    .c2p (_soc_pwm1_pwm_o[1])
-  );
-  tc_io_out_pad pwm1_pwm1_pwm_o_pad_2 (
-    .pad (_pwm1_pwm1_pwm_o_pad_2_pad),
-    .c2p (_soc_pwm1_pwm_o[2])
-  );
-  tc_io_out_pad pwm1_pwm1_pwm_o_pad_3 (
-    .pad (_pwm1_pwm1_pwm_o_pad_3_pad),
-    .c2p (_soc_pwm1_pwm_o[3])
-  );
-  tc_io_in_pad tim0_capch_soc_tim0_capch_pad (
-    .pad (tim0_capch),
-    .p2c (_tim0_capch_soc_tim0_capch_pad_p2c)
-  );
-  tc_io_in_pad tim1_capch_soc_tim1_capch_pad (
-    .pad (tim1_capch),
-    .p2c (_tim1_capch_soc_tim1_capch_pad_p2c)
-  );
-  tc_io_in_pad tim2_capch_soc_tim2_capch_pad (
-    .pad (tim2_capch),
-    .p2c (_tim2_capch_soc_tim2_capch_pad_p2c)
-  );
-  tc_io_in_pad tim3_capch_soc_tim3_capch_pad (
-    .pad (tim3_capch),
-    .p2c (_tim3_capch_soc_tim3_capch_pad_p2c)
-  );
   tc_io_out_pad qspi_sck_o_qspi_sck_o_pad (
     .pad (qspi_sck_o),
     .c2p (_soc_qspi_spi_sck_o)
@@ -8350,14 +8796,6 @@ module asicTop(
   tc_io_out_pad qspi_nss_o_qspi_nss_o_pad_1 (
     .pad (_qspi_nss_o_qspi_nss_o_pad_1_pad),
     .c2p (_soc_qspi_spi_nss_o[1])
-  );
-  tc_io_out_pad qspi_nss_o_qspi_nss_o_pad_2 (
-    .pad (_qspi_nss_o_qspi_nss_o_pad_2_pad),
-    .c2p (_soc_qspi_spi_nss_o[2])
-  );
-  tc_io_out_pad qspi_nss_o_qspi_nss_o_pad_3 (
-    .pad (_qspi_nss_o_qspi_nss_o_pad_3_pad),
-    .c2p (_soc_qspi_spi_nss_o[3])
   );
   tc_io_tri_pad qspi_dio_list_pad_pad (
     .pad    (qspi_dio_0),
@@ -8383,34 +8821,8 @@ module asicTop(
     .c2p_en (_soc_qspi_spi_io_en_o[3]),
     .p2c    (_qspi_dio_list_pad_pad_3_p2c)
   );
-  tc_io_tri_pad i2s_sck_list_pad_pad (
-    .pad    (i2s_sck_0),
-    .c2p    (_soc_i2s_sck_o),
-    .c2p_en (_soc_i2s_sck_en_o),
-    .p2c    (_i2s_sck_list_pad_pad_p2c)
-  );
-  tc_io_tri_pad i2s_ws_list_pad_pad (
-    .pad    (i2s_ws_0),
-    .c2p    (_soc_i2s_ws_o),
-    .c2p_en (_soc_i2s_ws_en_o),
-    .p2c    (_i2s_ws_list_pad_pad_p2c)
-  );
-  tc_io_in_pad i2s_sd_i_soc_i2s_sd_i_pad (
-    .pad (i2s_sd_i),
-    .p2c (_i2s_sd_i_soc_i2s_sd_i_pad_p2c)
-  );
-  assign spi_ss =
-    {_spi_spi_ss_pad_7_pad,
-     _spi_spi_ss_pad_6_pad,
-     _spi_spi_ss_pad_5_pad,
-     _spi_spi_ss_pad_4_pad,
-     _spi_spi_ss_pad_3_pad,
-     _spi_spi_ss_pad_2_pad,
-     _spi_spi_ss_pad_1_pad,
-     _spi_spi_ss_pad_pad};
   assign psram_nss_o =
-    {_psram_nss_o_psram_nss_o_pad_3_pad,
-     _psram_nss_o_psram_nss_o_pad_2_pad,
+    {_psram_nss_o_psram_nss_o_pad_2_pad,
      _psram_nss_o_psram_nss_o_pad_1_pad,
      _psram_nss_o_psram_nss_o_pad_pad};
   assign pwm0_pwm_o =
@@ -8418,16 +8830,7 @@ module asicTop(
      _pwm0_pwm0_pwm_o_pad_2_pad,
      _pwm0_pwm0_pwm_o_pad_1_pad,
      _pwm0_pwm0_pwm_o_pad_pad};
-  assign pwm1_pwm_o =
-    {_pwm1_pwm1_pwm_o_pad_3_pad,
-     _pwm1_pwm1_pwm_o_pad_2_pad,
-     _pwm1_pwm1_pwm_o_pad_1_pad,
-     _pwm1_pwm1_pwm_o_pad_pad};
-  assign qspi_nss_o =
-    {_qspi_nss_o_qspi_nss_o_pad_3_pad,
-     _qspi_nss_o_qspi_nss_o_pad_2_pad,
-     _qspi_nss_o_qspi_nss_o_pad_1_pad,
-     _qspi_nss_o_qspi_nss_o_pad_pad};
+  assign qspi_nss_o = {_qspi_nss_o_qspi_nss_o_pad_1_pad, _qspi_nss_o_qspi_nss_o_pad_pad};
 endmodule
 
 module SimTop(
@@ -8438,107 +8841,72 @@ module SimTop(
   output       externalPins_uart0_tx
 );
 
-  wire       _bitrev_miso;
   wire       _flash_miso;
   wire       _asic_spi_sck;
-  wire [7:0] _asic_spi_ss;
+  wire       _asic_spi_ss;
   wire       _asic_spi_mosi;
   wire       _asic_psram_sck_o;
-  wire [3:0] _asic_psram_nss_o;
+  wire [2:0] _asic_psram_nss_o;
   wire       _psram_dio_0_wire;
   wire       _psram_dio_1_wire;
   wire       _psram_dio_2_wire;
   wire       _psram_dio_3_wire;
+  wire       _gpio0_0_wire;
+  wire       _gpio0_1_wire;
+  wire       _gpio0_2_wire;
+  wire       _gpio0_3_wire;
   wire       _i2c_scl_0_wire;
   wire       _i2c_sda_0_wire;
   wire       _qspi_dio_0_wire;
   wire       _qspi_dio_1_wire;
   wire       _qspi_dio_2_wire;
   wire       _qspi_dio_3_wire;
-  wire       _i2s_sck_0_wire;
-  wire       _i2s_ws_0_wire;
-  reg        divReg;
-  always @(posedge clock) begin
-    if (reset)
-      divReg <= 1'h0;
-    else
-      divReg <= ~divReg;
-  end // always @(posedge)
-  `ifdef ENABLE_INITIAL_REG_
-    `ifdef FIRRTL_BEFORE_INITIAL
-      `FIRRTL_BEFORE_INITIAL
-    `endif // FIRRTL_BEFORE_INITIAL
-    logic [31:0] _RANDOM[0:0];
-    initial begin
-      `ifdef INIT_RANDOM_PROLOG_
-        `INIT_RANDOM_PROLOG_
-      `endif // INIT_RANDOM_PROLOG_
-      `ifdef RANDOMIZE_REG_INIT
-        _RANDOM[/*Zero width*/ 1'b0] = `RANDOM;
-        divReg = _RANDOM[/*Zero width*/ 1'b0][0];
-      `endif // RANDOMIZE_REG_INIT
-    end // initial
-    `ifdef FIRRTL_AFTER_INITIAL
-      `FIRRTL_AFTER_INITIAL
-    `endif // FIRRTL_AFTER_INITIAL
-  `endif // ENABLE_INITIAL_REG_
   asicTop asic (
     .clock           (clock),
     .reset           (reset),
-    .clock_half      (divReg),
     .coreSel         (coreSel),
-    .intr            (1'h0),
+    .pll_en_i        (1'h0),
+    .clk_cfg_i       (2'h0),
+    .clk_o           (/* unused */),
     .uart0_rx        (externalPins_uart0_rx),
     .uart0_tx        (externalPins_uart0_tx),
     .spi_sck         (_asic_spi_sck),
     .spi_ss          (_asic_spi_ss),
     .spi_mosi        (_asic_spi_mosi),
-    .spi_miso        (_bitrev_miso & _flash_miso),
+    .spi_miso        (_flash_miso),
     .psram_sck_o     (_asic_psram_sck_o),
     .psram_nss_o     (_asic_psram_nss_o),
     .psram_dio_0     (_psram_dio_0_wire),
     .psram_dio_1     (_psram_dio_1_wire),
     .psram_dio_2     (_psram_dio_2_wire),
     .psram_dio_3     (_psram_dio_3_wire),
+    .gpio0_0         (_gpio0_0_wire),
+    .gpio0_1         (_gpio0_1_wire),
+    .gpio0_2         (_gpio0_2_wire),
+    .gpio0_3         (_gpio0_3_wire),
     .uart1_uart_rx_i (1'h0),
     .uart1_uart_tx_o (/* unused */),
     .i2c_scl_0       (_i2c_scl_0_wire),
     .i2c_sda_0       (_i2c_sda_0_wire),
-    .ps2_ps2_clk_i   (1'h0),
-    .ps2_ps2_dat_i   (1'h0),
     .pwm0_pwm_o      (/* unused */),
-    .pwm1_pwm_o      (/* unused */),
-    .tim0_capch      (1'h0),
-    .tim1_capch      (1'h0),
-    .tim2_capch      (1'h0),
-    .tim3_capch      (1'h0),
     .qspi_sck_o      (/* unused */),
     .qspi_nss_o      (/* unused */),
     .qspi_dio_0      (_qspi_dio_0_wire),
     .qspi_dio_1      (_qspi_dio_1_wire),
     .qspi_dio_2      (_qspi_dio_2_wire),
-    .qspi_dio_3      (_qspi_dio_3_wire),
-    .i2s_sck_0       (_i2s_sck_0_wire),
-    .i2s_ws_0        (_i2s_ws_0_wire),
-    .i2s_sd_i        (1'h0)
+    .qspi_dio_3      (_qspi_dio_3_wire)
   );
   flash flash (
     .sck  (_asic_spi_sck),
-    .ss   (_asic_spi_ss[0]),
+    .ss   (_asic_spi_ss),
     .mosi (_asic_spi_mosi),
     .miso (_flash_miso)
-  );
-  bitrev bitrev (
-    .sck  (_asic_spi_sck),
-    .ss   (_asic_spi_ss[7]),
-    .mosi (_asic_spi_mosi),
-    .miso (_bitrev_miso)
   );
   ESPWrapper #(
     .nss(4)
   ) espPsram (
     .sck_o (_asic_psram_sck_o),
-    .nss_o (_asic_psram_nss_o),
+    .nss_o ({1'h0, _asic_psram_nss_o}),
     .dio_0 (_psram_dio_0_wire),
     .dio_1 (_psram_dio_1_wire),
     .dio_2 (_psram_dio_2_wire),
@@ -8546,7 +8914,7 @@ module SimTop(
   );
 endmodule
 
-module GenerateTop(
+module ElaborateTop(
   input clock,
         reset
 );
