@@ -2,6 +2,8 @@
 
 [![CI](https://github.com/openecos-projects/mpc-soc/actions/workflows/ci.yml/badge.svg)](https://github.com/openecos-projects/mpc-soc/actions/workflows/ci.yml)
 
+当前版本：`0.0.1`。版本说明见 [CHANGELOG.md](CHANGELOG.md)。
+
 `mpc-soc` 已迁移为面向 SoC 集成的模板目录，按硬件、验证仿真、软件、配置、文档和输出产物分层组织。
 
 ## 目录结构

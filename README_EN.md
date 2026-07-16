@@ -2,6 +2,8 @@
 
 [![CI](https://github.com/openecos-projects/mpc-soc/actions/workflows/ci.yml/badge.svg)](https://github.com/openecos-projects/mpc-soc/actions/workflows/ci.yml)
 
+Current version: `0.0.1`. See the Chinese-first release notes in [CHANGELOG.md](CHANGELOG.md).
+
 `mpc-soc` has been migrated into a SoC integration template organized by hardware, verification, software, configuration, documentation, and generated outputs.
 
 ## Directory Layout
