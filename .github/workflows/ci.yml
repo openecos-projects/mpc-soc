@@ -18,7 +18,7 @@ jobs:
     timeout-minutes: 40
 
     env:
-      ECOS_SDK: ${{ runner.temp }}/ecos-sdk
+      ECOS_SDK: /tmp/ecos-sdk
       CROSS_COMPILE: riscv64-unknown-elf-
 
     steps:
