@@ -33,6 +33,7 @@
 ### 发布边界
 
 - 本版本交付源码、配置、文档、脚本和 CI 流程，不交付 `build/` 下的本地生成产物。
+- 本仓库采用 Apache License 2.0，与 `openecos-projects/embedded-sdk` 保持一致。
 - ECOS-SDK 大型外部依赖不随仓库提交；`sw/ecos/` 作为 BSP 包合入 SDK 时应放到 `board/mpc-soc/`。
 - `third_party/` 用于记录外部依赖说明，不建议直接提交大型 SDK 或工具链。
 - 迁移自外部或第三方 IP 的原始文档不在本版本中整体翻译；项目自有文档已保持中文优先。
@@ -41,4 +42,4 @@
 
 - 当前 CI 使用 GitHub-hosted `ubuntu-24.04` runner 和系统包 Verilator，完整 bootrom regression 耗时约 22 分钟。
 - CI 为完整回归配置，不是最短 smoke；后续如果需要更快的 PR 反馈，可单独新增快速检查 workflow。
-- 仓库尚未包含正式 `LICENSE` 文件；对外开源或商业交付前需要补齐许可证和第三方授权说明。
+- 外部或第三方 IP 的授权边界仍需在正式对外交付前逐项复核。

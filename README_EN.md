@@ -17,6 +17,10 @@ Current version: `0.0.1`. See the Chinese-first release notes in [CHANGELOG.md](
 - `third_party/`: external dependency notes; large SDKs should not be committed directly.
 - `build/`: Verilator outputs, software images, logs, and waveforms.
 
+## License
+
+This repository uses the [Apache License 2.0](LICENSE), aligned with `openecos-projects/embedded-sdk`. Third-party IP, models, or migrated sources with their own license notices remain subject to their original license terms.
+
 ## Quick Commands
 
 ```sh

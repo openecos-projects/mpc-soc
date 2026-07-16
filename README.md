@@ -17,6 +17,10 @@
 - `third_party/`：外部依赖说明，不建议直接提交大型 SDK。
 - `build/`：Verilator 产物、软件镜像、日志和波形输出目录。
 
+## 开源协议
+
+本仓库采用 [Apache License 2.0](LICENSE)，与 `openecos-projects/embedded-sdk` 保持一致。第三方 IP、模型或迁移源码如带有独立授权声明，应同时遵循其原始授权要求。
+
 ## 快速命令
 
 ```sh
