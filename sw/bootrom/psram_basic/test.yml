@@ -1,0 +1,7 @@
+name: psram_basic
+image: retrosoc_fw.bin
+max_cycles: 2000000
+trace: false
+uart:
+  stop_text: "psram ok"
+  fail_text: "psram fail"

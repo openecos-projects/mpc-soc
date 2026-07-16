@@ -1,0 +1,7 @@
+name: plic
+image: plic.bin
+max_cycles: 1000000
+trace: false
+uart:
+  stop_text: "plic ok"
+  fail_text: "plic fail"

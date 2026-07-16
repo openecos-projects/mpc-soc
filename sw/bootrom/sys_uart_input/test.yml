@@ -1,0 +1,8 @@
+name: sys_uart_input
+image: retrosoc_fw.bin
+max_cycles: 1000000
+trace: false
+uart:
+  input: "abq"
+  start_cycle: 200000
+  stop_text: "uart input ok"

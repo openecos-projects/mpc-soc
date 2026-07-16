@@ -1,0 +1,7 @@
+name: clint
+image: clint.bin
+max_cycles: 1000000
+trace: false
+uart:
+  stop_text: "clint ok"
+  fail_text: "clint fail"

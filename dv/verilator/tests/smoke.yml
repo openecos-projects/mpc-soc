@@ -1,0 +1,5 @@
+name: smoke
+app: hello
+top: asicTop
+max_cycles: 1000
+trace: true

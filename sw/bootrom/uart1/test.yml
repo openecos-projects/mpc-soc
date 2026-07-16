@@ -1,0 +1,11 @@
+name: uart1
+image: uart1.bin
+max_cycles: 1000000
+trace: false
+uart:
+  stop_text: "uart1 ok"
+  fail_text: "uart1 fail"
+uart1:
+  expect: "U"
+  bit_cycles: 8
+  arm_text: "uart1 arm: write 0x55 to trx"

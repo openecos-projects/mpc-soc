@@ -1,0 +1,11 @@
+name: gpio
+image: retrosoc_fw.bin
+max_cycles: 1000000
+trace: false
+uart:
+  stop_text: "gpio ok"
+gpio:
+  input: 0x4
+  drive: 0xc
+  expect: [0, 1, 2, 3, 0]
+  expect_mask: 0x3

@@ -1,0 +1,144 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  soc-smoke:
+    name: SoC smoke
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+
+    env:
+      ECOS_SDK: ${{ runner.temp }}/ecos-sdk
+      CROSS_COMPILE: riscv64-unknown-elf-
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            binutils-riscv64-unknown-elf \
+            build-essential \
+            gcc-riscv64-unknown-elf \
+            make \
+            python3 \
+            python3-yaml \
+            verilator
+
+      - name: Prepare minimal ECOS SDK headers
+        run: |
+          mkdir -p "$ECOS_SDK/include" \
+                   "$ECOS_SDK/components/libc/include" \
+                   "$ECOS_SDK/components/libgcc/include" \
+                   "$ECOS_SDK/lib"
+
+          cat > "$ECOS_SDK/include/hal_sys_uart.h" <<'EOF'
+          #ifndef HAL_SYS_UART_H
+          #define HAL_SYS_UART_H
+          #include <stdint.h>
+          void hal_sys_uart_init(void);
+          void hal_sys_putchar(char c);
+          void hal_sys_putstr(char *str);
+          uint8_t hal_sys_getchar(void);
+          #endif
+          EOF
+
+          cat > "$ECOS_SDK/include/hal_gpio.h" <<'EOF'
+          #ifndef HAL_GPIO_H
+          #define HAL_GPIO_H
+          #include <stdint.h>
+          #define GPIO_LEVEL_LOW 0u
+          #define GPIO_LEVEL_HIGH 1u
+          void hal_gpio_set_dir(uint32_t value);
+          uint32_t hal_gpio_get_dir(void);
+          uint32_t hal_gpio_get_input(void);
+          uint32_t hal_gpio_get_output(void);
+          void hal_gpio_set_output(uint32_t value);
+          void hal_gpio_set_level(uint32_t pin, uint32_t level);
+          uint32_t hal_gpio_get_level(uint32_t pin);
+          #endif
+          EOF
+
+          cat > "$ECOS_SDK/include/hal_timer.h" <<'EOF'
+          #ifndef HAL_TIMER_H
+          #define HAL_TIMER_H
+          #include <stdint.h>
+          void hal_timer_stop(void);
+          void hal_timer_set_prescale(uint32_t value);
+          void hal_timer_set_cmp(uint32_t value);
+          void hal_timer_set_ctrl(uint32_t value);
+          uint32_t hal_timer_get_stat(void);
+          void hal_timer_clear(void);
+          void delay_ms(uint32_t value);
+          #endif
+          EOF
+
+          cat > "$ECOS_SDK/include/hal_uart.h" <<'EOF'
+          #ifndef HAL_UART_H
+          #define HAL_UART_H
+          #include <stdint.h>
+          void hal_uart_init(uint32_t baud);
+          void hal_uart_putchar(char c);
+          void hal_uart_putstr(const char *str);
+          int hal_uart_getchar(void);
+          #endif
+          EOF
+
+          cat > "$ECOS_SDK/components/libc/include/string.h" <<'EOF'
+          #ifndef STRING_H
+          #define STRING_H
+          #include <stddef.h>
+          void *memcpy(void *dest, const void *src, size_t n);
+          void *memset(void *s, int c, size_t n);
+          size_t strlen(const char *s);
+          int strcmp(const char *s1, const char *s2);
+          #endif
+          EOF
+
+          cat > "$ECOS_SDK/components/libc/include/stdio.h" <<'EOF'
+          #ifndef STDIO_H
+          #define STDIO_H
+          int printf(const char *format, ...);
+          int puts(const char *s);
+          #endif
+          EOF
+
+          cat > "$ECOS_SDK/components/libgcc/include/libgcc.h" <<'EOF'
+          #ifndef LIBGCC_H
+          #define LIBGCC_H
+          #endif
+          EOF
+
+      - name: Check Python scripts
+        run: python3 -m py_compile scripts/*.py
+
+      - name: Check generated SoC package is current
+        run: |
+          make gen-soc-pkg
+          git diff --exit-code hw/include/soc_pkg.sv
+
+      - name: Build software from source
+        run: make -C sw BOARD=mpc-soc APP=hello
+
+      - name: Build Verilator simulator
+        run: make verilate TRACE=0
+
+      - name: Run bootrom regression
+        run: make regress OUTPUT=list STOP_ON_FAIL=1 TRACE=0
+
+      - name: Check generated outputs stay ignored
+        run: |
+          test -z "$(git ls-files --others --exclude-standard)"
+          git diff --exit-code

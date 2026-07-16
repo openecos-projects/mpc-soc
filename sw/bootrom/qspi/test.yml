@@ -1,0 +1,7 @@
+name: qspi
+image: qspi.bin
+max_cycles: 1000000
+trace: false
+uart:
+  stop_text: "qspi ok"
+  fail_text: "qspi fail"

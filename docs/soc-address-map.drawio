@@ -1,0 +1,97 @@
+<mxfile host="app.diagrams.net" modified="2026-07-09T00:00:00.000Z" agent="Codex" version="24.7.17" type="device">
+  <diagram id="soc-address-map" name="SoC Address Map">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="SoC Address Map" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=28;fontStyle=1;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="325" y="30" width="520" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Generated from hw/include/soc_pkg.sv / config/memory.yml&#xa;32-bit address space, ordered by base address, blocks are not drawn to scale" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontColor=#4B5563;" vertex="1" parent="1">
+          <mxGeometry x="265" y="75" width="640" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="axis" value="" style="shape=partialRectangle;html=1;top=0;bottom=0;right=0;fillColor=none;strokeColor=#374151;strokeWidth=3;" vertex="1" parent="1">
+          <mxGeometry x="140" y="145" width="40" height="570" as="geometry" />
+        </mxCell>
+        <mxCell id="addr-top" value="0x0000_0000" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#374151;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="130" width="105" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="addr-bottom" value="0xFFFF_FFFF" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#374151;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="700" width="105" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="low-unused" value="Reserved / unmapped low address space" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#F9FAFB;strokeColor=#D1D5DB;fontSize=12;fontColor=#6B7280;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="220" y="132" width="455" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="clint" value="CLINT&#xa;0x0201_0000 - 0x0201_FFFF&#xa;size 0x0001_0000 (64 KiB)&#xa;core-local interruptor" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#E0F2FE;strokeColor=#0284C7;strokeWidth=2;fontSize=13;fontColor=#0F172A;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="220" y="175" width="455" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="plic" value="PLIC&#xa;0x0C00_0000 - 0x0C3F_FFFF&#xa;size 0x0040_0000 (4 MiB)&#xa;platform-level interrupt controller" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=2;fontSize=13;fontColor=#0F172A;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="220" y="265" width="455" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="apb-window" value="APB peripheral window around 0x1000_0000" style="swimlane;html=1;startSize=28;rounded=1;arcSize=4;fillColor=#FFFFFF;strokeColor=#9CA3AF;fontSize=13;fontStyle=1;fontColor=#374151;" vertex="1" parent="1">
+          <mxGeometry x="205" y="360" width="485" height="152" as="geometry" />
+        </mxCell>
+        <mxCell id="uart0" value="UART0&#xa;0x1000_0000 - 0x1000_0FFF&#xa;size 4 KiB, IRQ 2" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#DCFCE7;strokeColor=#16A34A;strokeWidth=2;fontSize=13;fontColor=#0F172A;spacing=6;" vertex="1" parent="apb-window">
+          <mxGeometry x="15" y="42" width="145" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="gpio0" value="GPIO0&#xa;0x1010_0000 - 0x1010_0FFF&#xa;size 4 KiB, IRQ 3" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#FEF9C3;strokeColor=#CA8A04;strokeWidth=2;fontSize=13;fontColor=#0F172A;spacing=6;" vertex="1" parent="apb-window">
+          <mxGeometry x="170" y="42" width="145" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="timer0" value="TIMER0&#xa;0x1010_8000 - 0x1010_8FFF&#xa;size 4 KiB, IRQ 1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#FCE7F3;strokeColor=#DB2777;strokeWidth=2;fontSize=13;fontColor=#0F172A;spacing=6;" vertex="1" parent="apb-window">
+          <mxGeometry x="325" y="42" width="145" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="flash" value="FLASH / BOOTROM / XIP&#xa;0x3000_0000 - 0x30FF_FFFF&#xa;size 0x0100_0000 (16 MiB)&#xa;SOC_RESET_PC = 0x3000_0000&#xa;SOC_BOOTROM_BASE = SOC_FLASH_BASE" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#FFEDD5;strokeColor=#EA580C;strokeWidth=2;fontSize=13;fontColor=#0F172A;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="220" y="535" width="455" height="92" as="geometry" />
+        </mxCell>
+        <mxCell id="psram" value="PSRAM&#xa;0xC000_0000 - 0xC17F_FFFF&#xa;size 0x0180_0000 (24 MiB)&#xa;external PSRAM window, executable" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#EDE9FE;strokeColor=#7C3AED;strokeWidth=2;fontSize=13;fontColor=#0F172A;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="220" y="650" width="455" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="irq-title" value="Interrupt IDs" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#111827;strokeColor=#111827;fontSize=15;fontStyle=1;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="755" y="175" width="230" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="irq-table" value="TIMER0: 1&#xa;UART0: 2&#xa;GPIO0: 3&#xa;Software: 4&#xa;External: 5" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#F9FAFB;strokeColor=#9CA3AF;fontSize=14;fontColor=#111827;align=left;spacing=12;" vertex="1" parent="1">
+          <mxGeometry x="755" y="215" width="230" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-title" value="Legend" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#111827;strokeColor=#111827;fontSize=15;fontStyle=1;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="755" y="375" width="230" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" value="Blue: interrupt controllers&#xa;Green/yellow/pink: APB peripherals&#xa;Orange: flash / reset target&#xa;Purple: external memory&#xa;Dashed: reserved / unmapped" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#F9FAFB;strokeColor=#9CA3AF;fontSize=13;fontColor=#111827;align=left;spacing=12;" vertex="1" parent="1">
+          <mxGeometry x="755" y="415" width="230" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="source" value="Source constants: SOC_*_BASE, SOC_*_SIZE, SOC_*_IRQ in hw/include/soc_pkg.sv" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#F3F4F6;strokeColor=#D1D5DB;fontSize=12;fontColor=#374151;align=left;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="755" y="575" width="300" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="tick-clint" value="" style="endArrow=none;html=1;rounded=0;strokeColor=#374151;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="125" y="211" as="sourcePoint" />
+            <mxPoint x="210" y="211" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tick-plic" value="" style="endArrow=none;html=1;rounded=0;strokeColor=#374151;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="125" y="301" as="sourcePoint" />
+            <mxPoint x="210" y="301" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tick-apb" value="" style="endArrow=none;html=1;rounded=0;strokeColor=#374151;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="125" y="436" as="sourcePoint" />
+            <mxPoint x="205" y="436" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tick-flash" value="" style="endArrow=none;html=1;rounded=0;strokeColor=#374151;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="125" y="581" as="sourcePoint" />
+            <mxPoint x="210" y="581" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tick-psram" value="" style="endArrow=none;html=1;rounded=0;strokeColor=#374151;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="125" y="686" as="sourcePoint" />
+            <mxPoint x="210" y="686" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

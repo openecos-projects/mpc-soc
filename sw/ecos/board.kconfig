@@ -1,0 +1,51 @@
+menu "System Read-Only Information"
+    choice
+        bool "Target SoC Platform"
+        default MPC_SOC
+
+    config MPC_SOC
+        bool "MPC SoC Platform"
+        help
+            MPC SoC RISC-V based embedded platform
+    endchoice
+
+    config BOARD_RAM_TYPE_NAME
+        string "MEM Type Name"
+        default "PSRAM"
+
+    config BOARD_RAM_SIZE_KB
+        int "MEM Size (in KB)"
+        default 24576
+
+    config BOARD_FLASH_SIZE_KB
+        int "ROM Size (in KB)"
+        default 64
+endmenu
+
+menu "System Configuration"
+    config CPU_FREQ_MHZ
+        int "CPU Frequency (MHz)"
+        default 50
+        range 1 500
+
+    config TIMER_FREQ_MHZ
+        int "Timer Frequency (MHz)"
+        default 50
+        range 1 500
+
+    config UART_BAUD_RATE
+        int "UART Baud Rate"
+        default 115200
+        range 1 1000000
+
+    choice
+        bool "Memory Region Selection"
+        default LINK_TARGET_MEM
+
+        config LINK_TARGET_XIP
+            bool "XIP Mode (ROM for Code, MEM for Data)"
+
+        config LINK_TARGET_MEM
+            bool "MEM Mode (All in MEM)"
+    endchoice
+endmenu

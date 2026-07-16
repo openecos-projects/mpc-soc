@@ -1,0 +1,22 @@
+name: mpc-soc
+top_module: asicTop
+clock_hz: 50000000
+reset: active_high
+
+rtl:
+  top: hw/soc/top/asic_top.v
+  filelist: hw/filelist/soc.f
+
+ip:
+  common: hw/common
+  blocks:
+    - name: uart
+      path: hw/ip/uart
+    - name: gpio
+      path: hw/ip/gpio
+    - name: timer
+      path: hw/ip/timer
+    - name: clint
+      path: hw/ip/clint
+    - name: plic
+      path: hw/ip/plic
