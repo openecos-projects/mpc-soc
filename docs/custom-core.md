@@ -32,6 +32,16 @@ master 接口当前使用以下位宽：
 
 如果你的 core 使用不同的总线形态，请增加 wrapper 模块，把它适配到上述接口约定。协议转换应尽量放在 wrapper 内，并保持 wrapper 小而清晰，避免牵动无关 SoC 逻辑。
 
+## Wrapper 模板
+
+仓库提供一个 NPC 风格的包裹层模板：
+
+```text
+hw/ip/core/npc_wrapper_template.sv
+```
+
+该模板暴露 SoC 期望的 `clock`、`reset`、`io_interrupt`、`io_master_*` 和 `io_slave_*` 端口。默认实现不会发起 AXI master 访问，slave 侧也保持 tie off；接入真实 core 时应复制该文件、重命名模块，并用你的 core 例化替换模板中的 idle master assignment。
+
 ## 文件列表修改
 
 把新的 RTL 文件加入 `hw/filelist/verilator.f`。现有 core RTL 条目如下：

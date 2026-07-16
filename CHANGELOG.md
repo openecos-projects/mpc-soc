@@ -14,6 +14,7 @@
 - SoC 顶层集成保留 `asicTop` 和仿真包装 `SimTop`，支持 flash、PSRAM、GPIO、UART 等仿真模型接入。
 - 硬件源码保留 core、CLINT、PLIC、GPIO、UART、timer、I2C、QSPI、PSRAM、PWM、RTC、RNG、WDT 等主要 IP 目录。
 - Verilator SoC 级仿真入口收敛到 `dv/verilator/`，支持构建仿真器、运行 bootrom 镜像、输出日志和波形。
+- 提供 `hw/ip/core/npc_wrapper_template.sv`，作为 NPC 风格 core 接入 SoC 槽位的 wrapper 模板。
 - 软件侧提供 `sw/ecos/` 作为 `mpc-soc` BSP 包根目录，并保留仓库内构建 wrapper。
 - bootrom 回归用例覆盖 `archinfo`、`asm_hello`、`clint`、`crc`、`flash_xip`、`gpio`、`gpio_toggle`、`hello`、`i2c`、`plic`、`psram_basic`、`pwm`、`qspi`、`rcu`、`rng`、`rtc`、`sys_uart_input`、`timer`、`timer_multi`、`uart1`、`uart_poll`、`wdg`。
 - 项目自有文档已按中文优先整理，覆盖架构、启动流程、地址映射、ECOS-SDK BSP、Verilator、PSRAM 测试和自定义 core 接入。
