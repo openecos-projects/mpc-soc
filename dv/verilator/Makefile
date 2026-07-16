@@ -41,7 +41,8 @@ CLR_INFO := \033[1;34m
 CLR_STEP := \033[1;32m
 CLR_ERR := \033[1;31m
 
-VERILATOR_FLAGS ?= -Wall -Wno-UNUSEDPARAM -Wno-UNUSEDSIGNAL -Wno-DECLFILENAME -Wno-PINCONNECTEMPTY -Wno-TIMESCALEMOD -Wno-DEFPARAM -Wno-BLKSEQ -Wno-PROCASSINIT -Wno-SYNCASYNCNET -Wno-GENUNNAMED -DFAST_FLASH --timescale-override 1ns/1ns --timing --cc --exe --build
+VERILATOR_PROCASSINIT_FLAG = $(shell tmp=$$(mktemp /tmp/verilator-probe.XXXXXX.v); printf 'module m; endmodule\n' > $$tmp; if $(VERILATOR) -Wno-PROCASSINIT --lint-only $$tmp >/dev/null 2>&1; then printf '%s' '-Wno-PROCASSINIT'; fi; rm -f $$tmp)
+VERILATOR_FLAGS ?= -Wall -Wno-UNUSEDPARAM -Wno-UNUSEDSIGNAL -Wno-DECLFILENAME -Wno-PINCONNECTEMPTY -Wno-TIMESCALEMOD -Wno-DEFPARAM -Wno-BLKSEQ $(VERILATOR_PROCASSINIT_FLAG) -Wno-SYNCASYNCNET -Wno-GENUNNAMED -DFAST_FLASH --timescale-override 1ns/1ns --timing --cc --exe --build
 ifeq ($(FAST_PSRAM),1)
 VERILATOR_FLAGS += -DFAST_PSRAM
 endif
