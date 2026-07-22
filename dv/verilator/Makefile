@@ -32,6 +32,7 @@ DEFAULT_BOOTROM_IMAGE = $(shell images=$$(find "$(BOOTROM_DIR)" -maxdepth 1 -typ
 BOOTROM_IMAGE ?= $(DEFAULT_BOOTROM_IMAGE)
 SW_IMAGE ?= $(BOOTROM_IMAGE)
 SIM_BIN := $(OBJ_DIR)/V$(TOP)
+BUILD_CONFIG := $(OBJ_DIR)/.build-config
 WAVE_FILE ?= $(WAVE_DIR)/$(TOP).fst
 WAVE_VIEW ?= $(CURDIR)/$(TOP).gtkw
 SIM_LOG ?= $(LOG_DIR)/$(TOP)-$(notdir $(basename $(SW_IMAGE))).log
@@ -50,6 +51,10 @@ VERILATOR_FLAGS += $(EXTRA_VERILATOR_FLAGS)
 VERILATOR_FLAGS += --Mdir $(OBJ_DIR) --top-module $(TOP)
 VERILATOR_FLAGS += -CFLAGS "-std=c++17 -O2 -DSIM_TOP_HEADER=\\\"V$(TOP).h\\\" -DSIM_TOP_CLASS=V$(TOP)"
 
+RTL_SOURCES := $(shell find $(SOC_ROOT)/hw -type f \( -name '*.v' -o -name '*.sv' -o -name '*.vh' -o -name '*.svh' -o -name '*.f' \))
+HARNESS_SOURCES := $(shell find $(CURDIR)/csrc -type f \( -name '*.c' -o -name '*.cc' -o -name '*.cpp' -o -name '*.h' -o -name '*.hpp' \))
+SOC_PKG_INPUTS := $(SOC_ROOT)/config/memory.yml $(SOC_ROOT)/scripts/gen_soc_pkg.py
+
 ifeq ($(TOP),asicTop)
 VERILATOR_FLAGS += -CFLAGS "-DSIM_TOP_ASICTOP=1"
 endif
@@ -61,7 +66,7 @@ ifeq ($(TRACE),1)
 VERILATOR_FLAGS += --trace-fst -CFLAGS "-DVM_TRACE=1"
 endif
 
-.PHONY: help check-tools check-image gen-soc-pkg verilate sim wave clean
+.PHONY: help check-tools check-image gen-soc-pkg verilate sim wave clean FORCE
 
 help:
 	@printf "$(CLR_INFO)Verilator simulation entry$(CLR_RESET)\n"
@@ -95,11 +100,30 @@ check-tools:
 check-image:
 	@test -f $(SW_IMAGE) || (printf "$(CLR_ERR)ERROR: bootrom image not found: $(SW_IMAGE)$(CLR_RESET)\n"; printf "$(CLR_ERR)Place a raw flash image at $(BOOTROM_IMAGE) or pass BOOTROM_IMAGE=<file>$(CLR_RESET)\n"; exit 2)
 
-gen-soc-pkg:
+gen-soc-pkg: $(SOC_PKG)
+
+$(SOC_PKG): $(SOC_PKG_INPUTS)
 	@python3 $(SOC_ROOT)/scripts/gen_soc_pkg.py --output $(SOC_PKG)
 
-verilate: check-tools gen-soc-pkg $(BUILD_DIR) $(WAVE_DIR) $(LOG_DIR)
+FORCE:
+
+$(BUILD_CONFIG): FORCE | $(BUILD_DIR)
+	@mkdir -p $(OBJ_DIR)
+	@{ \
+		printf '%s\n' 'VERILATOR=$(VERILATOR)'; \
+		printf '%s\n' 'TOP=$(TOP)'; \
+		printf '%s\n' 'TRACE=$(TRACE)'; \
+		printf '%s\n' 'FAST_PSRAM=$(FAST_PSRAM)'; \
+		printf '%s\n' 'RTL_FILELIST=$(RTL_FILELIST)'; \
+		printf '%s\n' 'VERILATOR_FLAGS=$(VERILATOR_FLAGS)'; \
+	} > $@.tmp
+	@cmp -s $@.tmp $@ || mv $@.tmp $@
+	@rm -f $@.tmp
+
+$(SIM_BIN): $(BUILD_CONFIG) $(RTL_SOURCES) $(HARNESS_SOURCES) $(SOC_PKG) | $(BUILD_DIR) $(WAVE_DIR) $(LOG_DIR)
 	@$(VERILATOR) $(VERILATOR_FLAGS) -f $(RTL_FILELIST) $(CURDIR)/csrc/sim_main.cpp
+
+verilate: check-tools gen-soc-pkg $(SIM_BIN)
 
 sim: check-image verilate
 	@printf "$(CLR_STEP)Running $(SIM_BIN)$(CLR_RESET)\n"
