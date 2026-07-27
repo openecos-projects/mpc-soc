@@ -6,13 +6,15 @@
 
 `mpc-soc` 已迁移为面向 SoC 集成的模板目录，按硬件、验证仿真、软件、配置、文档和输出产物分层组织。
 
+SoC 规格、IP 状态和地址空间展示页：[打开 SoC Overview](docs/site/index.html)。推送到 `main` 后，GitHub Pages 工作流会自动发布该页面。
+
 ## 目录结构
 
 - `config/`：SoC、地址空间和仿真板级配置。
 - `hw/`：硬件源码；`hw/ip/` 存放外设 IP，`hw/common/` 存放公共 RTL，`hw/soc/` 存放 SoC 顶层集成。
 - `dv/verilator/`：保留的 Verilator SoC 仿真入口和 C++ harness。
 - `sw/ecos/`：本仓库内的 `mpc-soc` BSP 包根目录，合入 ECOS-SDK 时放到 `board/mpc-soc/`。
-- `docs/`：架构、地址映射、启动流程、自定义 core 接入和工具链说明。
+- `docs/`：架构、地址映射、启动流程、自定义 core 接入、工具链和 IP 就绪度说明。
 - `scripts/`：生成、拉取或维护脚本。
 - `third_party/`：外部依赖说明，不建议直接提交大型 SDK。
 - `build/`：Verilator 产物、软件镜像、日志和波形输出目录。
@@ -40,6 +42,42 @@ make clean-build
 make -C dv/verilator verilate
 make -C dv/verilator sim BOARD=mpc-soc APP=hello
 ```
+
+### BootROM 回归测试
+
+运行全部归档用例，或通过 `CASES` 选择一个或多个用例：
+
+```sh
+make regress
+make regress CASES="asm_hello gpio"
+```
+
+常用可选参数：
+
+| 参数 | 默认值 | 说明 |
+| --- | --- | --- |
+| `CASES="<case> ..."` | 全部用例 | 只运行指定用例，名称可用空格或逗号分隔 |
+| `OUTPUT=list` | `full` | 终端只显示各用例的 `PASS/FAIL`、耗时和汇总 |
+| `STOP_ON_FAIL=1` | `0` | 首个失败用例结束后停止回归 |
+| `MAX_CYCLES=<n>` | 用例配置值 | 覆盖所有用例的最大仿真周期数 |
+| `TRACE=1` | `0` | 编译波形支持并生成 FST 波形；改变此值会重建仿真器 |
+| `CORE_SEL=<n>` | `0` | 选择待测 core |
+
+例如，以精简列表运行指定用例，并在首次失败时停止：
+
+```sh
+make regress CASES="asm_hello gpio" OUTPUT=list STOP_ON_FAIL=1
+```
+
+运行单个归档用例也可以使用：
+
+```sh
+make bootrom-sim CASE=asm_hello OUTPUT=list
+```
+
+每次回归的详细日志和汇总保存在 `build/log/regress/<timestamp>/`。同一组构建参数下，所有用例复用已构建的 Verilator 仿真器；RTL、C++ harness、filelist、`TOP`、`TRACE`、`FAST_PSRAM` 或额外 Verilator flags 变化时才会重新构建。
+
+当前已接入 IP 的功能范围、测试状态和使用边界见 [SoC IP 就绪度说明](docs/ip-readiness.md)。
 
 ## 自定义 core 接入
 
