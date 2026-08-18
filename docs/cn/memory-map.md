@@ -1,6 +1,9 @@
 # 地址空间
 
-当前内存映射同时体现在 `config/memory.yml`、`hw/include/soc_pkg.sv` 和 `sw/ecos/board.h` 中。
+[English](../en/memory-map.md)
+
+当前内存映射同时体现在 `config/memory.yml`、`hw/include/soc_pkg.sv` 和
+`sw/ecos/board.h` 中。首页的地址卡片从同一份配置生成。
 
 | 区域 | 基地址 | 大小 | 说明 |
 | --- | ---: | ---: | --- |

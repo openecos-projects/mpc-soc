@@ -1,16 +1,15 @@
 #!/usr/bin/env python3
-
-"""Generate the static site's data from the repository's YAML and Markdown sources."""
+"""Generate SoC overview data from YAML and Markdown sources."""
 
 from __future__ import annotations
 
+import argparse
 import json
 import re
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SITE = ROOT / "docs" / "site"
 
 
 def scalar(text: str, key: str) -> str:
@@ -51,15 +50,25 @@ def parse_ip_table(text: str) -> list[dict[str, str]]:
             continue
         cells = [cell.strip().replace("`", "") for cell in line.strip().strip("|").split("|")]
         if len(cells) == 6:
-            rows.append({"name": cells[0], "function": cells[1], "address": cells[2], "status": cells[3], "tests": cells[4], "risk": cells[5]})
+            rows.append(
+                {
+                    "name": cells[0],
+                    "function": cells[1],
+                    "address": cells[2],
+                    "status": cells[3],
+                    "tests": cells[4],
+                    "risk": cells[5],
+                }
+            )
     return rows
 
 
-def main() -> None:
-    soc = (ROOT / "config" / "soc.yml").read_text()
-    memory = (ROOT / "config" / "memory.yml").read_text()
-    readiness = (ROOT / "docs" / "ip-readiness.md").read_text()
-    data = {
+def collect_soc_data(root: Path) -> dict:
+    soc = (root / "config" / "soc.yml").read_text(encoding="utf-8")
+    memory = (root / "config" / "memory.yml").read_text(encoding="utf-8")
+    readiness_cn = (root / "docs" / "cn" / "ip-readiness.md").read_text(encoding="utf-8")
+    readiness_en = (root / "docs" / "en" / "ip-readiness.md").read_text(encoding="utf-8")
+    return {
         "soc": {
             "name": scalar(soc, "name"),
             "top": scalar(soc, "top_module"),
@@ -70,11 +79,46 @@ def main() -> None:
             "resetPc": scalar(memory, "pc"),
         },
         "regions": parse_regions(memory),
-        "ips": parse_ip_table(readiness),
-        "generatedFrom": ["config/soc.yml", "config/memory.yml", "docs/ip-readiness.md"],
+        "ips": parse_ip_table(readiness_cn),
+        "ipsEn": parse_ip_table(readiness_en),
+        "generatedFrom": [
+            "config/soc.yml",
+            "config/memory.yml",
+            "docs/cn/ip-readiness.md",
+            "docs/en/ip-readiness.md",
+        ],
     }
-    SITE.mkdir(parents=True, exist_ok=True)
-    (SITE / "data.js").write_text("window.SOC_DATA = " + json.dumps(data, ensure_ascii=False, indent=2) + ";\n")
+
+
+def write_soc_data(root: Path, output: Path) -> Path:
+    data = collect_soc_data(root)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    if output.suffix == ".ts":
+        output.write_text(
+            "export const SOC_DATA = "
+            + json.dumps(data, ensure_ascii=False, indent=2)
+            + " as const\n",
+            encoding="utf-8",
+        )
+    elif output.suffix == ".js":
+        output.write_text(
+            "window.SOC_DATA = " + json.dumps(data, ensure_ascii=False, indent=2) + ";\n",
+            encoding="utf-8",
+        )
+    else:
+        output.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return output
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--output",
+        type=Path,
+        default=ROOT / "dev" / "site" / ".vitepress" / "theme" / "soc-data.ts",
+    )
+    args = parser.parse_args()
+    write_soc_data(ROOT, args.output.resolve())
 
 
 if __name__ == "__main__":

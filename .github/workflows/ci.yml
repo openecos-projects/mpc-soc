@@ -124,6 +124,9 @@ jobs:
       - name: Check Python scripts
         run: python3 -m py_compile scripts/*.py
 
+      - name: Check bilingual documentation
+        run: make -f Makefile.dev docs-check
+
       - name: Check generated SoC package is current
         run: |
           make gen-soc-pkg
@@ -136,7 +139,7 @@ jobs:
         run: make verilate TRACE=0
 
       - name: Run bootrom regression
-        run: make regress OUTPUT=list STOP_ON_FAIL=1 TRACE=0
+        run: make -f Makefile.dev regress OUTPUT=list STOP_ON_FAIL=1 TRACE=0
 
       - name: Check generated outputs stay ignored
         run: |

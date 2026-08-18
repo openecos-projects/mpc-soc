@@ -6,10 +6,12 @@
 
 ```sh
 # 如有需要，先构建软件:
-#   make -C sw BOARD=mpc-soc APP=hello
+#   make sw APP=hello
 make sim MAX_CYCLES=1000
 make wave
 ```
+
+根目录用户入口是 `make doctor`、`make check`、`make sim`、`make trace` 和 `make wave`。
 
 直接入口：
 
