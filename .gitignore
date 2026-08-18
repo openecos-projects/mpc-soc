@@ -24,3 +24,8 @@ sw/bootrom/**/*.txt
 sw/bootrom/**/app.bin
 sw/bootrom/**/app.lds
 sw/bootrom/**/sections.info
+/dev/site/node_modules/
+/dev/site/.vitepress/cache/
+/dev/site/.vitepress/dist/
+/docs/*-qa.md
+/docs/qa/

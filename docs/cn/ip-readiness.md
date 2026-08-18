@@ -1,12 +1,15 @@
 # SoC IP 就绪度说明
 
-本文档说明当前 SoC 已接入 IP 的功能范围、验证状态和使用边界。
+[English](../en/ip-readiness.md)
+
+本文档说明当前 SoC 已接入 IP 的功能范围、验证状态和使用边界。首页的 IP 表从
+本文和 `config/memory.yml` 生成。
 
 状态标签说明：`冒烟通过` 表示该 IP 已完成流片并通过基本功能测试，但尚未完成完整的边界、异常、性能和长期稳定性验证。
 
 ## 当前 SoC 已接入 IP
 
-地址以 `config/memory.yml` 和 `docs/memory-map.md` 为准。
+地址以 `config/memory.yml` 和 [地址空间](memory-map.md) 为准。
 
 | IP | 主要功能 | 地址/实例 | 状态 | 已有测试 | 主要未覆盖范围 |
 | --- | --- | --- | --- | --- | --- |

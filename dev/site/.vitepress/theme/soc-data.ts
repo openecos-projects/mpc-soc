@@ -1,4 +1,4 @@
-window.SOC_DATA = {
+export const SOC_DATA = {
   "soc": {
     "name": "mpc-soc",
     "top": "asicTop",
@@ -299,9 +299,156 @@ window.SOC_DATA = {
       "risk": "真实时序、带宽、刷新、温度/电压、长期压力"
     }
   ],
+  "ipsEn": [
+    {
+      "name": "CPU core",
+      "function": "Runs RISC-V software, issues AXI traffic, and takes interrupts",
+      "address": "core slot 0, default CORE_SEL=0",
+      "status": "smoke-pass",
+      "tests": "SoC boot, basic software",
+      "risk": "instruction completeness, exceptions/privilege, performance, long runs"
+    },
+    {
+      "name": "CLINT",
+      "function": "Software interrupt, timer interrupt, mtime/mtimecmp",
+      "address": "0x0201_0000",
+      "status": "smoke-pass",
+      "tests": "clint",
+      "risk": "multi-hart semantics, races, timing corners"
+    },
+    {
+      "name": "PLIC",
+      "function": "External interrupt aggregation, priority, and delivery",
+      "address": "0x0c00_0000",
+      "status": "smoke-pass",
+      "tests": "plic",
+      "risk": "concurrent sources, priority corners, stress"
+    },
+    {
+      "name": "UART0 / UART16550",
+      "function": "Console UART, 16550 registers and FIFO",
+      "address": "0x1000_0000",
+      "status": "smoke-pass",
+      "tests": "uart_poll, UART input",
+      "risk": "baud corners, overflow, error frames, sustained traffic"
+    },
+    {
+      "name": "SPI",
+      "function": "SPI flash interface and XIP",
+      "address": "Flash: 0x3000_0000",
+      "status": "smoke-pass",
+      "tests": "flash_xip, boot fetch",
+      "risk": "real-device timing, erase/program, power-loss, compatibility"
+    },
+    {
+      "name": "RCU",
+      "function": "Clock select, divide, and reset control",
+      "address": "0x1000_2000",
+      "status": "smoke-pass",
+      "tests": "rcu",
+      "risk": "dynamic switching, reset timing, clock gating"
+    },
+    {
+      "name": "RTC",
+      "function": "Real-time clock count",
+      "address": "0x1000_4000",
+      "status": "smoke-pass",
+      "tests": "rtc",
+      "risk": "calibration, low power, CDC, long-term drift"
+    },
+    {
+      "name": "WDG",
+      "function": "Watchdog count, timeout, and reset",
+      "address": "0x1000_5000",
+      "status": "smoke-pass",
+      "tests": "wdg",
+      "risk": "reset races, clock faults, system recovery"
+    },
+    {
+      "name": "ArchInfo",
+      "function": "Architecture and chip information registers",
+      "address": "0x1000_6000",
+      "status": "smoke-pass",
+      "tests": "archinfo",
+      "risk": "configuration compatibility, full read-only checks"
+    },
+    {
+      "name": "GPIO",
+      "function": "GPIO input, output, and direction",
+      "address": "0x1010_0000",
+      "status": "smoke-pass",
+      "tests": "gpio, gpio_toggle",
+      "risk": "direction changes, edges/interrupts, pad electricals"
+    },
+    {
+      "name": "UART1",
+      "function": "APB4 UART transmit and receive",
+      "address": "0x1010_3000",
+      "status": "smoke-pass",
+      "tests": "uart1",
+      "risk": "corners, errors, and interrupt cases"
+    },
+    {
+      "name": "I2C",
+      "function": "I2C host controller and open-drain interface",
+      "address": "0x1010_4000",
+      "status": "smoke-pass",
+      "tests": "i2c",
+      "risk": "multi-slave, arbitration, ACK/NACK, bus recovery"
+    },
+    {
+      "name": "PWM",
+      "function": "Four PWM outputs",
+      "address": "0x1010_6000",
+      "status": "smoke-pass",
+      "tests": "pwm",
+      "risk": "frequency/duty corners, live reconfig, jitter"
+    },
+    {
+      "name": "Timer",
+      "function": "APB timers, four instances",
+      "address": "0x1010_8000 - 0x1010_b000",
+      "status": "smoke-pass",
+      "tests": "timer, timer_multi",
+      "risk": "overflow, restart, concurrency, interrupt corners"
+    },
+    {
+      "name": "QSPI",
+      "function": "Quad SPI controller",
+      "address": "0x1020_0000",
+      "status": "smoke-pass",
+      "tests": "qspi",
+      "risk": "real transfers, mode/clock, flash compatibility"
+    },
+    {
+      "name": "RNG",
+      "function": "Pseudo-random generation",
+      "address": "0x1030_0000",
+      "status": "smoke-pass",
+      "tests": "rng",
+      "risk": "statistics, seed and period; not a secure RNG"
+    },
+    {
+      "name": "CRC",
+      "function": "CRC8/CRC16/CRC32 calculation",
+      "address": "0x1030_1000",
+      "status": "smoke-pass",
+      "tests": "crc",
+      "risk": "full parameter combinations, streaming data, edge lengths"
+    },
+    {
+      "name": "PSRAM controller",
+      "function": "Three PSRAM chips, 24 MiB total",
+      "address": "0xc000_0000",
+      "status": "smoke-pass",
+      "tests": "psram_basic",
+      "risk": "real timing, bandwidth, refresh, PVT, long stress"
+    }
+  ],
   "generatedFrom": [
     "config/soc.yml",
     "config/memory.yml",
-    "docs/ip-readiness.md"
+    "docs/cn/ip-readiness.md",
+    "docs/en/ip-readiness.md"
   ]
-};
+} as const

@@ -2,6 +2,12 @@
 
 本文件记录 `mpc-soc` SoC 交付版本。版本说明以中文为第一语言；英文 README 仅作为辅助入口。
 
+## Unreleased
+
+- 文档迁到 `docs/cn/` 与 `docs/en/`，根 README 改为中文优先的用户入口。
+- 用户命令收敛到 `make doctor/check/sim/trace/wave`，维护者回归和文档站改走 `Makefile.dev`。
+- 文档站改为 VitePress 工作台，并继续展示 SoC 规格、IP 状态和地址空间。
+
 ## 0.0.1 - 2026-07-16
 
 ### 版本定位

@@ -27,19 +27,19 @@ uart:
 运行单个已归档 bootrom：
 
 ```sh
-make bootrom-sim CASE=asm_hello
+make -f Makefile.dev bootrom-sim CASE=asm_hello
 ```
 
 运行全部已归档 bootrom 用例：
 
 ```sh
-make regress
+make -f Makefile.dev regress
 ```
 
 运行选定用例：
 
 ```sh
-make regress CASES="asm_hello"
+make -f Makefile.dev regress CASES="asm_hello"
 ```
 
 当前已归档用例：
