@@ -4,39 +4,58 @@
 
 This guide is for users who want to attach their own RISC-V core to `mpc-soc`
 and run SoC-level simulation. Provide the core RTL and a wrapper, then connect
-it to an existing slot. You do not need to change peripherals, the software
-BSP, or maintainer regression scripts.
+it to an existing slot. You do not need to change peripherals, the fixed
+software image, or maintainer regression scripts.
 
 Worked examples:
 
 - [Hello smoke](examples/hello.md): run the default core to a console pass
-- [PSRAM access](examples/psram.md): check the external memory window
 
-## 1. Check the tools
+## 1. Get the User Kit
 
-You need Python 3, GNU Make, a C++ compiler, and Verilator. Verilator 5.050 is
-the recommended baseline. Software builds also need `riscv64-unknown-elf-gcc`.
+Regular users should not start from the development `main` branch. Clone the
+user release that CI has independently built and simulated, then create your
+own development branch:
+
+```sh
+git clone --branch release/user-kit --single-branch \
+  https://github.com/openecos-projects/mpc-soc.git my-mpc-soc
+cd my-mpc-soc
+git switch -c user/<name>
+```
+
+CI force-updates the upstream `release/user-kit` branch, so do not develop on
+it directly. See [Getting and using the User Kit](user-kit.md) when pushing to
+your own repository, updating the release, or checking the delivery boundary.
+
+## 2. Check the tools
+
+You need Python 3.9+, PyYAML, GNU Make, a C++ compiler, and Verilator 5.050.
+The current User Kit requires this exact version. Fixed-image simulation does
+not require a RISC-V toolchain or software SDK.
 
 ```sh
 make doctor
 ```
 
-## 2. Run the default SoC first
+## 3. Run the default SoC first
 
 Do not start by editing RTL. Confirm the repository simulates with the default
 `CORE_SEL=0`:
 
 ```sh
 make check
+make lint
 make trace
 make wave
 ```
 
 - `check` runs the archived `hello` bootrom smoke
-- `trace` rebuilds `hello` and writes a waveform
+- `lint` checks the current RTL/file list and reports structural warnings hidden by simulation compatibility mode
+- `trace` reruns the fixed `hello` image and writes a waveform
 - `wave` opens the latest `TRACE=1` FST in GTKWave
 
-## 3. Choose a core slot
+## 4. Choose a core slot
 
 The SoC selects the enabled core with `CORE_SEL`:
 
@@ -48,7 +67,7 @@ The lowest-risk path is to replace the wrapper on slot 0 or slot 1. To use slot
 2 or above, remove the matching tie-off in `asic_top.v`, instantiate your
 wrapper, and run with `CORE_SEL=<slot>`.
 
-## 4. Follow the wrapper contract
+## 5. Follow the wrapper contract
 
 Each core wrapper must expose:
 
@@ -80,7 +99,7 @@ hw/ip/core/npc_wrapper_template.sv
 Copy it, rename the module, and replace the idle master assignments with your
 core instance.
 
-## 5. Connect the RTL
+## 6. Connect the RTL
 
 1. Place the core RTL and wrapper under `hw/ip/core/` or another in-repo path.
 2. Add the new files to `hw/filelist/verilator.f`. The current core entries are:
@@ -95,36 +114,35 @@ Required sources must appear before `hw/soc/top/asic_top.v`.
    `_cpu_<slot>_io_master_*` plus `_cmp_io_interrupt_out_<slot>`.
 4. Tie off unused optional slave ports in the wrapper or at the instance.
 
-## 6. Validate your core
+## 7. Validate your core
 
 ```sh
-make check CASE=hello CORE_SEL=<slot>
-make sim APP=hello CORE_SEL=<slot> TRACE=0 MAX_CYCLES=1000
+make check CORE_SEL=<slot>
+make lint
+make sim CORE_SEL=<slot> TRACE=0
 ```
 
-After the smoke passes, run the full regression from the maintainer entry:
+After the smoke passes, deliver the core changes for the maintainer to run the
+full regression in the development repository. `release/user-kit` does not
+contain maintainer entry points.
 
-```sh
-make -f Makefile.dev regress CORE_SEL=<slot> OUTPUT=list TRACE=0
-make -f Makefile.dev clean-build
-```
+## 8. User-editable content
 
-## 7. Build or reuse software
+This release supports users writing and delivering:
 
-The default software flow builds `sw/ecos/templates/<app>/` into
-`build/sw/mpc-soc/<app>/`. Simulation consumes a raw `.bin` image, not an ELF.
+- core RTL
+- the AXI wrapper
+- required entries in `hw/filelist/verilator.f`
+- required connections for the selected core slot
 
-```sh
-make sw APP=hello
-make sim APP=hello
-```
-
-See the [software flow](software.md) for the BSP and SDK details.
+The SoC address map, peripheral RTL, fixed `hello` image, software, and drivers
+are outside the supported user modification surface. Users who change them are
+responsible for their own integration and validation.
 
 ## Common mistakes
 
 - Changing RTL without updating `hw/filelist/verilator.f`
-- Passing an ELF to the simulator as a flash image
+- Replacing or deleting the bundled fixed `hello` image
 - Using a `CORE_SEL` whose slot is still tied off
 - Committing generated files under `build/`
 

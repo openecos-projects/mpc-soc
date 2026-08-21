@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import argparse
+import re
 import subprocess
 import sys
 import time
@@ -10,6 +11,31 @@ try:
     import yaml
 except ImportError:
     yaml = None
+
+
+SAFE_CASE_NAME = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]*\Z")
+
+
+def validate_case_name(value: str, source: str = "case name") -> str:
+    if not SAFE_CASE_NAME.fullmatch(value):
+        raise ValueError(f"invalid {source}: {value!r}; use only letters, digits, '.', '_' or '-'")
+    return value
+
+
+def resolve_case_image(case_dir: Path, image_name: str) -> Path:
+    image_path = Path(image_name)
+    if image_path.is_absolute() or len(image_path.parts) != 1 or image_path.name in ("", ".", ".."):
+        raise ValueError(f"image must be a file directly under {case_dir}: {image_name!r}")
+    if image_path.suffix != ".bin":
+        raise ValueError(f"boot image must use the .bin suffix: {image_name!r}")
+
+    case_root = case_dir.resolve()
+    resolved = (case_root / image_path).resolve()
+    if resolved.parent != case_root:
+        raise ValueError(f"boot image resolves outside its case directory: {image_name!r}")
+    if not resolved.is_file():
+        raise FileNotFoundError(f"boot image not found: {resolved}")
+    return resolved
 
 
 def load_case_config(case_dir: Path) -> dict:
@@ -29,6 +55,8 @@ def load_case_config(case_dir: Path) -> dict:
     with config_path.open("r", encoding="utf-8") as file:
         config = yaml.safe_load(file) or {}
 
+    if not isinstance(config, dict):
+        raise ValueError(f"{config_path} must contain a YAML mapping")
     config.setdefault("name", case_dir.name)
     return config
 
@@ -38,15 +66,29 @@ def split_cases(value: str) -> list[str]:
 
 
 def discover_cases(bootrom_dir: Path, selected: str) -> list[Path]:
+    bootrom_dir = bootrom_dir.resolve()
     if selected:
-        return [bootrom_dir / case for case in split_cases(selected)]
+        cases = []
+        for case in split_cases(selected):
+            validate_case_name(case)
+            case_dir = (bootrom_dir / case).resolve()
+            if case_dir.parent != bootrom_dir:
+                raise ValueError(f"case resolves outside bootrom directory: {case!r}")
+            if not case_dir.is_dir():
+                raise FileNotFoundError(f"bootrom case not found: {case}")
+            cases.append(case_dir)
+        return cases
 
     cases = []
     for path in sorted(bootrom_dir.iterdir()):
         if not path.is_dir():
             continue
-        if (path / "test.yml").exists() or list(path.glob("*.bin")):
-            cases.append(path)
+        validate_case_name(path.name, "case directory name")
+        case_dir = path.resolve()
+        if case_dir.parent != bootrom_dir:
+            raise ValueError(f"case directory resolves outside bootrom directory: {path}")
+        if (case_dir / "test.yml").exists() or list(case_dir.glob("*.bin")):
+            cases.append(case_dir)
     return cases
 
 
@@ -77,15 +119,14 @@ def make_run_log_dir(root: Path) -> Path:
 def run_case(args: argparse.Namespace, case_dir: Path) -> tuple[bool, Path, float]:
     started_at = time.monotonic()
     config = load_case_config(case_dir)
-    case_name = str(config.get("name") or case_dir.name)
-    image = case_dir / str(config.get("image", "main-asm.bin"))
-    if not image.exists():
-        raise FileNotFoundError(f"{case_name}: boot image not found: {image}")
+    case_name = validate_case_name(str(config.get("name") or case_dir.name), "test.yml name")
+    image = resolve_case_image(case_dir, str(config.get("image", "main-asm.bin")))
 
     uart = config.get("uart") or {}
     max_cycles = args.max_cycles if args.max_cycles is not None else config.get("max_cycles", 500000)
     trace = args.trace if args.trace is not None else int(bool(config.get("trace", False)))
     core_sel = args.core_sel if args.core_sel is not None else config.get("core_sel", 0)
+    allow_timeout = args.allow_timeout if args.allow_timeout is not None else bool(config.get("allow_timeout", False))
     uart_input = args.uart_input if args.uart_input is not None else uart.get("input", "")
     uart_start_cycle = args.uart_start_cycle if args.uart_start_cycle is not None else uart.get("start_cycle", 10000)
     uart_stop_text = args.uart_stop_text if args.uart_stop_text is not None else uart.get("stop_text", "")
@@ -103,8 +144,8 @@ def run_case(args: argparse.Namespace, case_dir: Path) -> tuple[bool, Path, floa
         gpio_expect = ",".join(str(item) for item in gpio_expect)
 
     log_dir = args.log_dir
-    log_path = log_dir / f"{case_name}.log"
-    make_log_path = log_dir / f"{case_name}.make.log"
+    log_path = log_dir / f"{case_dir.name}.log"
+    make_log_path = log_dir / f"{case_dir.name}.make.log"
 
     command = [
         "make",
@@ -112,10 +153,11 @@ def run_case(args: argparse.Namespace, case_dir: Path) -> tuple[bool, Path, floa
         str(args.root / "dv" / "verilator"),
         "sim",
         make_arg("APP", case_name),
-        make_arg("BOOTROM_IMAGE", str(image.resolve())),
+        make_arg("BOOTROM_IMAGE", str(image)),
         make_arg("MAX_CYCLES", max_cycles),
         make_arg("TRACE", trace),
         make_arg("CORE_SEL", core_sel),
+        make_arg("ALLOW_TIMEOUT", int(allow_timeout)),
         make_arg("SIM_LOG", str(log_path.resolve())),
     ]
 
@@ -167,6 +209,7 @@ def main() -> int:
     parser.add_argument("--max-cycles", type=int, default=None)
     parser.add_argument("--trace", type=int, choices=(0, 1), default=None)
     parser.add_argument("--core-sel", type=int, default=None)
+    parser.add_argument("--allow-timeout", action=argparse.BooleanOptionalAction, default=None)
     parser.add_argument("--uart-input", default=None)
     parser.add_argument("--uart-start-cycle", type=int, default=None)
     parser.add_argument("--uart-stop-text", default=None)
@@ -182,7 +225,6 @@ def main() -> int:
     args = parser.parse_args()
 
     args.root = args.root.resolve()
-    args.log_dir = make_run_log_dir(args.root)
     bootrom_dir = args.bootrom_dir or (args.root / "sw" / "bootrom")
     bootrom_dir = bootrom_dir.resolve()
 
@@ -190,10 +232,15 @@ def main() -> int:
         print(f"ERROR: bootrom directory not found: {bootrom_dir}", file=sys.stderr)
         return 2
 
-    cases = discover_cases(bootrom_dir, args.cases)
+    try:
+        cases = discover_cases(bootrom_dir, args.cases)
+    except (FileNotFoundError, ValueError) as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 2
     if not cases:
         print(f"ERROR: no bootrom cases found under {bootrom_dir}", file=sys.stderr)
         return 2
+    args.log_dir = make_run_log_dir(args.root)
 
     run_started_at = time.monotonic()
     if args.output == "list":

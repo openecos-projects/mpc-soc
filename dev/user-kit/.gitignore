@@ -1,0 +1,11 @@
+/build/
+
+*.fst
+*.log
+*.map
+*.o
+*.pyc
+
+__pycache__/
+obj_dir/
+third_party/ecos-sdk/

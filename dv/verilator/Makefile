@@ -6,6 +6,7 @@ BOARD ?= mpc-soc
 APP ?= hello
 TRACE ?= 1
 MAX_CYCLES ?= 200000
+ALLOW_TIMEOUT ?= 0
 CORE_SEL ?= 0
 FAST_PSRAM ?= 1
 UART_INPUT ?=
@@ -20,6 +21,7 @@ GPIO_DRIVE ?=
 GPIO_EXPECT ?=
 GPIO_EXPECT_MASK ?=
 EXTRA_VERILATOR_FLAGS ?=
+EXTRA_LINT_FLAGS ?=
 
 BUILD_DIR ?= $(SOC_ROOT)/build/verilator
 OBJ_DIR := $(BUILD_DIR)/obj_dir_$(TOP)
@@ -27,58 +29,62 @@ WAVE_DIR := $(SOC_ROOT)/build/wave
 LOG_DIR := $(SOC_ROOT)/build/log
 RTL_FILELIST ?= $(SOC_ROOT)/hw/filelist/verilator.f
 SOC_PKG ?= $(SOC_ROOT)/hw/include/soc_pkg.sv
-BOOTROM_DIR ?= $(SOC_ROOT)/build/sw/$(BOARD)/$(APP)
-DEFAULT_BOOTROM_IMAGE = $(shell images=$$(find "$(BOOTROM_DIR)" -maxdepth 1 -type f -name '*.bin' 2>/dev/null | sort); preferred=$$(printf '%s\n' "$$images" | grep -v '/app\.bin$$' | head -n 1); if [ -n "$$preferred" ]; then printf '%s' "$$preferred"; else printf '%s\n' "$$images" | head -n 1; fi)
-BOOTROM_IMAGE ?= $(DEFAULT_BOOTROM_IMAGE)
+BOOTROM_IMAGE ?= $(SOC_ROOT)/sw/bootrom/hello/retrosoc_fw.bin
 SW_IMAGE ?= $(BOOTROM_IMAGE)
 SIM_BIN := $(OBJ_DIR)/V$(TOP)
 BUILD_CONFIG := $(OBJ_DIR)/.build-config
 WAVE_FILE ?= $(WAVE_DIR)/$(TOP).fst
 WAVE_VIEW ?= $(CURDIR)/$(TOP).gtkw
 SIM_LOG ?= $(LOG_DIR)/$(TOP)-$(notdir $(basename $(SW_IMAGE))).log
-RUN_ARGS ?= +bootrom=$(SW_IMAGE) +wave=$(WAVE_FILE) +max-cycles=$(MAX_CYCLES) +core-sel=$(CORE_SEL) $(if $(UART_INPUT),'+uart-in=$(UART_INPUT)' +uart-start-cycle=$(UART_START_CYCLE),) $(if $(UART_STOP_TEXT),'+uart-stop-text=$(UART_STOP_TEXT)',) $(if $(UART_FAIL_TEXT),'+uart-fail-text=$(UART_FAIL_TEXT)',) $(if $(UART1_EXPECT),'+uart1-expect=$(UART1_EXPECT)' +uart1-bit-cycles=$(UART1_BIT_CYCLES) $(if $(UART1_ARM_TEXT),'+uart1-arm-text=$(UART1_ARM_TEXT)',),) $(if $(GPIO_IN),+gpio-in=$(GPIO_IN),) $(if $(GPIO_DRIVE),+gpio-drive=$(GPIO_DRIVE),) $(if $(GPIO_EXPECT),+gpio-expect=$(GPIO_EXPECT),) $(if $(GPIO_EXPECT_MASK),+gpio-expect-mask=$(GPIO_EXPECT_MASK),)
+RUN_ARGS ?= +bootrom=$(SW_IMAGE) +wave=$(WAVE_FILE) +max-cycles=$(MAX_CYCLES) +allow-timeout=$(ALLOW_TIMEOUT) +core-sel=$(CORE_SEL) $(if $(UART_INPUT),'+uart-in=$(UART_INPUT)' +uart-start-cycle=$(UART_START_CYCLE),) $(if $(UART_STOP_TEXT),'+uart-stop-text=$(UART_STOP_TEXT)',) $(if $(UART_FAIL_TEXT),'+uart-fail-text=$(UART_FAIL_TEXT)',) $(if $(UART1_EXPECT),'+uart1-expect=$(UART1_EXPECT)' +uart1-bit-cycles=$(UART1_BIT_CYCLES) $(if $(UART1_ARM_TEXT),'+uart1-arm-text=$(UART1_ARM_TEXT)',),) $(if $(GPIO_IN),+gpio-in=$(GPIO_IN),) $(if $(GPIO_DRIVE),+gpio-drive=$(GPIO_DRIVE),) $(if $(GPIO_EXPECT),+gpio-expect=$(GPIO_EXPECT),) $(if $(GPIO_EXPECT_MASK),+gpio-expect-mask=$(GPIO_EXPECT_MASK),)
 CLR_RESET := \033[0m
 CLR_INFO := \033[1;34m
 CLR_STEP := \033[1;32m
 CLR_ERR := \033[1;31m
 
 VERILATOR_PROCASSINIT_FLAG = $(shell tmp=$$(mktemp /tmp/verilator-probe.XXXXXX.v); printf 'module m; endmodule\n' > $$tmp; if $(VERILATOR) -Wno-PROCASSINIT --lint-only $$tmp >/dev/null 2>&1; then printf '%s' '-Wno-PROCASSINIT'; fi; rm -f $$tmp)
-VERILATOR_FLAGS ?= -Wall -Wno-UNUSEDPARAM -Wno-UNUSEDSIGNAL -Wno-DECLFILENAME -Wno-PINCONNECTEMPTY -Wno-TIMESCALEMOD -Wno-DEFPARAM -Wno-BLKSEQ $(VERILATOR_PROCASSINIT_FLAG) -Wno-CASEINCOMPLETE -Wno-UNOPTFLAT -Wno-SYNCASYNCNET -Wno-GENUNNAMED -DFAST_FLASH --timescale-override 1ns/1ns --timing --cc --exe --build
+VERILATOR_COMMON_WARNING_FLAGS := -Wall -Wno-UNUSEDPARAM -Wno-UNUSEDSIGNAL -Wno-DECLFILENAME -Wno-PINCONNECTEMPTY -Wno-TIMESCALEMOD -Wno-DEFPARAM -Wno-BLKSEQ $(VERILATOR_PROCASSINIT_FLAG) -Wno-GENUNNAMED
+VERILATOR_SIM_WARNING_FLAGS := -Wno-CASEINCOMPLETE -Wno-UNOPTFLAT -Wno-SYNCASYNCNET
+VERILATOR_COMMON_FLAGS := -DFAST_FLASH --timescale-override 1ns/1ns --timing
+VERILATOR_SIM_FLAGS ?= $(VERILATOR_COMMON_WARNING_FLAGS) $(VERILATOR_SIM_WARNING_FLAGS) $(VERILATOR_COMMON_FLAGS) --cc --exe --build
+VERILATOR_LINT_FLAGS ?= $(VERILATOR_COMMON_WARNING_FLAGS) -Wno-fatal $(VERILATOR_COMMON_FLAGS) --lint-only
 ifeq ($(FAST_PSRAM),1)
-VERILATOR_FLAGS += -DFAST_PSRAM
+VERILATOR_SIM_FLAGS += -DFAST_PSRAM
+VERILATOR_LINT_FLAGS += -DFAST_PSRAM
 endif
-VERILATOR_FLAGS += $(EXTRA_VERILATOR_FLAGS)
-VERILATOR_FLAGS += --Mdir $(OBJ_DIR) --top-module $(TOP)
-VERILATOR_FLAGS += -CFLAGS "-std=c++17 -O2 -DSIM_TOP_HEADER=\\\"V$(TOP).h\\\" -DSIM_TOP_CLASS=V$(TOP)"
+VERILATOR_SIM_FLAGS += $(EXTRA_VERILATOR_FLAGS)
+VERILATOR_SIM_FLAGS += --Mdir $(OBJ_DIR) --top-module $(TOP)
+VERILATOR_SIM_FLAGS += -CFLAGS "-std=c++17 -O2 -DSIM_TOP_HEADER=\\\"V$(TOP).h\\\" -DSIM_TOP_CLASS=V$(TOP)"
+VERILATOR_LINT_FLAGS += $(EXTRA_LINT_FLAGS) --top-module $(TOP)
 
 RTL_SOURCES := $(shell find $(SOC_ROOT)/hw -type f \( -name '*.v' -o -name '*.sv' -o -name '*.vh' -o -name '*.svh' -o -name '*.f' \))
 HARNESS_SOURCES := $(shell find $(CURDIR)/csrc -type f \( -name '*.c' -o -name '*.cc' -o -name '*.cpp' -o -name '*.h' -o -name '*.hpp' \))
-SOC_PKG_INPUTS := $(SOC_ROOT)/config/memory.yml $(SOC_ROOT)/scripts/gen_soc_pkg.py
 
 ifeq ($(TOP),asicTop)
-VERILATOR_FLAGS += -CFLAGS "-DSIM_TOP_ASICTOP=1"
+VERILATOR_SIM_FLAGS += -CFLAGS "-DSIM_TOP_ASICTOP=1"
 endif
 ifeq ($(TOP),SimTop)
-VERILATOR_FLAGS += -CFLAGS "-DSIM_TOP_SIMTOP=1"
+VERILATOR_SIM_FLAGS += -CFLAGS "-DSIM_TOP_SIMTOP=1"
 endif
 
 ifeq ($(TRACE),1)
-VERILATOR_FLAGS += --trace-fst -CFLAGS "-DVM_TRACE=1"
+VERILATOR_SIM_FLAGS += --trace-fst -CFLAGS "-DVM_TRACE=1"
 endif
 
-.PHONY: help check-tools check-image gen-soc-pkg verilate sim wave clean FORCE
+.PHONY: help check-tools check-image check-soc-pkg lint verilate sim wave clean FORCE
 
 help:
 	@printf "$(CLR_INFO)Verilator simulation entry$(CLR_RESET)\n"
+	@printf "  make -C dv/verilator lint [TOP=SimTop]\n"
 	@printf "  make -C dv/verilator verilate [TOP=SimTop]\n"
 	@printf "  make -C dv/verilator sim [BOOTROM_IMAGE=<image.bin>] [MAX_CYCLES=200000] [CORE_SEL=0] [FAST_PSRAM=1]\n"
 	@printf "  make -C dv/verilator wave\n\n"
 	@printf "$(CLR_INFO)Inputs:$(CLR_RESET)\n"
 	@printf "  RTL_FILELIST=$(RTL_FILELIST)\n"
 	@printf "  SOC_PKG=$(SOC_PKG)\n"
-	@printf "  BOOTROM_DIR=$(BOOTROM_DIR)\n"
 	@printf "  SW_IMAGE=$(SW_IMAGE)\n"
 	@printf "  CORE_SEL=$(CORE_SEL)\n"
+	@printf "  ALLOW_TIMEOUT=$(ALLOW_TIMEOUT)\n"
 	@printf "  FAST_PSRAM=$(FAST_PSRAM)\n"
 	@printf "  UART_INPUT=$(UART_INPUT)\n"
 	@printf "  UART_STOP_TEXT=$(UART_STOP_TEXT)\n"
@@ -100,10 +106,8 @@ check-tools:
 check-image:
 	@test -f $(SW_IMAGE) || (printf "$(CLR_ERR)ERROR: bootrom image not found: $(SW_IMAGE)$(CLR_RESET)\n"; printf "$(CLR_ERR)Place a raw flash image at $(BOOTROM_IMAGE) or pass BOOTROM_IMAGE=<file>$(CLR_RESET)\n"; exit 2)
 
-gen-soc-pkg: $(SOC_PKG)
-
-$(SOC_PKG): $(SOC_PKG_INPUTS)
-	@python3 $(SOC_ROOT)/scripts/gen_soc_pkg.py --output $(SOC_PKG)
+check-soc-pkg:
+	@test -f $(SOC_PKG) || (printf "$(CLR_ERR)ERROR: fixed SoC package not found: $(SOC_PKG)$(CLR_RESET)\n"; exit 2)
 
 FORCE:
 
@@ -115,15 +119,18 @@ $(BUILD_CONFIG): FORCE | $(BUILD_DIR)
 		printf '%s\n' 'TRACE=$(TRACE)'; \
 		printf '%s\n' 'FAST_PSRAM=$(FAST_PSRAM)'; \
 		printf '%s\n' 'RTL_FILELIST=$(RTL_FILELIST)'; \
-		printf '%s\n' 'VERILATOR_FLAGS=$(VERILATOR_FLAGS)'; \
+		printf '%s\n' 'VERILATOR_SIM_FLAGS=$(VERILATOR_SIM_FLAGS)'; \
 	} > $@.tmp
 	@cmp -s $@.tmp $@ || mv $@.tmp $@
 	@rm -f $@.tmp
 
 $(SIM_BIN): $(BUILD_CONFIG) $(RTL_SOURCES) $(HARNESS_SOURCES) $(SOC_PKG) | $(BUILD_DIR) $(WAVE_DIR) $(LOG_DIR)
-	@$(VERILATOR) $(VERILATOR_FLAGS) -f $(RTL_FILELIST) $(CURDIR)/csrc/sim_main.cpp
+	@$(VERILATOR) $(VERILATOR_SIM_FLAGS) -f $(RTL_FILELIST) $(CURDIR)/csrc/sim_main.cpp
 
-verilate: check-tools gen-soc-pkg $(SIM_BIN)
+lint: check-tools check-soc-pkg
+	@$(VERILATOR) $(VERILATOR_LINT_FLAGS) -f $(RTL_FILELIST)
+
+verilate: check-tools check-soc-pkg $(SIM_BIN)
 
 sim: check-image verilate
 	@printf "$(CLR_STEP)Running $(SIM_BIN)$(CLR_RESET)\n"

@@ -35,6 +35,13 @@ std::uint32_t gpio_expect_mask = 0xf;
 std::size_t gpio_expect_index = 0;
 bool gpio_expect_matched = false;
 
+enum class ExitReason {
+  StopConditionMatched,
+  FinishRequested,
+  FailureObserved,
+  CycleLimitReached,
+};
+
 std::string plusarg_value(const char* prefix, int argc, char** argv) {
   const std::string key(prefix);
   for (int index = 1; index < argc; ++index) {
@@ -400,6 +407,7 @@ int main(int argc, char** argv) {
   uart_fail_text = plusarg_value("+uart-fail-text=", argc, argv);
   const std::uint64_t max_cycles = plusarg_u64("+max-cycles=", DEFAULT_MAX_CYCLES, argc, argv);
   const auto core_sel = static_cast<std::uint32_t>(plusarg_u64("+core-sel=", 0, argc, argv));
+  const bool allow_timeout = plusarg_u64("+allow-timeout=", 0, argc, argv) != 0;
   const std::uint64_t uart_start_cycle = plusarg_u64("+uart-start-cycle=", 10000, argc, argv);
   const std::uint64_t uart1_bit_cycles = plusarg_u64("+uart1-bit-cycles=", 1, argc, argv);
   const auto gpio_in = static_cast<std::uint32_t>(plusarg_u64("+gpio-in=", 0, argc, argv));
@@ -418,6 +426,9 @@ int main(int argc, char** argv) {
   }
   std::cout << "Max cycles: " << max_cycles << '\n';
   std::cout << "Core select: " << (core_sel & 0xfU) << '\n';
+  if (allow_timeout) {
+    std::cout << "Timeout policy: allow cycle-limit completion without pass conditions\n";
+  }
   if (!uart_input.empty()) {
     std::cout << "UART input: " << uart_input << " (start cycle " << uart_start_cycle << ")\n";
   }
@@ -457,10 +468,12 @@ int main(int argc, char** argv) {
 #endif
 
   top->reset = 1;
-  for (std::uint64_t cycle = 0; cycle < max_cycles && !context->gotFinish() &&
-                                !all_stop_conditions_matched(uart1_wave) && !uart_fail_matched &&
-                                !uart1_wave.failed();
-       ++cycle) {
+  std::uint64_t cycles_executed = 0;
+  for (; cycles_executed < max_cycles && !context->gotFinish() &&
+         !all_stop_conditions_matched(uart1_wave) && !uart_fail_matched &&
+         !uart1_wave.failed();
+       ++cycles_executed) {
+    const auto cycle = cycles_executed;
     drive_static_inputs(top.get(), uart_rx.level(cycle), core_sel);
     drive_gpio_inputs(top.get(), gpio_in, gpio_drive);
     top->clock = 0;
@@ -495,6 +508,15 @@ int main(int argc, char** argv) {
   }
 #endif
 
+  ExitReason exit_reason = ExitReason::CycleLimitReached;
+  if (uart_fail_matched || uart1_wave.failed()) {
+    exit_reason = ExitReason::FailureObserved;
+  } else if (all_stop_conditions_matched(uart1_wave)) {
+    exit_reason = ExitReason::StopConditionMatched;
+  } else if (context->gotFinish()) {
+    exit_reason = ExitReason::FinishRequested;
+  }
+
   if (!gpio_expect_values.empty() && !gpio_expect_matched) {
     std::cerr << "SIM FAIL: GPIO output sequence stopped at index " << gpio_expect_index
               << " before " << context->time() << " ticks" << '\n';
@@ -522,6 +544,14 @@ int main(int argc, char** argv) {
     return 1;
   }
 
+  const bool has_pass_condition =
+      !uart_stop_text.empty() || !gpio_expect_values.empty() || uart1_wave.enabled();
+  if (exit_reason == ExitReason::CycleLimitReached && (has_pass_condition || !allow_timeout)) {
+    std::cerr << "SIM FAIL: cycle limit reached before an explicit pass condition at "
+              << context->time() << " ticks" << '\n';
+    return 1;
+  }
+
   if (uart1_wave.enabled()) {
     std::cout << "SIM PASS: UART1 TX 8N1 waveform and stop conditions observed at "
               << context->time() << " ticks" << '\n';
@@ -529,8 +559,10 @@ int main(int argc, char** argv) {
     std::cout << "SIM PASS: GPIO output sequence observed at " << context->time() << " ticks" << '\n';
   } else if (!uart_stop_text.empty()) {
     std::cout << "SIM PASS: UART stop text observed at " << context->time() << " ticks" << '\n';
+  } else if (exit_reason == ExitReason::CycleLimitReached) {
+    std::cout << "SIM PASS: allowed cycle limit reached at " << context->time() << " ticks" << '\n';
   } else {
-    std::cout << "SIM PASS: reached " << context->time() << " ticks" << '\n';
+    std::cout << "SIM PASS: simulation finished at " << context->time() << " ticks" << '\n';
   }
   return 0;
 }

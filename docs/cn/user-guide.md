@@ -3,38 +3,55 @@
 [English](../en/user-guide.md)
 
 这份指南面向要把自己的 RISC-V core 接到 `mpc-soc`，并跑通 SoC 级仿真的用户。
-用户只需要准备 core RTL 和 wrapper，按约定接入现有槽位，不必改外设、软件 BSP
-或维护者回归脚本。
+用户只需要准备 core RTL 和 wrapper，按约定接入现有槽位，不必改外设、固定软件
+镜像或维护者回归脚本。
 
 完整示例：
 
 - [Hello 冒烟](examples/hello.md)：默认 core 跑通控制台输出
-- [PSRAM 访问](examples/psram.md)：验证外部存储器窗口
 
-## 1. 检查工具
+## 1. 获取 User Kit
 
-需要 Python 3、GNU Make、C++ 编译器和 Verilator。推荐 Verilator 5.050。
-软件构建还需要 `riscv64-unknown-elf-gcc`。
+普通用户不要从开发分支 `main` 开始。先拉取由 CI 独立构建和仿真验证的用户发行
+分支，再创建自己的开发分支：
+
+```sh
+git clone --branch release/user-kit --single-branch \
+  https://github.com/openecos-projects/mpc-soc.git my-mpc-soc
+cd my-mpc-soc
+git switch -c user/<name>
+```
+
+上游 `release/user-kit` 会被 CI 强制更新，不要直接在该分支长期开发。需要推送到
+自己的仓库、升级发行包或查看交付边界时，参考
+[User Kit 获取与使用](user-kit.md)。
+
+## 2. 检查工具
+
+需要 Python 3.9+、PyYAML、GNU Make、C++ 编译器和 Verilator 5.050。
+当前 User Kit 要求使用该版本。固定镜像仿真不需要 RISC-V 工具链或软件 SDK。
 
 ```sh
 make doctor
 ```
 
-## 2. 先跑通默认 SoC
+## 3. 先跑通默认 SoC
 
 不要先改 RTL。先确认当前仓库在默认 `CORE_SEL=0` 下可以仿真：
 
 ```sh
 make check
+make lint
 make trace
 make wave
 ```
 
 - `check` 运行归档的 `hello` bootrom 冒烟
-- `trace` 重新构建 `hello` 并打开波形
+- `lint` 检查当前 RTL/filelist，并报告仿真兼容模式屏蔽的结构警告
+- `trace` 使用固定 `hello` 镜像重新运行仿真并生成波形
 - `wave` 用 GTKWave 打开最近一次 `TRACE=1` 生成的 FST
 
-## 3. 选择 core 槽位
+## 4. 选择 core 槽位
 
 当前 SoC 通过 `CORE_SEL` 选择启用的 core：
 
@@ -46,7 +63,7 @@ make wave
 若要使用槽位 2 或更高编号，需要在 `asic_top.v` 中移除对应 tie-off，
 例化自己的 wrapper，并使用 `CORE_SEL=<slot>` 运行。
 
-## 4. 按约定写 wrapper
+## 5. 按约定写 wrapper
 
 SoC 期望每个 core wrapper 暴露以下接口：
 
@@ -77,7 +94,7 @@ hw/ip/core/npc_wrapper_template.sv
 
 复制该文件、重命名模块，并用你的 core 例化替换模板中的空闲 master assignment。
 
-## 5. 接入 RTL
+## 6. 接入 RTL
 
 1. 把 core RTL 和 wrapper 放到 `hw/ip/core/` 或其他仓库内目录。
 2. 把新文件加入 `hw/filelist/verilator.f`。现有条目是：
@@ -92,36 +109,33 @@ hw/ip/core/npc_wrapper_template.sv
    `_cmp_io_interrupt_out_<slot>`。
 4. 在 wrapper 内部或例化位置 tie off 未使用的可选 slave 端口。
 
-## 6. 验证自己的 core
+## 7. 验证自己的 core
 
 ```sh
-make check CASE=hello CORE_SEL=<slot>
-make sim APP=hello CORE_SEL=<slot> TRACE=0 MAX_CYCLES=1000
+make check CORE_SEL=<slot>
+make lint
+make sim CORE_SEL=<slot> TRACE=0
 ```
 
-冒烟通过后再跑完整回归。回归属于维护者入口：
+冒烟通过后，把 core 变更交给维护者在开发仓库中运行完整回归。
+`release/user-kit` 不包含维护者入口。
 
-```sh
-make -f Makefile.dev regress CORE_SEL=<slot> OUTPUT=list TRACE=0
-make -f Makefile.dev clean-build
-```
+## 8. 用户可编写内容
 
-## 7. 编写或复用软件
+当前版本允许用户编写和交付：
 
-默认软件流从 `sw/ecos/templates/<app>/` 构建，输出到
-`build/sw/mpc-soc/<app>/`。仿真消费原始 `.bin`，不要传入 ELF。
+- core RTL
+- AXI wrapper
+- `hw/filelist/verilator.f` 中的必要条目
+- 目标 core 槽位的必要连接
 
-```sh
-make sw APP=hello
-make sim APP=hello
-```
-
-更完整的 BSP 和 SDK 说明见 [软件流程](software.md)。
+SoC 地址空间、外设 RTL、固定 `hello` 镜像、软件和驱动不属于支持的用户修改面。
+若用户自行修改这些内容，需要自行承担集成和验证责任。
 
 ## 常见错误
 
 - 改了 RTL 但没更新 `hw/filelist/verilator.f`
-- 把 ELF 当成 flash 镜像传给仿真器
+- 替换或删除发行包中的固定 `hello` 镜像
 - 未启用槽位仍保持 tie-off，却使用了对应 `CORE_SEL`
 - 提交了 `build/` 下的生成产物
 

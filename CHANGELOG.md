@@ -2,11 +2,35 @@
 
 本文件记录 `mpc-soc` SoC 交付版本。版本说明以中文为第一语言；英文 README 仅作为辅助入口。
 
-## Unreleased
+## 0.0.2 - 2026-08-20
 
-- 文档迁到 `docs/cn/` 与 `docs/en/`，根 README 改为中文优先的用户入口。
-- 用户命令收敛到 `make doctor/check/sim/trace/wave`，维护者回归和文档站改走 `Makefile.dev`。
-- 文档站改为 VitePress 工作台，并继续展示 SoC 规格、IP 状态和地址空间。
+### 版本定位
+
+`0.0.2` 首次提供由 CI 生成的独立 User Kit。开发者继续在 `main` 维护完整 SoC、
+软件和回归环境；core 接入用户从 `release/user-kit` 获取精简、已验证的发行环境。
+
+### User Kit
+
+- 用户修改面收敛为 core RTL、AXI wrapper、filelist 和必要的 core 槽位连接。
+- User Kit 只保留固定 `hello` `.bin` 镜像，不提供 ECOS SDK、软件或驱动编译入口。
+- `make check`、`make sim` 和 `make trace` 均使用发行包中的固定镜像。
+- `make lint` 作为独立 RTL/filelist 检查目标，仿真和 lint 目标保持分离。
+- 文档按用户发行边界裁剪，不导出维护者命令、软件流程和其他回归示例。
+
+### 配置与验证
+
+- 当前版本继续使用固化地址空间和 50 MHz 时钟；配置文件不作为用户重定向
+  `asic_top.v` 的入口。
+- 超时仅在测试显式允许时才可通过，已经配置的 UART、GPIO 等通过条件不会被
+  `ALLOW_TIMEOUT` 覆盖。
+- 完整 CI 继续运行默认 `CORE_SEL=0` 和 22 个固定 `.bin` 回归用例。
+
+### 发行机制
+
+- Pull Request 独立导出并验证 User Kit；正式发布只接受仓库自身 `main` push 对应的
+  同一 SHA 完整 CI 成功结果。
+- `release/user-kit` 指向最新版本，每个版本同时创建不可变的
+  `user-kit-v<version>` 标签和 GitHub Release 压缩包。
 
 ## 0.0.1 - 2026-07-16
 

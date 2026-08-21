@@ -1,0 +1,61 @@
+{
+  "files": [
+    "LICENSE",
+    "VERSION",
+    "Makefile",
+    "mk/common.mk",
+    "mk/user.mk",
+    "dv/verilator/Makefile",
+    "dv/verilator/README.md",
+    "dv/verilator/csrc/sim_main.cpp",
+    "scripts/verilator_regress.py"
+  ],
+  "trees": [
+    "config",
+    "hw/common/rtl",
+    "hw/filelist",
+    "hw/include",
+    "hw/ip/archinfo/rtl",
+    "hw/ip/clint/rtl",
+    "hw/ip/core",
+    "hw/ip/crc/rtl",
+    "hw/ip/flash/model",
+    "hw/ip/gpio/rtl",
+    "hw/ip/i2c/rtl",
+    "hw/ip/plic/rtl",
+    "hw/ip/psram/model/esp_psram64h",
+    "hw/ip/pwm/rtl",
+    "hw/ip/rcu/rtl",
+    "hw/ip/rng/rtl",
+    "hw/ip/rtc/rtl",
+    "hw/ip/spi/legacy_apb/rtl",
+    "hw/ip/spi/rtl",
+    "hw/ip/timer/rtl",
+    "hw/ip/uart/rtl",
+    "hw/ip/uart16550/rtl",
+    "hw/ip/wdg/rtl",
+    "hw/soc/top",
+    "sw/bootrom/hello"
+  ],
+  "public_docs": {
+    "manifest": "dev/site-docs.json",
+    "exclude": [
+      "index.md"
+    ]
+  },
+  "overrides": [
+    {
+      "source": "dev/user-kit/README.md",
+      "destination": "README.md"
+    },
+    {
+      "source": "dev/user-kit/README.en.md",
+      "destination": "README.en.md"
+    },
+    {
+      "source": "dev/user-kit/.gitignore",
+      "destination": ".gitignore"
+    }
+  ],
+  "metadata": "SOC_KIT_VERSION"
+}

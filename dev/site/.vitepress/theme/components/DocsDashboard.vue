@@ -8,6 +8,7 @@ import {
   CheckCircle2,
   Cpu,
   FlaskConical,
+  PackageOpen,
   TerminalSquare
 } from '@lucide/vue'
 import { SOC_DATA } from '../soc-data'
@@ -66,12 +67,14 @@ const copy = isEn
 
 const docs = isEn
   ? [
+      { icon: PackageOpen, label: 'Get the User Kit', detail: 'Clone the CI-tested user release', to: `${base}/user-kit` },
       { icon: BookOpen, label: 'User guide', detail: 'Attach a core and run SoC simulation', to: `${base}/user-guide` },
       { icon: Cpu, label: 'Architecture', detail: 'asicTop, SimTop, and the AXI fabric', to: `${base}/architecture` },
       { icon: Box, label: 'Memory map', detail: 'Flash, PSRAM, and peripheral windows', to: `${base}/memory-map` },
       { icon: FlaskConical, label: 'IP readiness', detail: 'Smoke status and verification limits', to: `${base}/ip-readiness` }
     ]
   : [
+      { icon: PackageOpen, label: '获取 User Kit', detail: '拉取经过 CI 验证的用户发行版', to: `${base}/user-kit` },
       { icon: BookOpen, label: '用户接入', detail: '把 core 接到现有槽位并跑仿真', to: `${base}/user-guide` },
       { icon: Cpu, label: '架构说明', detail: 'asicTop、SimTop 与 AXI 互连', to: `${base}/architecture` },
       { icon: Box, label: '地址空间', detail: 'Flash、PSRAM 和外设窗口', to: `${base}/memory-map` },
