@@ -50,7 +50,7 @@
 }
 
 .docs-dashboard {
-  max-width: 1440px;
+  max-width: 1320px;
   margin: 0 auto;
   padding: 48px 32px 80px;
 }
@@ -327,6 +327,11 @@
   border-right: 1px solid var(--vp-c-divider);
 }
 
+.doc-link:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  border-right: 0;
+}
+
 .doc-link > svg:first-child {
   color: var(--vp-c-brand-1);
 }
@@ -474,6 +479,15 @@
 
 .vp-doc :not(pre) > code {
   border: 1px solid var(--vp-c-divider);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.vp-doc p,
+.vp-doc li,
+.vp-doc td,
+.vp-doc th {
+  overflow-wrap: anywhere;
 }
 
 /* A documentation page is narrower than the viewport because it has two rails. */
@@ -539,6 +553,7 @@
 
   .dashboard-grid { grid-template-columns: 1fr; }
   .doc-links { grid-template-columns: 1fr; }
+  .doc-link:last-child:nth-child(odd) { grid-column: auto; }
   .doc-link:nth-child(odd) { border-right: 0; }
 
   .selection-timeline {
@@ -562,8 +577,14 @@
 
 .soc-overview {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 28px;
+  min-width: 0;
   margin-top: 34px;
+}
+
+.soc-overview > div {
+  min-width: 0;
 }
 
 .overview-heading {
@@ -582,6 +603,9 @@
 
 .ip-table-shell {
   overflow: auto;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   border: 1px solid var(--vp-c-divider);
   border-radius: 6px;
   background: var(--vp-c-bg-elv);
@@ -732,6 +756,11 @@
 }
 
 @media (max-width: 760px) {
+  .overview-heading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
   .memory-grid {
     grid-template-columns: 1fr;
   }

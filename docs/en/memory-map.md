@@ -2,9 +2,9 @@
 
 [中文说明](../cn/memory-map.md)
 
-The current map is recorded in `config/memory.yml`, `hw/include/soc_pkg.sv`,
-and `sw/ecos/board.h`. The homepage address cards are generated from the same
-configuration.
+The current map is fixed in `asic_top.v` and mirrored in `config/memory.yml`,
+`hw/include/soc_pkg.sv`, and `sw/ecos/board.h`. The homepage address cards are
+generated from the configuration record.
 
 | Region | Base | Size | Description |
 | --- | ---: | ---: | --- |
@@ -29,5 +29,7 @@ configuration.
 | rng | `0x1030_0000` | `0x0000_1000` | Pseudo-random number generator |
 | crc | `0x1030_1000` | `0x0000_1000` | CRC calculation engine |
 
-Keep the hardware package, software headers, and documentation in sync until
-the generators cover every target.
+This release supports only the fixed addresses in the table. Core integrations
+must use them and must not customize the address space by editing configuration,
+software headers, or `asic_top.v`. Configurable addressing is deferred to a
+later release.

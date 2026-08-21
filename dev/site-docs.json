@@ -1,14 +1,13 @@
 {
   "pages": [
     "index.md",
+    "user-kit.md",
     "user-guide.md",
     "architecture.md",
     "simulation.md",
-    "software.md",
     "memory-map.md",
     "ip-readiness.md",
     "boot-flow.md",
-    "examples/hello.md",
-    "examples/psram.md"
+    "examples/hello.md"
   ]
 }

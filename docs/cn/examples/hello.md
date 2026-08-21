@@ -14,11 +14,7 @@ make trace
 make wave
 ```
 
-`check` 等价于：
-
-```sh
-make -f Makefile.dev bootrom-sim CASE=hello OUTPUT=list TRACE=0
-```
+`check` 和 `trace` 都使用发行包中的固定 `hello` 镜像；后者额外生成 FST 波形。
 
 ## 期望结果
 
@@ -26,5 +22,5 @@ make -f Makefile.dev bootrom-sim CASE=hello OUTPUT=list TRACE=0
 - 日志中出现 UART 停止文本 `done!`
 - `trace` 在 `build/wave/SimTop.fst` 写出非空波形
 
-如果失败，先确认 `make doctor` 通过，并且没有把 ELF 当成 flash 镜像传入。
+如果失败，先确认 `make doctor` 通过，并且固定 `hello` 镜像仍然存在。
 下一步再看 [用户接入指南](../user-guide.md) 接入自己的 core。

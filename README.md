@@ -4,7 +4,7 @@
 
 [![CI](https://github.com/openecos-projects/mpc-soc/actions/workflows/ci.yml/badge.svg)](https://github.com/openecos-projects/mpc-soc/actions/workflows/ci.yml)
 
-当前版本：`0.0.1`。版本说明见 [CHANGELOG.md](CHANGELOG.md)。
+当前版本：`0.0.2`。版本说明见 [CHANGELOG.md](CHANGELOG.md)。
 
 `mpc-soc` 给多项目芯片提供可仿真、可跑软件的 RISC-V SoC 底板。当前工具基线是
 Verilator 5.050。
@@ -13,10 +13,22 @@ Verilator 5.050。
 
 ## 用户流程
 
+普通用户不要直接使用开发分支 `main`。从 CI 生成的发行分支开始：
+
+```sh
+git clone --branch release/user-kit --single-branch \
+  https://github.com/openecos-projects/mpc-soc.git my-mpc-soc
+cd my-mpc-soc
+git switch -c user/<name>
+```
+
+详见 [User Kit 获取与使用](docs/cn/user-kit.md)。
+
 ```sh
 make doctor
 make check
-make sim APP=hello
+make lint
+make sim
 make trace
 make wave
 ```
@@ -27,7 +39,7 @@ make wave
 
 ## 仓库边界
 
-- `config/`、`hw/`、`dv/`、`sw/`：SoC 配置、硬件、仿真和软件。
+- `config/`、`hw/`、`dv/`、`sw/`：SoC 配置、硬件、仿真和维护者软件。
 - `docs/cn/`、`docs/en/`：路径一一对应的双语文档源。
 - `mk/`、`Makefile`：稳定的用户构建入口。
 - `Makefile.dev`：回归、文档站和生成物检查等维护入口。

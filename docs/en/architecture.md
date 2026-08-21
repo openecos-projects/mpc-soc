@@ -20,9 +20,13 @@ fabric. The default simulation top is `SimTop`, which wraps pad-level
 
 ## Configuration sources
 
-- `config/soc.yml` describes the template SoC top and selected IP paths.
-- `config/memory.yml` is the source of the generated RTL package and C headers.
-- `config/boards/sim.yml` describes the default simulation board.
+- `config/soc.yml` records the current SoC top, IP paths, and fixed 50 MHz clock metadata.
+- `config/memory.yml` records the fixed address map for this release and generates the RTL package.
+- `config/boards/sim.yml` records the 50 MHz simulation-board default.
+
+In this release these files describe the configuration shipped with the fixed
+`asic_top.v`; they are not user controls for retargeting the SoC address map or
+clock. Maintainer CI checks that the fixed 50 MHz values have not drifted.
 
 ## Integration flow
 
@@ -30,8 +34,9 @@ fabric. The default simulation top is `SimTop`, which wraps pad-level
    modules are added or renamed.
 2. Keep top-level bus, clock, reset, and interrupt wiring under `hw/soc/`.
 3. Keep `hw/filelist/soc.f` and `hw/filelist/verilator.f` in sync.
-4. When the memory map changes, regenerate `hw/include/soc_pkg.sv` from
-   `config/memory.yml` and update `sw/ecos/board.h`.
+4. Keep the fixed address map and 50 MHz clock in this release. Do not edit the
+   configuration files to retarget `asic_top.v`; configurable addressing is
+   deferred until a later release has the complete integration chain.
 
 Follow the [user integration guide](user-guide.md) for core slots and the AXI
 port contract.

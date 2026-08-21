@@ -18,6 +18,7 @@ BOARD_PACKAGE_DIR := $(PORT_DIR)
 APP_DIR := $(PORT_DIR)/templates/$(APP)
 BUILD_DIR := $(SOC_ROOT)/build/sw/$(BOARD)/$(APP)
 TARGET := $(BUILD_DIR)/$(APP).elf
+BUILD_CONFIG := $(BUILD_DIR)/.build-config
 AUTOCONF_H := $(BUILD_DIR)/generated/autoconf.h
 LINKER_INPUT ?= $(if $(wildcard $(APP_DIR)/sections.lds),$(APP_DIR)/sections.lds,$(BOARD_PACKAGE_DIR)/sections.lds)
 LINKER_SCRIPT := $(BUILD_DIR)/sections.lds
@@ -47,7 +48,7 @@ BOARD_INCLUDES += $(foreach dir,$(wildcard $(SOC_ROOT)/sw/$(BOARD_PACKAGE_DIR)/d
 BOARD_INCLUDES += -I$(BUILD_DIR)
 APP_INCLUDES := -I$(SOC_ROOT)/sw/$(APP_DIR)
 
-.PHONY: all check-board check-app info list clean
+.PHONY: all check-board check-app info list clean FORCE
 
 all: check-board check-app $(TARGET)
 	@$(SIZE) $(TARGET)
@@ -77,7 +78,49 @@ list:
 	@printf "$(CLR_INFO)Apps for BOARD=$(BOARD):$(CLR_RESET)\n"
 	@find $(PORT_DIR)/templates -mindepth 1 -maxdepth 1 -type d ! -name '.*' -printf '  %f\n' | sort
 
-$(AUTOCONF_H): Makefile ecos.mk
+FORCE:
+
+$(BUILD_CONFIG): FORCE
+	@mkdir -p $(dir $@)
+	@{ \
+		printf '%s\n' 'BOARD=$(BOARD)'; \
+		printf '%s\n' 'APP=$(APP)'; \
+		printf '%s\n' 'LINK_TARGET=$(LINK_TARGET)'; \
+		printf '%s\n' 'LINK_DEFS=$(LINK_DEFS)'; \
+		printf '%s\n' 'DRIVERS=$(DRIVERS)'; \
+		printf '%s\n' 'FIRMWARE_NAME=$(FIRMWARE_NAME)'; \
+		printf '%s\n' 'FIRMWARE_VERSION=$(FIRMWARE_VERSION)'; \
+		printf '%s\n' 'CPU_FREQ_MHZ=$(CPU_FREQ_MHZ)'; \
+		printf '%s\n' 'TIMER_FREQ_MHZ=$(TIMER_FREQ_MHZ)'; \
+		printf '%s\n' 'UART_BAUD_RATE=$(UART_BAUD_RATE)'; \
+		printf '%s\n' 'BOARD_FLASH_SIZE_KB=$(BOARD_FLASH_SIZE_KB)'; \
+		printf '%s\n' 'BOARD_RAM_SIZE_KB=$(BOARD_RAM_SIZE_KB)'; \
+		printf '%s\n' 'BOARD_RAM_TYPE_NAME=$(BOARD_RAM_TYPE_NAME)'; \
+		printf '%s\n' 'ECOS_SDK=$(ECOS_SDK)'; \
+		printf '%s\n' 'CROSS_COMPILE=$(CROSS_COMPILE)'; \
+		printf '%s\n' 'CC=$(CC)'; \
+		printf '%s\n' 'OBJCOPY=$(OBJCOPY)'; \
+		printf '%s\n' 'OBJDUMP=$(OBJDUMP)'; \
+		printf '%s\n' 'SIZE=$(SIZE)'; \
+		printf '%s\n' 'ARCH_FLAGS=$(ARCH_FLAGS)'; \
+		printf '%s\n' 'OPT_FLAGS=$(OPT_FLAGS)'; \
+		printf '%s\n' 'WARN_FLAGS=$(WARN_FLAGS)'; \
+		printf '%s\n' 'COMMON_CFLAGS=$(COMMON_CFLAGS)'; \
+		printf '%s\n' 'COMMON_ASFLAGS=$(COMMON_ASFLAGS)'; \
+		printf '%s\n' 'COMMON_LDFLAGS=$(COMMON_LDFLAGS)'; \
+		printf '%s\n' 'ECOS_INCLUDES=$(ECOS_INCLUDES)'; \
+		printf '%s\n' 'ECOS_LIB_DIRS=$(ECOS_LIB_DIRS)'; \
+		printf '%s\n' 'ECOS_LIBS=$(ECOS_LIBS)'; \
+		printf '%s\n' 'BOARD_INCLUDES=$(BOARD_INCLUDES)'; \
+		printf '%s\n' 'APP_INCLUDES=$(APP_INCLUDES)'; \
+		printf '%s\n' 'LINKER_INPUT=$(LINKER_INPUT)'; \
+		printf '%s\n' 'C_SRCS=$(C_SRCS)'; \
+		printf '%s\n' 'S_SRCS=$(S_SRCS)'; \
+	} > $@.tmp
+	@cmp -s $@.tmp $@ || mv $@.tmp $@
+	@rm -f $@.tmp
+
+$(AUTOCONF_H): $(BUILD_CONFIG) Makefile ecos.mk
 	@mkdir -p $(dir $@)
 	@printf "/*\n" > $@
 	@printf " * Automatically generated file; DO NOT EDIT.\n" >> $@
@@ -100,11 +143,11 @@ $(AUTOCONF_H): Makefile ecos.mk
 		printf "#define CONFIG_DRIVER_%s 1\n" "$$upper" >> $@; \
 	done
 
-$(LINKER_SCRIPT): $(LINKER_INPUT) $(AUTOCONF_H)
+$(LINKER_SCRIPT): $(LINKER_INPUT) $(AUTOCONF_H) $(BUILD_CONFIG)
 	@mkdir -p $(dir $@)
 	@$(CC) -E -P -x c $(LINK_DEFS) $(COMMON_CFLAGS) $(BOARD_INCLUDES) $(APP_INCLUDES) $(ECOS_INCLUDES) -o $@ $<
 
-$(TARGET): $(OBJS) $(LINKER_SCRIPT)
+$(TARGET): $(OBJS) $(LINKER_SCRIPT) $(BUILD_CONFIG)
 	@mkdir -p $(dir $@)
 	@$(CC) $(COMMON_LDFLAGS) -T$(LINKER_SCRIPT) -Wl,-Map,$(BUILD_DIR)/$(APP).map -o $@ $(OBJS) $(ECOS_LIB_DIRS) $(ECOS_LIBS)
 	@$(OBJCOPY) -O binary $@ $(BUILD_DIR)/$(APP).bin

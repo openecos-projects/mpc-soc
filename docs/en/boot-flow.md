@@ -2,9 +2,9 @@
 
 [中文说明](../cn/boot-flow.md)
 
-The Verilator flow reads a raw software image from
-`build/sw/<board>/<app>/` and passes it to the simulation harness as
-`+bootrom=<path>`.
+The User Kit Verilator flow reads the fixed
+`sw/bootrom/hello/retrosoc_fw.bin` image and passes it to the simulation
+harness as `+bootrom=<path>`.
 
 ## Template flow
 
@@ -12,9 +12,10 @@ The Verilator flow reads a raw software image from
 2. The harness receives the raw flash image path through `+bootrom=<path>`.
 3. When RTL issues an SPI flash read, the flash DPI model returns bytes from
    that image.
-4. Startup code in `sw/ecos/start.S` sets up the stack, clears `.bss`, and
-   calls `main`.
-5. Platform drivers use the board-package headers under `sw/ecos/`.
+4. Startup code in the fixed image initializes the runtime and executes
+   `hello`.
+5. A user-integrated core runs the same image through the existing bus and
+   peripheral paths.
 
-Use a `.bin` image for Verilator. If you pass an ELF file, the simulator
-loads the ELF container bytes as flash contents.
+This release does not provide software SDK or driver build entry points, and
+does not support replacing the fixed image shipped in the User Kit.

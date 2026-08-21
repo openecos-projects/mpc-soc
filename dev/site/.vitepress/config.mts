@@ -13,11 +13,10 @@ const cnSidebar = [
   {
     text: '用户接入',
     items: [
+      { text: '获取 User Kit', link: '/user-kit' },
       { text: '接入指南', link: '/user-guide' },
       { text: '仿真与波形', link: '/simulation' },
-      { text: '软件流程', link: '/software' },
-      { text: 'Hello 冒烟', link: '/examples/hello' },
-      { text: 'PSRAM 访问', link: '/examples/psram' }
+      { text: 'Hello 冒烟', link: '/examples/hello' }
     ]
   }
 ]
@@ -35,11 +34,10 @@ const enSidebar = [
   {
     text: 'User workflow',
     items: [
+      { text: 'Get the User Kit', link: '/en/user-kit' },
       { text: 'Integration guide', link: '/en/user-guide' },
       { text: 'Simulation and waveforms', link: '/en/simulation' },
-      { text: 'Software flow', link: '/en/software' },
-      { text: 'Hello smoke', link: '/en/examples/hello' },
-      { text: 'PSRAM access', link: '/en/examples/psram' }
+      { text: 'Hello smoke', link: '/en/examples/hello' }
     ]
   }
 ]
@@ -56,7 +54,8 @@ export default defineConfig({
   },
   head: [
     ['meta', { name: 'theme-color', content: '#0a8f7a' }],
-    ['meta', { name: 'color-scheme', content: 'light dark' }]
+    ['meta', { name: 'color-scheme', content: 'light dark' }],
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/mpc-soc/mark.svg' }]
   ],
   markdown: {
     lineNumbers: true,

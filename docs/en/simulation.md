@@ -11,32 +11,41 @@ connects board models for SPI flash, PSRAM, GPIO, UART, I2C, and QSPI.
 ```sh
 make doctor
 make check
-make sim APP=hello
+make lint
+make sim
 make trace
 make wave
 ```
 
 - `check` runs the archived `hello` smoke
-- `sim` builds the selected application and starts simulation
+- `lint` checks RTL and the file list with rules separate from the simulation build
+- `sim` starts simulation with the fixed `hello` image
 - `trace` runs `hello` with `TRACE=1`
 - `wave` opens `build/wave/SimTop.fst`
 
-Select another application or slot:
+Reaching `MAX_CYCLES` is a failure unless the fixed image has printed `done!`.
+`ALLOW_TIMEOUT=1` never overrides this configured UART pass condition.
+
+`make lint` keeps state-machine, combinational-loop, and reset-network warnings
+that the simulation compatibility mode suppresses. Warnings are reported for
+core integration review; Verilator syntax or semantic errors still fail the target.
+
+Select the core slot under test:
 
 ```sh
-make sim APP=gpio CORE_SEL=0 TRACE=0
-make check CASE=uart_poll
+make sim CORE_SEL=0 TRACE=0
+make check CORE_SEL=0
 ```
 
 Run the pad-level top directly:
 
 ```sh
-make sim TOP=asicTop APP=hello
+make sim TOP=asicTop
 ```
 
 ## Flow conventions
 
-- `build/sw/<board>/<app>/<app>.bin`: raw flash image consumed by simulation
+- `sw/bootrom/hello/retrosoc_fw.bin`: fixed raw flash image used by the User Kit
 - `hw/filelist/verilator.f`: RTL file list passed to Verilator
 - `dv/verilator/csrc/sim_main.cpp`: C++ harness
 - `build/verilator/obj_dir_SimTop/VSimTop`: default simulator
@@ -48,8 +57,5 @@ make sim TOP=asicTop APP=hello
 The harness loads a raw binary into the SPI flash model. Use a `.bin` image.
 If you pass an ELF, the simulator treats the ELF bytes as flash contents.
 
-Full bootrom regression belongs to the maintainer entry:
-
-```sh
-make -f Makefile.dev regress OUTPUT=list STOP_ON_FAIL=1 TRACE=0
-```
+Maintainers run the full bootrom regression in the development repository; it
+is not part of the User Kit command surface.

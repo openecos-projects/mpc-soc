@@ -16,15 +16,19 @@
 
 ## 配置来源
 
-- `config/soc.yml` 描述模板 SoC 顶层和选用的 IP 路径。
-- `config/memory.yml` 是生成 RTL package 和 C 头文件的内存映射来源。
-- `config/boards/sim.yml` 描述仿真板级默认配置。
+- `config/soc.yml` 记录当前 SoC 顶层、IP 路径和固定的 50 MHz 时钟元数据。
+- `config/memory.yml` 记录当前版本的固定地址映射，并生成 RTL package。
+- `config/boards/sim.yml` 记录仿真板级的 50 MHz 默认配置。
+
+这些配置在当前版本中是随固化 `asic_top.v` 发布的描述信息，不是用户可重定向 SoC
+地址或时钟的配置入口。维护者 CI 会检查各处 50 MHz 固定值没有漂移。
 
 ## 集成流程
 
 1. SoC 集成顶层保持在 `hw/soc/top/` 下；新增或重命名模块时同步更新 `hw/filelist/verilator.f`。
 2. 顶层总线、时钟、复位和中断连线放在 `hw/soc/` 下。
 3. 同步更新 `hw/filelist/soc.f` 和 `hw/filelist/verilator.f`。
-4. 内存映射变化时，从 `config/memory.yml` 重新生成 `hw/include/soc_pkg.sv`，并同步 `sw/ecos/board.h`。
+4. 当前版本保持固化的地址空间和 50 MHz 时钟；不要通过修改配置文件尝试重定向
+   `asic_top.v`。可配置地址空间留到后续版本实现完整链路后支持。
 
 CPU 替换或 bring-up 工作请遵循 [用户接入指南](user-guide.md) 中的 core 槽位和 AXI 接口约定。

@@ -11,6 +11,10 @@ sw/bootrom/<case>/
   [可选构建产物: .elf/.txt/.hex/sections.info]
 ```
 
+`<case>`、`test.yml` 中的 `name` 只允许字母、数字、点、下划线和连字符。
+`image` 必须是用例目录下的直接 `.bin` 文件名；不接受绝对路径、子目录或 `..`。
+这些约束确保固定归档回归不会读取用例目录之外的镜像或写出目录之外的日志。
+
 `test.yml` 示例：
 
 ```yaml

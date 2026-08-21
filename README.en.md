@@ -4,7 +4,7 @@
 
 [![CI](https://github.com/openecos-projects/mpc-soc/actions/workflows/ci.yml/badge.svg)](https://github.com/openecos-projects/mpc-soc/actions/workflows/ci.yml)
 
-Current version: `0.0.1`. See the Chinese-first release notes in
+Current version: `0.0.2`. See the Chinese-first release notes in
 [CHANGELOG.md](CHANGELOG.md).
 
 `mpc-soc` is a simulatable RISC-V SoC board for multi-project chips. The
@@ -14,10 +14,23 @@ Documentation site: [mpc-soc docs](https://openecos-projects.github.io/mpc-soc/)
 
 ## User workflow
 
+Regular users should not start from the development `main` branch. Begin with
+the CI-generated release branch:
+
+```sh
+git clone --branch release/user-kit --single-branch \
+  https://github.com/openecos-projects/mpc-soc.git my-mpc-soc
+cd my-mpc-soc
+git switch -c user/<name>
+```
+
+See [Getting and using the User Kit](docs/en/user-kit.md).
+
 ```sh
 make doctor
 make check
-make sim APP=hello
+make lint
+make sim
 make trace
 make wave
 ```
@@ -30,7 +43,7 @@ select it with `CORE_SEL`. Follow the
 ## Repository boundaries
 
 - `config/`, `hw/`, `dv/`, and `sw/`: SoC configuration, hardware, simulation,
-  and software.
+  and maintainer software.
 - `docs/cn/` and `docs/en/`: path-matched bilingual documentation sources.
 - `mk/` and `Makefile`: stable user build interface.
 - `Makefile.dev`: regression, documentation, and generated-file maintenance.

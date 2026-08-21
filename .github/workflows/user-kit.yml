@@ -1,0 +1,179 @@
+name: User Kit
+
+'on':
+  pull_request:
+    branches: [main]
+  workflow_dispatch: {}
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: user-kit-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  export_and_test:
+    if: >-
+      github.event_name != 'workflow_run' ||
+      (
+        github.event.workflow_run.event == 'push' &&
+        github.event.workflow_run.conclusion == 'success' &&
+        github.event.workflow_run.head_branch == 'main' &&
+        github.event.workflow_run.head_repository.full_name == github.repository
+      )
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    outputs:
+      soc_version: ${{ steps.release.outputs.version }}
+    env:
+      SOURCE_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+    steps:
+      - name: Check out tested source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          ref: ${{ env.SOURCE_SHA }}
+
+      - name: Read release version
+        id: release
+        shell: bash
+        run: |
+          set -euo pipefail
+          version="$(tr -d '[:space:]' < VERSION)"
+          [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || {
+            echo "Invalid VERSION: $version" >&2
+            exit 2
+          }
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            build-essential \
+            make \
+            python3 \
+            python3-yaml
+
+      - name: Install Verilator 5.050
+        run: bash scripts/ci/install_verilator.sh
+
+      - name: Export user kit
+        run: make -f Makefile.dev export-user-kit
+
+      - name: Verify user and maintainer boundaries
+        run: |
+          test ! -e build/user-kit/.github
+          test ! -e build/user-kit/dev
+          test ! -e build/user-kit/Makefile.dev
+          test ! -e build/user-kit/mk/dev.mk
+          test ! -e build/user-kit/tests
+          test ! -e build/user-kit/sw/Makefile
+          test ! -e build/user-kit/sw/ecos
+          test ! -e build/user-kit/sw/ecos.mk
+          test -f build/user-kit/SOC_KIT_VERSION
+          test -f build/user-kit/sw/bootrom/hello/test.yml
+          test -f build/user-kit/sw/bootrom/hello/retrosoc_fw.bin
+          test "$(find build/user-kit/sw/bootrom -mindepth 1 -maxdepth 1 -type d -printf '%f\n')" = "hello"
+
+      - name: Test fixed-image user workflow
+        run: |
+          make -C build/user-kit doctor
+          make -C build/user-kit sim TRACE=0
+          make -C build/user-kit check CASE=hello TRACE=0
+
+      - name: Clean tested user kit
+        run: |
+          rm -rf build/user-kit/build
+          test ! -e build/user-kit/build
+          test ! -e build/user-kit/Makefile.dev
+          test ! -e build/user-kit/dev
+
+      - name: Upload versioned user kit
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: mpc-soc-user-kit-${{ steps.release.outputs.version }}
+          path: build/user-kit/
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 14
+
+  publish:
+    if: >-
+      github.event_name == 'workflow_run' &&
+      github.event.workflow_run.event == 'push' &&
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.head_branch == 'main' &&
+      github.event.workflow_run.head_repository.full_name == github.repository
+    needs: export_and_test
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    env:
+      SOC_VERSION: ${{ needs.export_and_test.outputs.soc_version }}
+      SOURCE_SHA: ${{ github.event.workflow_run.head_sha }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Check out tested source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.workflow_run.head_sha }}
+
+      - name: Download tested user kit
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: mpc-soc-user-kit-${{ needs.export_and_test.outputs.soc_version }}
+          path: build/user-kit
+
+      - name: Publish new User Kit version
+        shell: bash
+        run: |
+          set -euo pipefail
+          tag="user-kit-v${SOC_VERSION}"
+          if git ls-remote --exit-code --tags origin "refs/tags/${tag}" >/dev/null 2>&1; then
+            echo "${tag} already exists; keeping the published version unchanged."
+            exit 0
+          fi
+
+          export_dir="$PWD/build/user-kit"
+          staging_dir="$(mktemp -d)"
+          cp -a "$export_dir/." "$staging_dir/"
+
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git switch --orphan release-user-kit-work
+          git rm -rf --ignore-unmatch .
+          cp -a "$staging_dir/." .
+          git add -A
+          git commit -m "user-kit: release ${SOC_VERSION} from ${SOURCE_SHA}"
+          git tag -a "$tag" -m "mpc-soc User Kit ${SOC_VERSION}"
+          git push --atomic origin \
+            +HEAD:refs/heads/release/user-kit \
+            "refs/tags/${tag}"
+
+      - name: Publish immutable release archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          tag="user-kit-v${SOC_VERSION}"
+          if gh release view "$tag" >/dev/null 2>&1; then
+            echo "GitHub Release ${tag} already exists."
+            exit 0
+          fi
+
+          git fetch --force origin "+refs/tags/${tag}:refs/tags/${tag}"
+          archive="$RUNNER_TEMP/mpc-soc-user-kit-${SOC_VERSION}.tar.gz"
+          git archive --format=tar.gz \
+            --prefix="mpc-soc-user-kit-${SOC_VERSION}/" \
+            --output="$archive" "$tag"
+          gh release create "$tag" "$archive" \
+            --verify-tag \
+            --title "mpc-soc User Kit ${SOC_VERSION}" \
+            --notes "Fixed-image core integration User Kit for mpc-soc ${SOC_VERSION}."

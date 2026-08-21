@@ -15,11 +15,8 @@ make trace
 make wave
 ```
 
-`check` is equivalent to:
-
-```sh
-make -f Makefile.dev bootrom-sim CASE=hello OUTPUT=list TRACE=0
-```
+`check` and `trace` both use the fixed `hello` image in the release; the latter
+also generates an FST waveform.
 
 ## Expected result
 
@@ -27,6 +24,6 @@ make -f Makefile.dev bootrom-sim CASE=hello OUTPUT=list TRACE=0
 - The UART stop text `done!` appears in the log
 - `trace` writes a non-empty waveform to `build/wave/SimTop.fst`
 
-If this fails, confirm `make doctor` passes and that you did not pass an ELF
-as the flash image. Then follow the [user integration guide](../user-guide.md)
+If this fails, confirm `make doctor` passes and the fixed `hello` image is
+still present. Then follow the [user integration guide](../user-guide.md)
 to attach your own core.
